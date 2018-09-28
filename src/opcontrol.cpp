@@ -1,5 +1,4 @@
 #include "main.h"
-
 using namespace pros::literals;
 
 /**
@@ -16,28 +15,45 @@ using namespace pros::literals;
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	auto left_mtr = 1_mtr;
-	pros::Motor right_mtr(2);
-	pros::Motor launch_mtr(3);
+	pros::Controller controller(pros::E_CONTROLLER_MASTER);
+	pros::Motor leftDriveMotor(1);
+	pros::Motor rightDriveMotor(2);
+	pros::Motor launchMotor(3);
+	pros::Motor wristMotor(4);
+	pros::Motor liftMotor(5);
+	pros::Motor ballIntakeMotor(6);
+	liftMotor.set_brake_mode(MOTOR_BRAKE_COAST);
 	while (true) {
-		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
-		int left = master.get_analog(ANALOG_LEFT_Y);
-		int right = master.get_analog(ANALOG_RIGHT_Y);
-		int launch = master.get_digital(DIGITAL_R1);
-		left_mtr = left;
-		right_mtr = right;
-		if (launch == 1)
-		{
-			launch_mtr.move(100);
-		}
-		if(launch == 0)
-		{
-			launch_mtr.move(0);
-		}
-		pros::delay(20);
-
+	leftDriveMotor.move(controller.get_analog(ANALOG_LEFT_Y));
+	rightDriveMotor.move(controller.get_analog(ANALOG_RIGHT_Y));
+	int liftup = controller.get_digital(DIGITAL_R1);
+	int liftdown = controller.get_digital(DIGITAL_R2);
+	int wristleft = controller.get_digital(DIGITAL_L1);
+	if (liftup == 1)
+	{
+		liftMotor.move(100);
 	}
+	else
+	{
+		liftMotor.move(0);
+	}
+
+	if (liftdown == 1)
+	{
+		liftMotor.move(-100);
+	}
+	else
+	{
+		liftMotor.move(0);
+	}
+	if(wristleft == 1)
+	{
+		wristMotor.move(-100);
+	}
+	else
+	{
+		wristMotor.move(0);
+	}
+	controller.print(1,0,"%d",controller.get_analog(ANALOG_LEFT_Y))
+}
 }

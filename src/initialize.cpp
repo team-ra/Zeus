@@ -29,6 +29,7 @@ void initialize() {
 	pros::lcd::set_text(9, "Hello PROS User9!");
 	pros::lcd::set_text(0, "Hello Line 0");
 	pros::lcd::register_btn1_cb(on_center_button);
+
 }
 
 /**
