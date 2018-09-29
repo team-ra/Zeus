@@ -22,38 +22,16 @@ void opcontrol() {
 	pros::Motor wristMotor(4);
 	pros::Motor liftMotor(5);
 	pros::Motor ballIntakeMotor(6);
-	liftMotor.set_brake_mode(MOTOR_BRAKE_COAST);
 	while (true) {
 	leftDriveMotor.move(controller.get_analog(ANALOG_LEFT_Y));
 	rightDriveMotor.move(controller.get_analog(ANALOG_RIGHT_Y));
 	int liftup = controller.get_digital(DIGITAL_R1);
 	int liftdown = controller.get_digital(DIGITAL_R2);
 	int wristleft = controller.get_digital(DIGITAL_L1);
-	if (liftup == 1)
-	{
-		liftMotor.move(100);
-	}
-	else
-	{
-		liftMotor.move(0);
-	}
 
-	if (liftdown == 1)
-	{
-		liftMotor.move(-100);
-	}
-	else
-	{
-		liftMotor.move(0);
-	}
-	if(wristleft == 1)
-	{
-		wristMotor.move(-100);
-	}
-	else
-	{
-		wristMotor.move(0);
-	}
-	controller.print(1,0,"%d",controller.get_analog(ANALOG_LEFT_Y))
+	if (liftup == 1){liftMotor.move(100);} else { liftMotor.move(0);}
+	if (liftdown == 1 && liftup != 1){liftMotor.move(-100);} else {liftMotor.move(0);}
+	if(wristleft == 1) { wristMotor.move(-100);} else { wristMotor.move(0);}
+	
 }
 }

@@ -18,17 +18,9 @@ void on_center_button() {
  */
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User1!");
-	pros::lcd::set_text(2, "Hello PROS User2!");
-	pros::lcd::set_text(3, "Hello PROS User3!");
-	pros::lcd::set_text(4, "Hello PROS User4!");
-	pros::lcd::set_text(5, "Hello PROS User5!");
-	pros::lcd::set_text(6, "Hello PROS User6!");
-	pros::lcd::set_text(7, "Hello PROS User7!");
-	pros::lcd::set_text(8, "Hello PROS User8!");
-	pros::lcd::set_text(9, "Hello PROS User9!");
-	pros::lcd::set_text(0, "Hello Line 0");
+	pros::lcd::set_text(1, "Hello PROS User");
 	pros::lcd::register_btn1_cb(on_center_button);
+	leftDriveMotor = new pros::Motor(1);
 
 }
 
