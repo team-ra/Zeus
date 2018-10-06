@@ -12,7 +12,7 @@ void motorSetup();
 /************************************************/
 //auton function prototypes
 void driveForward(int counts,int power);
-void driveBackward(int counts);
+void driveBackward(int counts,int power);
 void turnLeft(int counts);
 void turnRight(int counts);
 int encoderInchesToCounts(float inches);

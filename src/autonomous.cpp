@@ -13,5 +13,6 @@
  */
 void autonomous() {
   motorSetup();
-driveForward(900,100);
+driveForward(encoderInchesToCounts(10),100);
+driveBackward(encoderInchesToCounts(10),100);
 }
