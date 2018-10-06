@@ -49,12 +49,12 @@ liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 
 //sets braking mode so that any attempt to stop will occur immediately
-leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-rightDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+rightDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
 
 void updateControllerLcd()
@@ -109,13 +109,14 @@ void wristControl()
 
 void launcherControl()
 {
-  	if(launchA == 1 || launchB == 1) {launchMotor.move(127);} else {launchMotor.move(0);}
+  	if(launchA == 1) {launchMotor.move(-127);} else {launchMotor.move(0);}
+    if(launchB == 1) {launchMotor.move(20);}
 }
 
 void ballIntakeControl()
 {
-  if (intake == 1) {intakeActive = !intakeActive; pros::delay(250);}
-  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse; pros::delay(250);updateControllerLcd();}
+  if (intake == 1) {intakeActive = !intakeActive; pros::delay(100);}
+  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse; pros::delay(100);updateControllerLcd();}
   // if(ballIntakeSetIn == 1 && ballIntakeSetOut != 1) { intakeReverse = false;}
 	// if(ballIntakeSetOut == 1 && ballIntakeSetIn != 1) { intakeReverse = true;}
 	if(intakeActive && intakeReverse) {ballIntakeMotor.move(-127);} else if (intakeActive && !intakeReverse) {ballIntakeMotor.move(127);} else {ballIntakeMotor.move(0);}
@@ -144,5 +145,5 @@ void swirl()
     swirlstate = 0;
   }
   swirlstate++;
-  pros::delay(250);
+  pros::delay(100);
 }

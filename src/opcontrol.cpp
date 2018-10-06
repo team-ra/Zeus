@@ -19,13 +19,13 @@ void opcontrol() {
 	motorSetup();
 	updateControllerLcd();
 	while (true) {
-		swirl();
 		readJoystick();
 		driveControl();
 		liftControl();
 		wristControl();
 		launcherControl();
 		ballIntakeControl();
+		swirl();
 		pros::delay(2);
 	}
 }

@@ -31,7 +31,7 @@
             "bin/autonomous.cpp.o",
             "src\\autonomous.cpp"
         ],
-        "directory": "C:\\Users\\gnations\\Desktop\\Zeus",
+        "directory": "C:\\Users\\VexLabUser\\Desktop\\Zeus",
         "file": "src\\autonomous.cpp"
     },
     {
@@ -66,7 +66,7 @@
             "bin/autonlib.cpp.o",
             "src\\autonlib.cpp"
         ],
-        "directory": "C:\\Users\\gnations\\Desktop\\Zeus",
+        "directory": "C:\\Users\\VexLabUser\\Desktop\\Zeus",
         "file": "src\\autonlib.cpp"
     },
     {
@@ -101,7 +101,7 @@
             "bin/opcontrol.cpp.o",
             "src\\opcontrol.cpp"
         ],
-        "directory": "C:\\Users\\gnations\\Desktop\\Zeus",
+        "directory": "C:\\Users\\VexLabUser\\Desktop\\Zeus",
         "file": "src\\opcontrol.cpp"
     },
     {
@@ -136,7 +136,7 @@
             "bin/initialize.cpp.o",
             "src\\initialize.cpp"
         ],
-        "directory": "C:\\Users\\gnations\\Desktop\\Zeus",
+        "directory": "C:\\Users\\VexLabUser\\Desktop\\Zeus",
         "file": "src\\initialize.cpp"
     },
     {
@@ -171,7 +171,7 @@
             "bin/robotlib.cpp.o",
             "src\\robotlib.cpp"
         ],
-        "directory": "C:\\Users\\gnations\\Desktop\\Zeus",
+        "directory": "C:\\Users\\VexLabUser\\Desktop\\Zeus",
         "file": "src\\robotlib.cpp"
     }
 ]
