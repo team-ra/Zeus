@@ -9,6 +9,7 @@ void launcherControl();
 void ballIntakeControl();
 void updateControllerLcd();
 void motorSetup();
+void swirl();
 /************************************************/
 //auton function prototypes
 void driveForward(int counts,int power,bool zeromotors);

@@ -1,4 +1,12 @@
 #include "main.h"
+
+extern pros::Motor leftDriveMotor;
+extern pros::Motor rightDriveMotor;
+extern pros::Motor launchMotor;
+extern pros::Motor wristMotor;
+extern pros::Motor liftMotor;
+extern pros::Motor ballIntakeMotor;
+
 void on_center_button() {
 	static bool pressed = false;
 	pressed = !pressed;
@@ -19,6 +27,12 @@ void initialize() {
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User");
 	pros::lcd::register_btn1_cb(on_center_button);
+	leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	rightDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
 }
 
@@ -27,7 +41,9 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+leftDriveMotor.move(0);
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field

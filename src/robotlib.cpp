@@ -20,6 +20,7 @@ bool intakeActive = false;
 char controllertext[14];
 bool halfspeed;
 int changespeed;
+int swirlstate;
 
 
 //Class instances for controller and motors
@@ -111,4 +112,30 @@ void ballIntakeControl()
   // if(ballIntakeSetIn == 1 && ballIntakeSetOut != 1) { intakeReverse = false;}
 	// if(ballIntakeSetOut == 1 && ballIntakeSetIn != 1) { intakeReverse = true;}
 	if(intakeActive && intakeReverse) {ballIntakeMotor.move(-127);} else if (intakeActive && !intakeReverse) {ballIntakeMotor.move(127);} else {ballIntakeMotor.move(0);}
+}
+//provides reassurance of operation
+void swirl()
+{
+  if (swirlstate == 0 || swirlstate == 4)
+  {
+    controller.print(1,12,"-");
+  }
+  else if (swirlstate == 1 || swirlstate == 5)
+  {
+  controller.print(1,12,"\\");
+  }
+  else if (swirlstate == 2 || swirlstate == 6)
+  {
+  controller.print(1,12,"|");
+  }
+  else if (swirlstate == 3 || swirlstate == 7)
+  {
+  controller.print(1,12,"/");
+  }
+  else
+  {
+    swirlstate = 0;
+  }
+  swirlstate++;
+  pros::delay(250);
 }

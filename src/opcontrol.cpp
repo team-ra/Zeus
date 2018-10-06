@@ -19,6 +19,7 @@ void opcontrol() {
 	motorSetup();
 	updateControllerLcd();
 	while (true) {
+		swirl();
 		readJoystick();
 		driveControl();
 		liftControl();
