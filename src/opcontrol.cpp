@@ -16,6 +16,8 @@ using namespace pros::literals;
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	motorSetup();
+	updateControllerLcd();
 	while (true) {
 		readJoystick();
 		driveControl();
@@ -24,5 +26,5 @@ void opcontrol() {
 		launcherControl();
 		ballIntakeControl();
 		pros::delay(2);
-	}	
+	}
 }

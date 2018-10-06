@@ -30,11 +30,24 @@ pros::Motor launchMotor(3);
 pros::Motor wristMotor(4);
 pros::Motor liftMotor(5);
 pros::Motor ballIntakeMotor(6);
+void motorSetup()
+{
+  leftDriveMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  rightDriveMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  launchMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  wristMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  liftMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  ballIntakeMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+}
 
+void updateControllerLcd()
+{
+  controller.print(0, 0, "Intr:%d Spd:%d",intakeReverse,halfspeed);
+}
 //moves drivetrain
 void driveControl()
 {
-  if (changespeed == 1) {halfspeed = !halfspeed; pros::delay(100);}
+  if (changespeed == 1) {halfspeed = !halfspeed; pros::delay(250);updateControllerLcd();}
   if (!halfspeed){
   leftDriveMotor.move(leftDrivePower);
   rightDriveMotor.move(rightDrivePower);
@@ -84,8 +97,8 @@ void launcherControl()
 
 void ballIntakeControl()
 {
-  if (intake == 1) {intakeActive = !intakeActive; pros::delay(100);}
-  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse; pros::delay(100);}
+  if (intake == 1) {intakeActive = !intakeActive; pros::delay(250);}
+  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse; pros::delay(250);updateControllerLcd();}
   // if(ballIntakeSetIn == 1 && ballIntakeSetOut != 1) { intakeReverse = false;}
 	// if(ballIntakeSetOut == 1 && ballIntakeSetIn != 1) { intakeReverse = true;}
 	if(intakeActive && intakeReverse) {ballIntakeMotor.move(-127);} else if (intakeActive && !intakeReverse) {ballIntakeMotor.move(127);} else {ballIntakeMotor.move(0);}
