@@ -27,12 +27,6 @@ void initialize() {
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User");
 	pros::lcd::register_btn1_cb(on_center_button);
-	leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	rightDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
 }
 
@@ -43,6 +37,11 @@ void initialize() {
  */
 void disabled() {
 leftDriveMotor.move(0);
+rightDriveMotor.move(0);
+launchMotor.move(0);
+wristMotor.move(0);
+liftMotor.move(0);
+ballIntakeMotor.move(0);
 }
 
 /**

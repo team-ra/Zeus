@@ -133,11 +133,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/robotlib.cpp.o",
-            "src\\robotlib.cpp"
+            "bin/initialize.cpp.o",
+            "src\\initialize.cpp"
         ],
         "directory": "C:\\Users\\gnations\\Desktop\\Zeus",
-        "file": "src\\robotlib.cpp"
+        "file": "src\\initialize.cpp"
     },
     {
         "arguments": [
@@ -168,10 +168,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/initialize.cpp.o",
-            "src\\initialize.cpp"
+            "bin/robotlib.cpp.o",
+            "src\\robotlib.cpp"
         ],
         "directory": "C:\\Users\\gnations\\Desktop\\Zeus",
-        "file": "src\\initialize.cpp"
+        "file": "src\\robotlib.cpp"
     }
 ]

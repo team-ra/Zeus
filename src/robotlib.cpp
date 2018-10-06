@@ -48,6 +48,13 @@ wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 
+//sets braking mode so that any attempt to stop will occur immediately
+leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+rightDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 }
 
 void updateControllerLcd()
