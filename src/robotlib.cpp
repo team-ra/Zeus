@@ -32,12 +32,21 @@ pros::Motor liftMotor(5);
 pros::Motor ballIntakeMotor(6);
 void motorSetup()
 {
+  //set encoder units for autonomous actions
   leftDriveMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   rightDriveMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   launchMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   wristMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   liftMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   ballIntakeMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+//set gearsets for motors
+leftDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+rightDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+
 }
 
 void updateControllerLcd()

@@ -11,9 +11,9 @@ void updateControllerLcd();
 void motorSetup();
 /************************************************/
 //auton function prototypes
-void driveForward(int counts,int power);
-void driveBackward(int counts,int power);
-void turnLeft(int counts);
-void turnRight(int counts);
+void driveForward(int counts,int power,bool zeromotors);
+void driveBackward(int counts,int power,bool zeromotors);
+void turnLeft(int counts,int power,bool zeromotors);
+void turnRight(int counts,int power,bool zeromotors);
 int encoderInchesToCounts(float inches);
 #endif

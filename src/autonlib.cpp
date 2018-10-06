@@ -26,30 +26,46 @@ int encoderInchesToCounts(float inches)
   }
   return counts;
 }
-void driveForward(int counts,int power)
+void driveForward(int counts,int power,bool zeromotors)
 {
   leftDriveMotor.move_relative(counts,power);
   rightDriveMotor.move_relative(-counts,-power);
   while(leftDriveMotor.get_position() <= counts && rightDriveMotor.get_position() <= counts);
-  leftDriveMotor.tare_position();
-  rightDriveMotor.tare_position();
+  if(zeromotors){
+    leftDriveMotor.tare_position();
+    rightDriveMotor.tare_position();
+  }
 }
 
-void driveBackward(int counts,int power)
+void driveBackward(int counts,int power,bool zeromotors)
+{
+  leftDriveMotor.move_relative(-counts,-power);
+  rightDriveMotor.move_relative(counts,power);
+  while(leftDriveMotor.get_position() >= -counts && rightDriveMotor.get_position() <= counts);
+  if(zeromotors){
+    leftDriveMotor.tare_position();
+    rightDriveMotor.tare_position();
+  }
+}
+
+void turnLeft(int counts,int power,bool zeromotors)
+{
+  leftDriveMotor.move_relative(-counts,-power);
+  rightDriveMotor.move_relative(-counts,power);
+  while(leftDriveMotor.get_position() <= -counts && rightDriveMotor.get_position() <= -counts);
+  if(zeromotors){
+    leftDriveMotor.tare_position();
+    rightDriveMotor.tare_position();
+  }
+}
+
+void turnRight(int counts,int power,bool zeromotors)
 {
   leftDriveMotor.move_relative(-counts,power);
   rightDriveMotor.move_relative(counts,-power);
   while(leftDriveMotor.get_position() <= -counts && rightDriveMotor.get_position() <= -counts);
-  leftDriveMotor.tare_position();
-  rightDriveMotor.tare_position();
-}
-
-void turnLeft(int counts)
-{
-
-}
-
-void turnRight(int counts)
-{
-
+  if(zeromotors){
+    leftDriveMotor.tare_position();
+    rightDriveMotor.tare_position();
+  }
 }
