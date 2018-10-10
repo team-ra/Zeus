@@ -31,6 +31,7 @@ pros::Motor launchMotor(3);
 pros::Motor wristMotor(4);
 pros::Motor liftMotor(5);
 pros::Motor ballIntakeMotor(6);
+
 void motorSetup()
 {
   //set encoder units for autonomous actions

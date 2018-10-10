@@ -17,4 +17,6 @@ void driveBackward(int counts,int power,bool zeromotors);
 void turnLeft(int counts,int power,bool zeromotors);
 void turnRight(int counts,int power,bool zeromotors);
 int encoderInchesToCounts(float inches);
+void shootBall();
+void auton1();
 #endif
