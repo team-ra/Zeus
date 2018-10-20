@@ -1,5 +1,6 @@
 #include "main.h"
 #include "robot.h"
+using namespace pros::literals;
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -12,9 +13,13 @@
  * from where it left off.
  */
 void autonomous() {
+
   motorSetup();
-//driveForward(encoderInchesToCounts(10),100,true);
-driveBackward(encoderInchesToCounts(10),100,true);
-turnLeft(100, 50, true);
+int mode = setAutonMode();
+pros::lcd::print(1,"%d",mode);
+startauto(mode);
+// //driveForward(encoderInchesToCounts(10),100,true);
+// driveBackward(encoderInchesToCounts(10),100,true);
+// turnLeft(100, 50, true);
 
 }

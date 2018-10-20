@@ -23,7 +23,7 @@ bool halfspeed;
 int changespeed;
 int swirlstate;
 pros::ADILineSensor ls(LINE_SENSOR_PORT);
-// pros::ADIDigitalOut led('c');
+pros::ADIPotentiometer autopot('e');
 pros::ADIButton lswitch(LIMIT_SWITCH_PORT);
 
 //Class instances for controller and motors

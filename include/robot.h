@@ -9,7 +9,7 @@
 #define BALL_INTAKE_MOTOR_PORT 6
 #define LINE_SENSOR_PORT 'd'
 #define LIMIT_SWITCH_PORT 'b'
-
+#define LAUNCHER_ENCODER_COUNTS_TO_FIRE 3000
 
 
 //driver function prototypes
@@ -29,4 +29,16 @@ void driveBackward(int counts,int power,bool zeromotors);
 void turnLeft(int counts,int power,bool zeromotors);
 void turnRight(int counts,int power,bool zeromotors);
 int encoderInchesToCounts(float inches);
+void auton1();
+void auton2();
+void auton3();
+void auton4();
+void auton5();
+void auton6();
+void auton7();
+void auton8();
+void auton9();
+void auton10();
+int setAutonMode();
+void startauto(int mode);
 #endif

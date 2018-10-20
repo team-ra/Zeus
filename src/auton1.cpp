@@ -5,7 +5,7 @@
 #define DRIVE1_POWER 100
 void auton1()
 {
-  shootBall();
+  //shootBall();
   driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true);
 
 }
