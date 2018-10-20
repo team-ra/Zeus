@@ -8,7 +8,7 @@ extern pros::Motor wristMotor;
 extern pros::Motor liftMotor;
 extern pros::Motor ballIntakeMotor;
 extern pros::ADIPotentiometer autopot;
-
+extern pros::ADILineSensor ls2;
 void  (*autonfuncs[])() = {&auton1,&auton2,auton3,auton4,auton5,auton6,auton7,auton8,auton9,auton10};
 int encoderInchesToCounts(float inches)
 {
@@ -97,6 +97,6 @@ void startauto(int mode)
 
 void shootBall()
 {
-  launchMotor.move_relative(counts,power);
-  while(leftDriveMotor.get_position() <= LAUNCHER_ENCODER_COUNTS_TO_FIRE;
+  launchMotor.move(-127);
+  while(ls2.get_value() <= 200);
 }

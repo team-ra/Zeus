@@ -16,12 +16,22 @@ using namespace pros::literals;
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	
-
+	std::uint32_t lasttime;
+	int flag = 1;
 	motorSetup();
 	updateControllerLcd();
 	while (true) {
-		swirl();
+		if (flag)
+		{
+			lasttime = pros::millis();
+			flag = 0;
+		}
+		if (lasttime + 50 < pros::millis())
+		{
+			swirl();
+			flag = 1;
+		}
+
 		readJoystick();
 		driveControl();
 		liftControl();
