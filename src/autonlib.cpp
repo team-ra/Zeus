@@ -1,7 +1,6 @@
 #include "main.h"
 #include "robot.h"
-#define SHOOTER_ENCODER_COUNTS 300
-#define SHOOTER_VELOCITY 150
+
 extern pros::Motor leftDriveMotor;
 extern pros::Motor rightDriveMotor;
 extern pros::Motor launchMotor;
@@ -70,7 +69,8 @@ void turnRight(int counts,int power,bool zeromotors)
     rightDriveMotor.tare_position();
   }
 }
-void shootBall()
+
+void setAutonMode()
 {
-  launchMotor.move_absolute(SHOOTER_ENCODER_COUNTS,SHOOTER_VELOCITY);
+  
 }

@@ -16,20 +16,18 @@ using namespace pros::literals;
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	pros::ADILineSensor sensor('h');
-	pros::ADIDigitalOut led('d');
-	led.set_value(2048);
+	
+
 	motorSetup();
 	updateControllerLcd();
 	while (true) {
+		swirl();
 		readJoystick();
 		driveControl();
 		liftControl();
 		wristControl();
 		launcherControl();
 		ballIntakeControl();
-		swirl();
-		pros::lcd::print(2,"Sensor:%d",sensor.get_value());
 		pros::delay(2);
 	}
 }

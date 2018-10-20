@@ -36,12 +36,6 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-	leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	rightDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-	ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 leftDriveMotor.move(0);
 rightDriveMotor.move(0);
 launchMotor.move(0);

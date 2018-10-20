@@ -13,8 +13,8 @@
  */
 void autonomous() {
   motorSetup();
-// //driveForward(encoderInchesToCounts(10),100,true);
-// driveBackward(encoderInchesToCounts(10),100,true);
-// turnLeft(100, 50, true);
-auton1();
+//driveForward(encoderInchesToCounts(10),100,true);
+driveBackward(encoderInchesToCounts(10),100,true);
+turnLeft(100, 50, true);
+
 }

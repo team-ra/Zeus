@@ -1,6 +1,7 @@
 #include "main.h"
 #include "robot.h"
 
+
 using namespace pros::literals;
 
 //controller and motor state variables
@@ -21,16 +22,18 @@ char controllertext[14];
 bool halfspeed;
 int changespeed;
 int swirlstate;
-
+pros::ADILineSensor ls(LINE_SENSOR_PORT);
+// pros::ADIDigitalOut led('c');
+pros::ADIButton lswitch(LIMIT_SWITCH_PORT);
 
 //Class instances for controller and motors
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
-pros::Motor leftDriveMotor(1);
-pros::Motor rightDriveMotor(2);
-pros::Motor launchMotor(3);
-pros::Motor wristMotor(4);
-pros::Motor liftMotor(5);
-pros::Motor ballIntakeMotor(6);
+pros::Motor leftDriveMotor(LEFT_DRIVE_MOTOR_PORT);
+pros::Motor rightDriveMotor(RIGHT_DRIVE_MOTOR_PORT);
+pros::Motor launchMotor(LAUNCH_MOTOR_PORT);
+pros::Motor wristMotor(WRIST_MOTOR_PORT);
+pros::Motor liftMotor(LIFT_MOTOR_PORT);
+pros::Motor ballIntakeMotor(BALL_INTAKE_MOTOR_PORT);
 
 void motorSetup()
 {
@@ -48,6 +51,7 @@ launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+
 
 //sets braking mode so that any attempt to stop will occur immediately
 leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -110,16 +114,14 @@ void wristControl()
 
 void launcherControl()
 {
-  	if(launchA == 1) {launchMotor.move(-127);} else {launchMotor.move(0);}
-    if(launchB == 1) {launchMotor.move(20);}
+    if (ls.get_value() < 200 && lswitch.get_value() == 1){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
+  	if(launchA == 1 || launchB == 1) {launchMotor.move(127);} else {launchMotor.move(0);}
 }
 
 void ballIntakeControl()
 {
-  if (intake == 1) {intakeActive = !intakeActive; pros::delay(100);}
-  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse; pros::delay(100);updateControllerLcd();}
-  // if(ballIntakeSetIn == 1 && ballIntakeSetOut != 1) { intakeReverse = false;}
-	// if(ballIntakeSetOut == 1 && ballIntakeSetIn != 1) { intakeReverse = true;}
+  if (intake == 1) {intakeActive = !intakeActive; pros::delay(250);}
+  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse; pros::delay(250);updateControllerLcd();}
 	if(intakeActive && intakeReverse) {ballIntakeMotor.move(-127);} else if (intakeActive && !intakeReverse) {ballIntakeMotor.move(127);} else {ballIntakeMotor.move(0);}
 }
 //provides reassurance of operation
@@ -146,5 +148,5 @@ void swirl()
     swirlstate = 0;
   }
   swirlstate++;
-  pros::delay(100);
+  pros::delay(250);
 }
