@@ -98,5 +98,6 @@ void startauto(int mode)
 void shootBall()
 {
   launchMotor.move(-127);
-  while(ls2.get_value() <= 200);
+  while(ls2.get_value() >= 800 && ls.get_value() <= 200);
+  launchMotor.move(0);
 }
