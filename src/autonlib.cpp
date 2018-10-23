@@ -9,6 +9,7 @@ extern pros::Motor liftMotor;
 extern pros::Motor ballIntakeMotor;
 extern pros::ADIPotentiometer autopot;
 extern pros::ADILineSensor ls2;
+extern pros::ADILineSensor ls;
 void  (*autonfuncs[])() = {&auton1,&auton2,auton3,auton4,auton5,auton6,auton7,auton8,auton9,auton10};
 int encoderInchesToCounts(float inches)
 {
