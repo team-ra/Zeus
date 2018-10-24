@@ -99,6 +99,11 @@ void startauto(int mode)
 void shootBall()
 {
   launchMotor.move(-127);
-  while(ls2.get_value() >= 800 && ls.get_value() <= 200);
+  if (ls2.get_value() <= 800) {pros::lcd::print(5,"Under");}
   launchMotor.move(0);
+}
+
+void waitForSensorInit(int timeoutmillis)
+{
+  while(ls.get_value() <= 100 && ls2.get_value() <= 100);
 }

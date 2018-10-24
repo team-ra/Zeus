@@ -114,7 +114,8 @@ void wristControl()
 void launcherControl()
 {
   pros::lcd::print(3,"LS LAuncher:%d",ls2.get_value());
-    if (ls.get_value() < 200 && ls2.get_value() < 200){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
+  pros::lcd::print(4,"Ball Detect:%d",ls.get_value());
+    if (ls.get_value() < 200 && ls2.get_value() < 800){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
     if(launchA == 1) {launchMotor.move(-127);} else {launchMotor.move(0);}
     if(launchB == 1) {launchMotor.move(40);}
 }

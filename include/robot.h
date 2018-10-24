@@ -42,4 +42,5 @@ void auton10();
 int setAutonMode();
 void startauto(int mode);
 void shootBall();
+void waitForSensorInit(int timeoutmillis);
 #endif
