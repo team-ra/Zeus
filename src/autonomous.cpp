@@ -15,6 +15,7 @@ using namespace pros::literals;
 void autonomous() {
 
   motorSetup();
+  ls2.calibrate();
 int mode = setAutonMode();
 pros::lcd::print(1,"%d",mode);
 startauto(mode);
