@@ -99,7 +99,7 @@ void startauto(int mode)
 void shootBall()
 {
   launchMotor.move(-127);
-  if (ls2.get_value() <= 800) {pros::lcd::print(5,"Under");}
+  if (ls2.get_value_calibrated() <= 800) {pros::lcd::print(5,"Under");}
   launchMotor.move(0);
 }
 
