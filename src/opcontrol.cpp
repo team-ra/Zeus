@@ -17,7 +17,9 @@ using namespace pros::literals;
  */
 void opcontrol() {
 	std::uint32_t lasttime;
+	std::uint32_t lastcontroltime;
 	int flag = 1;
+	int controlflag = 1;
 	motorSetup();
 	updateControllerLcd();
 	while (true) {
@@ -31,8 +33,16 @@ void opcontrol() {
 			swirl();
 			flag = 1;
 		}
-
-		readJoystick();
+		if (controlflag)
+		{
+			lastcontroltime = pros::millis();
+			controlflag = 0;
+		}
+		if (lastcontroltime + 100 < pros::millis())
+		{
+			readJoystick();
+			controlflag = 1;
+		}
 		driveControl();
 		liftControl();
 		wristControl();

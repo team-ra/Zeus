@@ -18,6 +18,7 @@ int ballIntakeSetOut;
 int intake;
 bool intakeReverse;
 bool intakeActive = false;
+bool launcherActive = false;
 char controllertext[14];
 bool halfspeed;
 int changespeed;
@@ -47,7 +48,7 @@ void motorSetup()
 //set gearsets for motors
 leftDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 rightDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
-launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+launchMotor.set_gearing(pros::E_MOTOR_GEARSET_06);
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
@@ -89,17 +90,17 @@ void readJoystick()
 	 wristright = controller.get_digital(DIGITAL_L2);
 	 launchA = controller.get_digital(DIGITAL_A);
 	 launchB = controller.get_digital(DIGITAL_B);
-	 ballIntakeSetDir = controller.get_digital_new_press(DIGITAL_UP);
+	 ballIntakeSetDir = controller.get_digital(DIGITAL_UP);
 	 intake = controller.get_digital(DIGITAL_X);
-   changespeed = controller.get_digital_new_press(DIGITAL_LEFT);
+   changespeed = controller.get_digital(DIGITAL_LEFT);
 
 }
 //moves lift
 void liftControl()
 {
   if (liftup && liftdown) {liftMotor.move(0);}
-  else if (liftup == 1)   {liftMotor.move(100);}
-	else if (liftdown == 1) {liftMotor.move(-100);}
+  else if (liftup == 1)   {liftMotor.move(-100);}
+	else if (liftdown == 1) {liftMotor.move(100);}
   else {liftMotor.move(0);}
 }
 
@@ -115,15 +116,17 @@ void launcherControl()
 {
   pros::lcd::print(3,"LS LAuncher:%d",ls2.get_value());
   pros::lcd::print(4,"Ball Detect:%d",ls.get_value());
-    if (ls.get_value() < 200 && ls2.get_value() < 800){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
+    //if (launchA == 1) {launcherActive = !launcherActive; pros::delay(100);}
+    //if (launcherActive) {launchMotor.move(-127);} else {launchMotor.move(0);}
+    //if (ls.get_value() < 200 && ls2.get_value() < 800){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
     if(launchA == 1) {launchMotor.move(-127);} else {launchMotor.move(0);}
-    if(launchB == 1) {launchMotor.move(40);}
+    // if(launchB == 1) {launchMotor.move(40);}
 }
 
 void ballIntakeControl()
 {
-  if (intake == 1) {intakeActive = !intakeActive; pros::delay(100);}
-  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse; pros::delay(100);updateControllerLcd();}
+  if (intake == 1) {intakeActive = !intakeActive;}
+  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse;updateControllerLcd();}
 	if(intakeActive && intakeReverse) {ballIntakeMotor.move(-127);} else if (intakeActive && !intakeReverse) {ballIntakeMotor.move(127);} else {ballIntakeMotor.move(0);}
 }
 //provides reassurance of operation
