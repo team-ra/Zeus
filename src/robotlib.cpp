@@ -41,7 +41,7 @@ void motorSetup()
   //set encoder units for autonomous actions
   leftDriveMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   rightDriveMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
-  launchMotor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+  launchMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   wristMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   liftMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   ballIntakeMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
@@ -52,7 +52,6 @@ launchMotor.set_gearing(pros::E_MOTOR_GEARSET_06);
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
-
 
 //sets braking mode so that any attempt to stop will occur immediately
 leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -65,18 +64,22 @@ ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
 void updateControllerLcd()
 {
-  controller.print(0, 0, "Intr:%d Spd:%d",intakeReverse,halfspeed);
+  controller.print(0, 0, "Intr:%d Spd:%d",intakeReverse,halfspeed);//updates controller LCD with the state of toggles
 }
 //moves drivetrain
 void driveControl()
 {
-  if (changespeed == 1) {halfspeed = !halfspeed; pros::delay(250);updateControllerLcd();}
+  if (changespeed == 1) {
+    halfspeed = !halfspeed; //detects if the button to divide speed was pressed and halves the speed
+    //pros::delay(250);
+    updateControllerLcd(); //updates controller LCD with the state of toggles
+  }
   if (!halfspeed){
-  leftDriveMotor.move(leftDrivePower);
-  rightDriveMotor.move(rightDrivePower);
+  leftDriveMotor.move(leftDrivePower);//sets drive power of left motor
+  rightDriveMotor.move(rightDrivePower);//sets drive power of right motor
   } else {
-  leftDriveMotor.move(leftDrivePower *.5);
-  rightDriveMotor.move(rightDrivePower*.5);
+  leftDriveMotor.move(leftDrivePower *.5);//sets drive power of left motor to half
+  rightDriveMotor.move(rightDrivePower*.5);//sets drive power of right motor to half
   }
 }
 //set controller states
@@ -98,18 +101,34 @@ void readJoystick()
 //moves lift
 void liftControl()
 {
-  if (liftup && liftdown) {liftMotor.move(0);}
-  else if (liftup == 1)   {liftMotor.move(-100);}
-	else if (liftdown == 1) {liftMotor.move(100);}
-  else {liftMotor.move(0);}
+  if (liftup && liftdown) {
+    liftMotor.move(0);//prevents motor from oscillating
+  }
+  else if (liftup == 1) {
+    liftMotor.move(-100);//drives lift up
+  }
+	else if (liftdown == 1) {
+    liftMotor.move(100);//drives lift down
+  }
+  else {
+    liftMotor.move(0);//stop motor
+  }
 }
 
 void wristControl()
 {
-  if (wristleft && wristright) {wristMotor.move(0);}
-  else if (wristleft == 1)   {wristMotor.move(100);}
-  else if (wristright == 1) {wristMotor.move(-100);}
-  else {wristMotor.move(0);}
+  if (wristleft && wristright) {
+    wristMotor.move(0);//stop motor from oscillating
+  }
+  else if (wristleft == 1){
+    wristMotor.move(100); // turn wrist left
+  }
+  else if (wristright == 1) {
+    wristMotor.move(-100);//turn wrist right
+  }
+  else {
+    wristMotor.move(0);//turn motor off
+  }
 }
 
 void launcherControl()
@@ -119,15 +138,32 @@ void launcherControl()
     //if (launchA == 1) {launcherActive = !launcherActive; pros::delay(100);}
     //if (launcherActive) {launchMotor.move(-127);} else {launchMotor.move(0);}
     //if (ls.get_value() < 200 && ls2.get_value() < 800){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
-    if(launchA == 1) {launchMotor.move(-127);} else {launchMotor.move(0);}
-    // if(launchB == 1) {launchMotor.move(40);}
+    if(launchA == 1) {
+      launchMotor.move(-127);//cock launcher
+    } else {
+      launchMotor.move(0);//stop cocking
+    }
+    if(launchB == 1) {
+      launchMotor.move(40);//reverse launcher in case of jam
+    }
 }
 
 void ballIntakeControl()
 {
-  if (intake == 1) {intakeActive = !intakeActive;}
-  if (ballIntakeSetDir == 1) {intakeReverse = !intakeReverse;updateControllerLcd();}
-	if(intakeActive && intakeReverse) {ballIntakeMotor.move(-127);} else if (intakeActive && !intakeReverse) {ballIntakeMotor.move(127);} else {ballIntakeMotor.move(0);}
+  if (intake == 1) {
+    intakeActive = !intakeActive;//toggles intake active
+  }
+  if (ballIntakeSetDir == 1) {
+    intakeReverse = !intakeReverse;//toggles intake reverse
+    updateControllerLcd();//updates controller LCD with the state of toggles
+  }
+	if(intakeActive && intakeReverse) {
+    ballIntakeMotor.move(-127);//runs ball intake in reverse
+  } else if (intakeActive && !intakeReverse) {
+    ballIntakeMotor.move(127); //runs ball intake normally
+  } else {
+    ballIntakeMotor.move(0);//stops ball intake
+  }
 }
 //provides reassurance of operation
 void swirl()
