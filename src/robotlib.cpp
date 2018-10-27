@@ -48,7 +48,7 @@ void motorSetup()
 //set gearsets for motors
 leftDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 rightDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
-launchMotor.set_gearing(pros::E_MOTOR_GEARSET_06);
+launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
