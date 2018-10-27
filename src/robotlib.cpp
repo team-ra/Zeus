@@ -72,7 +72,6 @@ void driveControl()
   if (changespeed == 1) {
     halfspeed = !halfspeed; //detects if the button to divide speed was pressed and halves the speed
     //pros::delay(250);
-    updateControllerLcd(); //updates controller LCD with the state of toggles
   }
   if (!halfspeed){
   leftDriveMotor.move(leftDrivePower);//sets drive power of left motor
@@ -93,42 +92,42 @@ void readJoystick()
 	 wristright = controller.get_digital(DIGITAL_L2);
 	 launchA = controller.get_digital(DIGITAL_A);
 	 launchB = controller.get_digital(DIGITAL_B);
-	 ballIntakeSetDir = controller.get_digital(DIGITAL_UP);
-	 intake = controller.get_digital(DIGITAL_X);
+	 ballIntakeSetDir = readIntakeReverseButton(DIGITAL_UP);
+	 intake = readIntakeButton(DIGITAL_X);
    changespeed = controller.get_digital(DIGITAL_LEFT);
 
 }
 //moves lift
 void liftControl()
 {
-  if (liftup && liftdown) {
-    liftMotor.move(0);//prevents motor from oscillating
-  }
-  else if (liftup == 1) {
-    liftMotor.move(-100);//drives lift up
-  }
-	else if (liftdown == 1) {
-    liftMotor.move(100);//drives lift down
-  }
-  else {
-    liftMotor.move(0);//stop motor
-  }
+  // if (liftup && liftdown) {
+  //   liftMotor.move(0);//prevents motor from oscillating
+  // }
+  // else if (liftup == 1) {
+  //   liftMotor.move(-100);//drives lift up
+  // }
+	// else if (liftdown == 1) {
+  //   liftMotor.move(100);//drives lift down
+  // }
+  // else {
+  //   liftMotor.move(0);//stop motor
+  // }
 }
 
 void wristControl()
 {
-  if (wristleft && wristright) {
-    wristMotor.move(0);//stop motor from oscillating
-  }
-  else if (wristleft == 1){
-    wristMotor.move(100); // turn wrist left
-  }
-  else if (wristright == 1) {
-    wristMotor.move(-100);//turn wrist right
-  }
-  else {
-    wristMotor.move(0);//turn motor off
-  }
+  // if (wristleft && wristright) {
+  //   wristMotor.move(0);//stop motor from oscillating
+  // }
+  // else if (wristleft == 1){
+  //   wristMotor.move(100); // turn wrist left
+  // }
+  // else if (wristright == 1) {
+  //   wristMotor.move(-100);//turn wrist right
+  // }
+  // else {
+  //   wristMotor.move(0);//turn motor off
+  // }
 }
 
 void launcherControl()
@@ -138,25 +137,32 @@ void launcherControl()
     //if (launchA == 1) {launcherActive = !launcherActive; pros::delay(100);}
     //if (launcherActive) {launchMotor.move(-127);} else {launchMotor.move(0);}
     //if (ls.get_value() < 200 && ls2.get_value() < 800){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
-    if(launchA == 1) {
-      launchMotor.move(-127);//cock launcher
-    } else {
-      launchMotor.move(0);//stop cocking
-    }
-    if(launchB == 1) {
-      launchMotor.move(40);//reverse launcher in case of jam
-    }
+    // if(launchA == 1) {
+    //   launchMotor.move(-127);//cock launcher
+    // } else {
+    //   launchMotor.move(0);//stop cocking
+    // }
+    // if(launchB == 1) {
+    //   launchMotor.move(40);//reverse launcher in case of jam
+    // }
 }
 
 void ballIntakeControl()
 {
-  if (intake == 1) {
+
+  static uint8_t intactivelaststate = 0;
+  static uint8_t intrevlaststate = 0;
+  if (intake == 1 && intactivelaststate != 1)
+  {
     intakeActive = !intakeActive;//toggles intake active
   }
-  if (ballIntakeSetDir == 1) {
+
+  if (ballIntakeSetDir == 1 && intrevlaststate != 1) {
     intakeReverse = !intakeReverse;//toggles intake reverse
-    updateControllerLcd();//updates controller LCD with the state of toggles
+    updateControllerLcd();
   }
+  else
+  //
 	if(intakeActive && intakeReverse) {
     ballIntakeMotor.move(-127);//runs ball intake in reverse
   } else if (intakeActive && !intakeReverse) {
@@ -164,6 +170,8 @@ void ballIntakeControl()
   } else {
     ballIntakeMotor.move(0);//stops ball intake
   }
+  intactivelaststate = intake;
+  intrevlaststate = ballIntakeSetDir;
 }
 //provides reassurance of operation
 void swirl()
@@ -189,4 +197,34 @@ void swirl()
     swirlstate = 0;
   }
   swirlstate++;
+}
+
+int readIntakeButton(pros::controller_digital_e_t button)
+{
+  static int buttonvalue = 0;
+    buttonvalue = (buttonvalue << 1) | controller.get_digital(button);
+    pros::lcd::print(1,"B:%x",buttonvalue);
+    if ((buttonvalue & 0x0F) == 0x0F)
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
+}
+
+int readIntakeReverseButton(pros::controller_digital_e_t button)
+{
+  static int buttonvalue = 0;
+    buttonvalue = (buttonvalue << 1) | controller.get_digital(button);
+    pros::lcd::print(1,"B:%x",buttonvalue);
+    if ((buttonvalue & 0x0F) == 0x0F)
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
 }

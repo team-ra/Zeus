@@ -21,28 +21,30 @@ void opcontrol() {
 	int flag = 1;
 	int controlflag = 1;
 	motorSetup();
+
 	updateControllerLcd();
-	while (true) {
-		if (flag)
-		{
-			lasttime = pros::millis();
-			flag = 0;
-		}
-		if (lasttime + 50 < pros::millis())
-		{
-			swirl();
-			flag = 1;
-		}
-		if (controlflag)
-		{
-			lastcontroltime = pros::millis();
-			controlflag = 0;
-		}
-		if (lastcontroltime + 100 < pros::millis())
-		{
-			readJoystick();
-			controlflag = 1;
-		}
+	 while (true) {
+	// 	if (flag)
+	// 	{
+	// 		lasttime = pros::millis();
+	// 		flag = 0;
+	// 	}
+	// 	if (lasttime + 50 < pros::millis())
+	// 	{
+	//
+	// 		flag = 1;
+	// 	}
+		// if (controlflag)
+		// {
+		// 	lastcontroltime = pros::millis();
+		// 	controlflag = 0;
+		// }
+		// if (lastcontroltime + 100 < pros::millis())
+		// {
+		//
+		// 	controlflag = 1;
+		// }
+		readJoystick();
 		driveControl();
 		liftControl();
 		wristControl();

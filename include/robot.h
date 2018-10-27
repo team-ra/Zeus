@@ -43,4 +43,6 @@ int setAutonMode();
 void startauto(int mode);
 void shootBall();
 void waitForSensorInit(int timeoutmillis);
+int readIntakeButton(pros::controller_digital_e_t button);
+int readIntakeReverseButton(pros::controller_digital_e_t button);
 #endif

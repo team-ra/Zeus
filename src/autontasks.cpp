@@ -16,11 +16,12 @@ int sensorRead(char sensor){
       sensorvalue = sensorvalue << 1 | digitize(sensorinst.get_value());
       pros::delay(30);
     }
-    if (sensorvalue & 0x3F = 0x3F){
-      
+    if (sensorvalue & 0x3F == 0x3F){
+      return 1;
     }
 }
-void shootBall(){
-motor
 
-}
+
+// void shootBall(){
+//
+// }
