@@ -48,7 +48,7 @@ void motorSetup()
 //set gearsets for motors
 leftDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 rightDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
-launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+launchMotor.set_gearing(pros::E_MOTOR_GEARSET_36);
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
@@ -100,34 +100,34 @@ void readJoystick()
 //moves lift
 void liftControl()
 {
-  // if (liftup && liftdown) {
-  //   liftMotor.move(0);//prevents motor from oscillating
-  // }
-  // else if (liftup == 1) {
-  //   liftMotor.move(-100);//drives lift up
-  // }
-	// else if (liftdown == 1) {
-  //   liftMotor.move(100);//drives lift down
-  // }
-  // else {
-  //   liftMotor.move(0);//stop motor
-  // }
+  if (liftup && liftdown) {
+    liftMotor.move(0);//prevents motor from oscillating
+  }
+  else if (liftup == 1) {
+    liftMotor.move(-100);//drives lift up
+  }
+	else if (liftdown == 1) {
+    liftMotor.move(100);//drives lift down
+  }
+  else {
+    liftMotor.move(0);//stop motor
+  }
 }
 
 void wristControl()
 {
-  // if (wristleft && wristright) {
-  //   wristMotor.move(0);//stop motor from oscillating
-  // }
-  // else if (wristleft == 1){
-  //   wristMotor.move(100); // turn wrist left
-  // }
-  // else if (wristright == 1) {
-  //   wristMotor.move(-100);//turn wrist right
-  // }
-  // else {
-  //   wristMotor.move(0);//turn motor off
-  // }
+  if (wristleft && wristright) {
+    wristMotor.move(0);//stop motor from oscillating
+  }
+  else if (wristleft == 1){
+    wristMotor.move(100); // turn wrist left
+  }
+  else if (wristright == 1) {
+    wristMotor.move(-100);//turn wrist right
+  }
+  else {
+    wristMotor.move(0);//turn motor off
+  }
 }
 
 void launcherControl()
@@ -137,14 +137,14 @@ void launcherControl()
     //if (launchA == 1) {launcherActive = !launcherActive; pros::delay(100);}
     //if (launcherActive) {launchMotor.move(-127);} else {launchMotor.move(0);}
     //if (ls.get_value() < 200 && ls2.get_value() < 800){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
-    // if(launchA == 1) {
-    //   launchMotor.move(-127);//cock launcher
-    // } else {
-    //   launchMotor.move(0);//stop cocking
-    // }
-    // if(launchB == 1) {
-    //   launchMotor.move(40);//reverse launcher in case of jam
-    // }
+    if(launchA == 1) {
+      launchMotor.move(-127);//cock launcher
+    } else {
+      launchMotor.move(0);//stop cocking
+    }
+    if(launchB == 1) {
+      launchMotor.move(40);//reverse launcher in case of jam
+    }
 }
 
 void ballIntakeControl()
@@ -217,14 +217,14 @@ int readIntakeButton(pros::controller_digital_e_t button)
 int readIntakeReverseButton(pros::controller_digital_e_t button)
 {
   static int buttonvalue = 0;
-    buttonvalue = (buttonvalue << 1) | controller.get_digital(button);
-    pros::lcd::print(1,"B:%x",buttonvalue);
-    if ((buttonvalue & 0x0F) == 0x0F)
+    buttonvalue = (buttonvalue << 1) | controller.get_digital(button);//effectively appends current value to last value.
+    // pros::lcd::print(1,"B:%x",buttonvalue);
+    if ((buttonvalue & 0x0F) == 0x0F)//if the button value and the mask = the mask
     {
-      return 1;
+      return 1;//button was pressed
     }
     else
     {
-      return 0;
+      return 0;//button was not pressed
     }
 }

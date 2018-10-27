@@ -1,6 +1,7 @@
 #include "main.h"
 #include "robot.h"
 using namespace pros::literals;
+extern pros::Controller controller;
 extern pros::Motor leftDriveMotor;
 extern pros::Motor rightDriveMotor;
 extern pros::Motor launchMotor;
@@ -98,12 +99,36 @@ void startauto(int mode)
 
 void shootBall()
 {
+  static bool cocked = false;
   launchMotor.move(-127);
-  if (ls2.get_value_calibrated() <= 800) {pros::lcd::print(5,"Under");}
+  while (averageCockedLineSensor() < SHOOTER_THRESHOLD + 100);
   launchMotor.move(0);
+
 }
 
-void waitForSensorInit(int timeoutmillis)
+int digitize(uint32_t value)
 {
-  while(ls.get_value() <= 100 && ls2.get_value() <= 100);
+    if (value >= SHOOTER_THRESHOLD)
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
+}
+
+int averageCockedLineSensor()
+{
+  static int buttonvalue = 0;
+    buttonvalue = (buttonvalue << 1) | digitize(ls2.get_value());
+    pros::lcd::print(1,"B:%x",buttonvalue);
+    if ((buttonvalue & 0x0F) == 0x0F)
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
 }

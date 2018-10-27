@@ -10,7 +10,7 @@
 #define LINE_SENSOR_PORT 'd'
 #define LINE_SENSOR_PORT2 'b'
 #define LAUNCHER_ENCODER_COUNTS_TO_FIRE 6000
-
+#define SHOOTER_THRESHOLD 800
 
 //driver function prototypes
 void driveControl();
@@ -45,4 +45,6 @@ void shootBall();
 void waitForSensorInit(int timeoutmillis);
 int readIntakeButton(pros::controller_digital_e_t button);
 int readIntakeReverseButton(pros::controller_digital_e_t button);
+int digitize(std::uint32_t value);
+int averageCockedLineSensor();
 #endif

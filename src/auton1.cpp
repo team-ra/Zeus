@@ -6,6 +6,6 @@
 void auton1()
 {
   shootBall();
-  //driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true);
+  driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true);
 
 }
