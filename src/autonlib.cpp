@@ -97,18 +97,51 @@ void startauto(int mode)
 (*autonfuncs[mode])();
 }
 
-void shootBall()
+int shootBall()
 {
-  static bool cocked = false;
-  launchMotor.move(-127);
-  while (averageCockedLineSensor() < SHOOTER_THRESHOLD + 100);
-  launchMotor.move(0);
+  static int state = 0;
+  int retval = 0;
+  switch(state)
+  {
+  case 0:
+      if(filterBallSensor() == 1) {state = 1;}
+      break;
+  case 1:
+    launchMotor.move(-127);
+    if (filterCockedSensor() == 1){state = 2;}
+    break;
+  case 2:
+    if ((filterBallSensor() == 0) && (filterCockedSensor() == 0)) { state = 3;}
+    break;
+  case 3:
+  {
+    launchMotor.move(0);
+    state = 0;
+    retval = 1;
+  }
+}
+  return retval;
 
 }
 
 int digitize(uint32_t value)
 {
-    if (value >= SHOOTER_THRESHOLD)
+    if (value <= SHOOTER_THRESHOLD)
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
+}
+//
+int filterCockedSensor()
+{
+  static int cockedsensorvalue = 0;
+    cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
+    pros::lcd::print(5,"B:%x",cockedsensorvalue);
+    if ((cockedsensorvalue & 0xFF) == 0xFF)
     {
       return 1;
     }
@@ -118,17 +151,17 @@ int digitize(uint32_t value)
     }
 }
 
-int averageCockedLineSensor()
+int filterBallSensor()
 {
-  static int buttonvalue = 0;
-    buttonvalue = (buttonvalue << 1) | digitize(ls2.get_value());
-    pros::lcd::print(1,"B:%x",buttonvalue);
-    if ((buttonvalue & 0x0F) == 0x0F)
+  static int ballsensorvalue = 0;
+    ballsensorvalue = (ballsensorvalue << 1) | digitize(ls.get_value());
+    pros::lcd::print(6,"B2:%x",ballsensorvalue);
+    if ((ballsensorvalue & 0xF) == 0)
     {
-      return 1;
+      return 0;
     }
     else
     {
-      return 0;
+      return 1;
     }
 }
