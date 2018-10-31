@@ -19,6 +19,8 @@ int intake;
 bool intakeReverse;
 bool intakeActive = false;
 bool launcherActive = false;
+ int controlr = 0;
+bool reversecontrols = false;
 char controllertext[14];
 bool halfspeed;
 int changespeed;
@@ -69,9 +71,22 @@ void updateControllerLcd()
 //moves drivetrain
 void driveControl()
 {
-  if (changespeed == 1) {
-    halfspeed = !halfspeed; //detects if the button to divide speed was pressed and halves the speed
-    //pros::delay(250);
+
+  static uint8_t drvactivelaststate = 0;
+static uint8_t drvrevlaststate = 0;
+  if (changespeed == 1 && drvactivelaststate != 1)
+  {
+    halfspeed = !halfspeed;//toggles intake active
+    updateControllerLcd();
+  }
+  if (controlr == 1 && drvrevlaststate != 1)
+  {
+    reversecontrols = !reversecontrols;
+  }
+  if (reversecontrols)
+  {
+    leftDrivePower = -leftDrivePower;
+    rightDrivePower = -rightDrivePower;
   }
   if (!halfspeed){
   leftDriveMotor.move(leftDrivePower);//sets drive power of left motor
@@ -80,6 +95,8 @@ void driveControl()
   leftDriveMotor.move(leftDrivePower *.5);//sets drive power of left motor to half
   rightDriveMotor.move(rightDrivePower*.5);//sets drive power of right motor to half
   }
+  drvactivelaststate = changespeed;
+  drvrevlaststate = controlr;
 }
 //set controller states
 void readJoystick()
@@ -94,8 +111,8 @@ void readJoystick()
 	 launchB = controller.get_digital(DIGITAL_B);
 	 ballIntakeSetDir = readIntakeReverseButton(DIGITAL_UP);
 	 intake = readIntakeButton(DIGITAL_X);
-   changespeed = controller.get_digital(DIGITAL_LEFT);
-
+   changespeed = readHalfSpeedButton(DIGITAL_LEFT);
+   controlr = readReverseControlsButton(DIGITAL_RIGHT);
 }
 //moves lift
 void liftControl()
@@ -215,6 +232,36 @@ int readIntakeButton(pros::controller_digital_e_t button)
 }
 
 int readIntakeReverseButton(pros::controller_digital_e_t button)
+{
+  static int buttonvalue = 0;
+    buttonvalue = (buttonvalue << 1) | controller.get_digital(button);//effectively appends current value to last value.
+    // pros::lcd::print(1,"B:%x",buttonvalue);
+    if ((buttonvalue & 0x0F) == 0x0F)//if the button value and the mask = the mask
+    {
+      return 1;//button was pressed
+    }
+    else
+    {
+      return 0;//button was not pressed
+    }
+}
+
+int readReverseControlsButton(pros::controller_digital_e_t button)
+{
+  static int buttonvalue = 0;
+    buttonvalue = (buttonvalue << 1) | controller.get_digital(button);//effectively appends current value to last value.
+    // pros::lcd::print(1,"B:%x",buttonvalue);
+    if ((buttonvalue & 0x0F) == 0x0F)//if the button value and the mask = the mask
+    {
+      return 1;//button was pressed
+    }
+    else
+    {
+      return 0;//button was not pressed
+    }
+}
+
+int readHalfSpeedButton(pros::controller_digital_e_t button)
 {
   static int buttonvalue = 0;
     buttonvalue = (buttonvalue << 1) | controller.get_digital(button);//effectively appends current value to last value.

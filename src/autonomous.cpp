@@ -19,7 +19,7 @@ void autonomous() {
   ls2.calibrate();
 int mode = setAutonMode();
 pros::lcd::print(1,"%d",mode);
-startauto(0);
+startauto(1);
 // //driveForward(encoderInchesToCounts(10),100,true);
 // driveBackward(encoderInchesToCounts(10),100,true);
 // turnLeft(100, 50, true);

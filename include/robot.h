@@ -45,6 +45,8 @@ int shootBall();
 void waitForSensorInit(int timeoutmillis);
 int readIntakeButton(pros::controller_digital_e_t button);
 int readIntakeReverseButton(pros::controller_digital_e_t button);
+int readHalfSpeedButton(pros::controller_digital_e_t button);
+int readReverseControlsButton(pros::controller_digital_e_t button);
 int digitize(std::uint32_t value);
 int filterCockedSensor();
 int filterBallSensor();
