@@ -65,7 +65,7 @@ void turnLeft(int counts,int power,bool zeromotors)
 
 void turnRight(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor.move_relative(-counts,power);
+  leftDriveMotor.move_relative(counts,power);
   rightDriveMotor.move_relative(counts,-power);
   while(leftDriveMotor.get_position() <= -counts && rightDriveMotor.get_position() <= -counts);
   if(zeromotors){

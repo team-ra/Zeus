@@ -3,6 +3,7 @@
 
 void auton2()
 {
-  turnRight(300, 50,true);
+  // turnRight(30, 50,true);
+  driveForward(encoderInchesToCounts(19), 100,true);
   while (shootBall() == 0);
 }

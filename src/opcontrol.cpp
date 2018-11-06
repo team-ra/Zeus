@@ -50,6 +50,6 @@ void opcontrol() {
 		wristControl();
 		launcherControl();
 		ballIntakeControl();
-		pros::delay(2);
+		pros::delay(20);
 	}
 }

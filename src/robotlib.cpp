@@ -52,7 +52,7 @@ leftDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 rightDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 launchMotor.set_gearing(pros::E_MOTOR_GEARSET_36);
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
-liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+liftMotor.set_gearing(pros::E_MOTOR_GEARSET_36);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 
 //sets braking mode so that any attempt to stop will occur immediately
@@ -117,18 +117,27 @@ void readJoystick()
 //moves lift
 void liftControl()
 {
+  if (liftMotor.get_position() >= 0)
+  {
+    liftMotor.move(50);
+  }
+
   if (liftup && liftdown) {
     liftMotor.move(0);//prevents motor from oscillating
+  }
+  else if (liftup == 1 && liftMotor.get_position() < -900) {
+    liftMotor.move(-75);//drives lift up
   }
   else if (liftup == 1) {
     liftMotor.move(-100);//drives lift up
   }
 	else if (liftdown == 1) {
-    liftMotor.move(100);//drives lift down
+    liftMotor.move(75);//drives lift down
   }
   else {
     liftMotor.move(0);//stop motor
   }
+  pros::lcd::print(1,"Lift Efficiency:%f",liftMotor.get_position());
 }
 
 void wristControl()

@@ -8,6 +8,6 @@ void auton1()
   pros::delay(250);
   driveForward(encoderInchesToCounts(12), 100, true);
   while (shootBall() == 0);
-  driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true);
+  //driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true);
 
 }
