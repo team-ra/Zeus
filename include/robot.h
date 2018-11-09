@@ -50,4 +50,6 @@ int readReverseControlsButton(pros::controller_digital_e_t button);
 int digitize(std::uint32_t value);
 int filterCockedSensor();
 int filterBallSensor();
+void intakeOn(bool reverse);
+void intakeOff();
 #endif

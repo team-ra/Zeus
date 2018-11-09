@@ -165,3 +165,19 @@ int filterBallSensor()
       return 1;
     }
 }
+
+void intakeOn(bool reverse)
+{
+  if(reverse)
+  {
+    ballIntakeMotor.move(-100);
+  }
+  else{
+    ballIntakeMotor.move(100);
+  }
+}
+
+void intakeOff()
+{
+  ballIntakeMotor.move(0);
+}

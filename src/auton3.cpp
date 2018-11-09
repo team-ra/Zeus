@@ -5,9 +5,13 @@
 
 void auton3()
 {
-  pros::delay(250);
-  driveForward(encoderInchesToCounts(12), 100, true);
-  turnLeft(100, 50,true);
+  pros::delay(100);
+  driveForward(encoderInchesToCounts(20),100,true);
   while (shootBall() == 0);
-  driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true);
+  driveForward(encoderInchesToCounts(24),100,true);
+  driveBackward(encoderInchesToCounts(24),100,true);
+  turnLeft(120, 50,true);
+  driveForward(encoderInchesToCounts(24),100,true);
+  turnLeft(120, 50,true);
+  driveForward(encoderInchesToCounts(24),100,true);
 }
