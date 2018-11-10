@@ -1,5 +1,7 @@
 #include "main.h"
 #include "robot.h"
+#include "robot_gui.h"
+
 using namespace pros::literals;
 extern pros::Controller controller;
 extern pros::Motor leftDriveMotor;
@@ -11,7 +13,7 @@ extern pros::Motor ballIntakeMotor;
 extern pros::ADIPotentiometer autopot;
 extern pros::ADILineSensor ls2;
 extern pros::ADILineSensor ls;
-void  (*autonfuncs[])() = {&auton1,&auton2,auton3,auton4,auton5,auton6,auton7,auton8,auton9,auton10};
+//void  (*autonfuncs[])() = {&auton1,&auton2,auton3,auton4,auton5,auton6,auton7,auton8,auton9,auton10};
 int encoderInchesToCounts(float inches)
 {
   int counts;
@@ -74,28 +76,28 @@ void turnRight(int counts,int power,bool zeromotors)
   }
 }
 
-int setAutonMode()
-{
-  int mode = 0;
-  unsigned int potvalue = autopot.get_value();
-  if (potvalue <= 12) {mode = 0;}
-  else if (potvalue > 12 && potvalue <= 115) {mode = 1;}
-  else if (potvalue > 115 && potvalue <= 695) {mode = 2;}
-  else if (potvalue > 695 && potvalue <= 1182) {mode = 3;}
-  else if (potvalue > 1182 && potvalue <= 1630) {mode = 4;}
-  else if (potvalue > 1630 && potvalue <= 2126) {mode = 5;}
-  else if (potvalue > 2126 && potvalue <= 2624) {mode = 6;}
-  else if (potvalue > 2624 && potvalue <= 3200) {mode = 7;}
-  else if (potvalue > 3200 && potvalue <= 3830) {mode = 8;}
-  else if (potvalue > 3830 && potvalue <= 4095) {mode = 9;}
-  return mode;
-}
-
-void startauto(int mode)
-{
-  pros::lcd::print(2,"%d",mode);
-(*autonfuncs[mode])();
-}
+// int setAutonMode()
+// {
+//   int mode = 0;
+//   unsigned int potvalue = autopot.get_value();
+//   if (potvalue <= 12) {mode = 0;}
+//   else if (potvalue > 12 && potvalue <= 115) {mode = 1;}
+//   else if (potvalue > 115 && potvalue <= 695) {mode = 2;}
+//   else if (potvalue > 695 && potvalue <= 1182) {mode = 3;}
+//   else if (potvalue > 1182 && potvalue <= 1630) {mode = 4;}
+//   else if (potvalue > 1630 && potvalue <= 2126) {mode = 5;}
+//   else if (potvalue > 2126 && potvalue <= 2624) {mode = 6;}
+//   else if (potvalue > 2624 && potvalue <= 3200) {mode = 7;}
+//   else if (potvalue > 3200 && potvalue <= 3830) {mode = 8;}
+//   else if (potvalue > 3830 && potvalue <= 4095) {mode = 9;}
+//   return mode;
+// }
+//
+// void startauto(int mode)
+// {
+//   pros::lcd::print(2,"%d",mode);
+// (*autonfuncs[mode])();
+// }
 
 int shootBall()
 {
@@ -140,7 +142,8 @@ int filterCockedSensor()
 {
   static int cockedsensorvalue = 0;
     cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
-    pros::lcd::print(5,"B:%x",cockedsensorvalue);
+    //pros::lcd::print(5,"B:%x",cockedsensorvalue);
+    info_printf(5,"B:%x",cockedsensorvalue);
     if ((cockedsensorvalue & 0xFF) == 0xFF)
     {
       return 1;
@@ -155,7 +158,8 @@ int filterBallSensor()
 {
   static int ballsensorvalue = 0;
     ballsensorvalue = (ballsensorvalue << 1) | digitize(ls.get_value());
-    pros::lcd::print(6,"B2:%x",ballsensorvalue);
+    //pros::lcd::print(6,"B2:%x",ballsensorvalue);
+    info_printf(6,"B2:%x",ballsensorvalue);
     if ((ballsensorvalue & 0xF) == 0)
     {
       return 0;

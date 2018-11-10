@@ -1,5 +1,7 @@
 #include "main.h"
 #include "robot.h"
+#include "robot_gui.h"
+
 using namespace pros::literals;
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -17,11 +19,12 @@ void autonomous() {
   motorSetup();
   extern pros::ADILineSensor ls2;
   ls2.calibrate();
-int mode = setAutonMode();
-pros::lcd::print(1,"%d",mode);
-startauto(2);
+//int mode = setAutonMode();
+//pros::lcd::print(1,"%d",mode);
+//startauto(2);
 // //driveForward(encoderInchesToCounts(10),100,true);
 // driveBackward(encoderInchesToCounts(10),100,true);
 // turnLeft(100, 50, true);
 
+  (*auton_ptr)(); // pointer to function assigned by robot_gui selection
 }

@@ -1,4 +1,5 @@
 #include "main.h"
+#include "robot_gui.h"
 
 extern pros::Motor leftDriveMotor;
 extern pros::Motor rightDriveMotor;
@@ -7,15 +8,15 @@ extern pros::Motor wristMotor;
 extern pros::Motor liftMotor;
 extern pros::Motor ballIntakeMotor;
 
-void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
+// void on_center_button() {
+// 	static bool pressed = false;
+// 	pressed = !pressed;
+// 	if (pressed) {
+// 		pros::lcd::set_text(2, "I was pressed!");
+// 	} else {
+// 		pros::lcd::clear_line(2)
+// 	}
+// }
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -24,10 +25,11 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User");
-	pros::lcd::register_btn1_cb(on_center_button);
-
+	// pros::lcd::initialize();
+	// pros::lcd::set_text(1, "Hello PROS User");
+	// pros::lcd::register_btn1_cb(on_center_button);
+  robot_gui();
+	auton_ptr = &auton_non;
 }
 
 /**

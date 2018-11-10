@@ -1,6 +1,6 @@
 #include "main.h"
 #include "robot.h"
-
+#include "robot_gui.h"
 
 using namespace pros::literals;
 
@@ -137,7 +137,8 @@ void liftControl()
   else {
     liftMotor.move(0);//stop motor
   }
-  pros::lcd::print(1,"Lift Efficiency:%f",liftMotor.get_position());
+  //pros::lcd::print(1,"Lift Efficiency:%f",liftMotor.get_position());
+  info_printf(1,"Lift Efficiency:%f",liftMotor.get_position());
 }
 
 void wristControl()
@@ -158,8 +159,10 @@ void wristControl()
 
 void launcherControl()
 {
-  pros::lcd::print(3,"LS LAuncher:%d",ls2.get_value());
-  pros::lcd::print(4,"Ball Detect:%d",ls.get_value());
+  //pros::lcd::print(3,"LS LAuncher:%d",ls2.get_value());
+  //pros::lcd::print(4,"Ball Detect:%d",ls.get_value());
+  info_printf(3,"LS LAuncher:%d",ls2.get_value());
+  info_printf(4,"Ball Detect:%d",ls.get_value());
     //if (launchA == 1) {launcherActive = !launcherActive; pros::delay(100);}
     //if (launcherActive) {launchMotor.move(-127);} else {launchMotor.move(0);}
     //if (ls.get_value() < 200 && ls2.get_value() < 800){pros::lcd::print(2,"Interlock Released");} else {pros::lcd::print(2,"Interlock Engaged");}
@@ -229,7 +232,8 @@ int readIntakeButton(pros::controller_digital_e_t button)
 {
   static int buttonvalue = 0;
     buttonvalue = (buttonvalue << 1) | controller.get_digital(button);
-    pros::lcd::print(1,"B:%x",buttonvalue);
+    //pros::lcd::print(1,"B:%x",buttonvalue);
+    info_printf(1,"B:%x",buttonvalue);
     if ((buttonvalue & 0x0F) == 0x0F)
     {
       return 1;
