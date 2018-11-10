@@ -24,16 +24,16 @@ void opcontrol() {
 
 	updateControllerLcd();
 	 while (true) {
-	// 	if (flag)
-	// 	{
-	// 		lasttime = pros::millis();
-	// 		flag = 0;
-	// 	}
-	// 	if (lasttime + 50 < pros::millis())
-	// 	{
-	//
-	// 		flag = 1;
-	// 	}
+		if (flag)
+		{
+			lasttime = pros::millis();
+			flag = 0;
+		}
+		if (lasttime + 50 < pros::millis())
+		{
+
+			flag = 1;
+		}
 		// if (controlflag)
 		// {
 		// 	lastcontroltime = pros::millis();

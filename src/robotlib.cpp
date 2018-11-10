@@ -31,39 +31,49 @@ pros::ADILineSensor ls2(LINE_SENSOR_PORT2);
 
 //Class instances for controller and motors
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
-pros::Motor leftDriveMotor(LEFT_DRIVE_MOTOR_PORT);
-pros::Motor rightDriveMotor(RIGHT_DRIVE_MOTOR_PORT);
+pros::Motor leftDriveMotor1(LEFT_DRIVE_MOTOR_1PORT);
+pros::Motor rightDriveMotor1(RIGHT_DRIVE_MOTOR_1PORT);
 pros::Motor launchMotor(LAUNCH_MOTOR_PORT);
 pros::Motor wristMotor(WRIST_MOTOR_PORT);
 pros::Motor liftMotor(LIFT_MOTOR_PORT);
 pros::Motor ballIntakeMotor(BALL_INTAKE_MOTOR_PORT);
+pros::Motor leftDriveMotor2(LEFT_DRIVE_MOTOR2_PORT);
+pros::Motor rightDriveMotor2(RIGHT_DRIVE_MOTOR_2PORT);
 
 void motorSetup()
 {
   //set encoder units for autonomous actions
-  leftDriveMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
-  rightDriveMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  leftDriveMotor1.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  rightDriveMotor1.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   launchMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   wristMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   liftMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
   ballIntakeMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
 //set gearsets for motors
-leftDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
-rightDriveMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
+leftDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);
+rightDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);
 launchMotor.set_gearing(pros::E_MOTOR_GEARSET_36);
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_36);
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);
 
 //sets braking mode so that any attempt to stop will occur immediately
-leftDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-rightDriveMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+leftDriveMotor1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+rightDriveMotor1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
-
+void updateInfoScreen()
+{
+  info_printf(1,"LeftDrive:%d",leftDriveMotor1.get_position());
+  info_printf(2,"RightDrive:%d",rightDriveMotor1.get_position());
+  info_printf(3,"Wrist:%d",wristMotor.get_position());
+  info_printf(4,"Lift:%d",liftMotor.get_position());
+  info_printf(5,"BallPresent:%d",ls2.get_value());
+  info_printf(6,"Fired:%d",ls.get_value());
+}
 void updateControllerLcd()
 {
   controller.print(0, 0, "Intr:%d Spd:%d",intakeReverse,halfspeed);//updates controller LCD with the state of toggles
@@ -89,11 +99,15 @@ static uint8_t drvrevlaststate = 0;
     rightDrivePower = -rightDrivePower;
   }
   if (!halfspeed){
-  leftDriveMotor.move(leftDrivePower);//sets drive power of left motor
-  rightDriveMotor.move(rightDrivePower);//sets drive power of right motor
+  leftDriveMotor1.move(leftDrivePower);//sets drive power of left motor
+  rightDriveMotor1.move(rightDrivePower);//sets drive power of right motor
+  leftDriveMotor2.move(leftDrivePower);
+  rightDriveMotor2.move(rightDrivePower);
   } else {
-  leftDriveMotor.move(leftDrivePower *.5);//sets drive power of left motor to half
-  rightDriveMotor.move(rightDrivePower*.5);//sets drive power of right motor to half
+  leftDriveMotor1.move(leftDrivePower *.5);//sets drive power of left motor to half
+  rightDriveMotor1.move(rightDrivePower*.5);//sets drive power of right motor to half
+  leftDriveMotor2.move(leftDrivePower * .5);
+  rightDriveMotor2.move(rightDrivePower * .5);
   }
   drvactivelaststate = changespeed;
   drvrevlaststate = controlr;
@@ -132,13 +146,11 @@ void liftControl()
     liftMotor.move(-100);//drives lift up
   }
 	else if (liftdown == 1) {
-    liftMotor.move(75);//drives lift down
+    liftMotor.move(100);//drives lift down
   }
   else {
     liftMotor.move(0);//stop motor
   }
-  //pros::lcd::print(1,"Lift Efficiency:%f",liftMotor.get_position());
-  info_printf(1,"Lift Efficiency:%f",liftMotor.get_position());
 }
 
 void wristControl()
@@ -159,8 +171,6 @@ void wristControl()
 
 void launcherControl()
 {
-  //pros::lcd::print(3,"LS LAuncher:%d",ls2.get_value());
-  //pros::lcd::print(4,"Ball Detect:%d",ls.get_value());
   info_printf(3,"LS LAuncher:%d",ls2.get_value());
   info_printf(4,"Ball Detect:%d",ls.get_value());
     //if (launchA == 1) {launcherActive = !launcherActive; pros::delay(100);}
@@ -232,8 +242,6 @@ int readIntakeButton(pros::controller_digital_e_t button)
 {
   static int buttonvalue = 0;
     buttonvalue = (buttonvalue << 1) | controller.get_digital(button);
-    //pros::lcd::print(1,"B:%x",buttonvalue);
-    info_printf(1,"B:%x",buttonvalue);
     if ((buttonvalue & 0x0F) == 0x0F)
     {
       return 1;
@@ -248,7 +256,6 @@ int readIntakeReverseButton(pros::controller_digital_e_t button)
 {
   static int buttonvalue = 0;
     buttonvalue = (buttonvalue << 1) | controller.get_digital(button);//effectively appends current value to last value.
-    // pros::lcd::print(1,"B:%x",buttonvalue);
     if ((buttonvalue & 0x0F) == 0x0F)//if the button value and the mask = the mask
     {
       return 1;//button was pressed
@@ -263,7 +270,6 @@ int readReverseControlsButton(pros::controller_digital_e_t button)
 {
   static int buttonvalue = 0;
     buttonvalue = (buttonvalue << 1) | controller.get_digital(button);//effectively appends current value to last value.
-    // pros::lcd::print(1,"B:%x",buttonvalue);
     if ((buttonvalue & 0x0F) == 0x0F)//if the button value and the mask = the mask
     {
       return 1;//button was pressed
@@ -278,7 +284,6 @@ int readHalfSpeedButton(pros::controller_digital_e_t button)
 {
   static int buttonvalue = 0;
     buttonvalue = (buttonvalue << 1) | controller.get_digital(button);//effectively appends current value to last value.
-    // pros::lcd::print(1,"B:%x",buttonvalue);
     if ((buttonvalue & 0x0F) == 0x0F)//if the button value and the mask = the mask
     {
       return 1;//button was pressed

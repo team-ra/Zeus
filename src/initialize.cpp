@@ -38,12 +38,12 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-leftDriveMotor.move(0);
-rightDriveMotor.move(0);
-launchMotor.move(0);
-wristMotor.move(0);
-liftMotor.move(0);
-ballIntakeMotor.move(0);
+// leftDriveMotor.move(0);
+// rightDriveMotor.move(0);
+// launchMotor.move(0);
+// wristMotor.move(0);
+// liftMotor.move(0);
+// ballIntakeMotor.move(0);
 }
 
 /**
