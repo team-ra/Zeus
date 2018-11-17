@@ -44,6 +44,7 @@ void opcontrol() {
 		//
 		// 	controlflag = 1;
 		// }
+		updateInfoScreen();
 		readJoystick();
 		driveControl();
 		liftControl();

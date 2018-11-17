@@ -34,7 +34,7 @@
 #include "robot.h"
 void marl1() {
  info_printf(1,"in marl1");
- auton5();
+
 }
 
 void marl2() {
@@ -59,6 +59,7 @@ void marl6() {
 
 void marr1() {
  info_printf(1,"in marr1");
+auton2();
  // example usage
  // match_auton1(RED); // mirror of BLUE left
 }

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "robot.h"
 #include "robot_gui.h"
 
 extern pros::Motor leftDriveMotor;

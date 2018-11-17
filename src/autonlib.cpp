@@ -1,11 +1,12 @@
-#include "main.h"
 #include "robot.h"
 #include "robot_gui.h"
 
 using namespace pros::literals;
 extern pros::Controller controller;
-extern pros::Motor leftDriveMotor;
-extern pros::Motor rightDriveMotor;
+extern pros::Motor leftDriveMotor1;
+extern pros::Motor rightDriveMotor1;
+extern pros::Motor leftDriveMotor2;
+extern pros::Motor rightDriveMotor2;
 extern pros::Motor launchMotor;
 extern pros::Motor wristMotor;
 extern pros::Motor liftMotor;
@@ -17,7 +18,7 @@ extern pros::ADILineSensor ls;
 int encoderInchesToCounts(float inches)
 {
   int counts;
-  auto gearset = leftDriveMotor.get_gearing();
+  auto gearset = leftDriveMotor1.get_gearing();
   if (gearset == pros::E_MOTOR_GEARSET_36)
   {
       counts = inches * (1800/(4*3.14159265359));
@@ -34,48 +35,76 @@ int encoderInchesToCounts(float inches)
 }
 void driveForward(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor.move_relative(counts,power);
-  rightDriveMotor.move_relative(-counts,-power);
-  while(leftDriveMotor.get_position() <= counts && rightDriveMotor.get_position() <= counts);
+  //leftDriveMotor1.move_relative(counts,power);
+  rightDriveMotor1.move_relative(-counts,-power);
+  leftDriveMotor2.move(power);
+  rightDriveMotor2.move(-power);
+  while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);
+  //while(true);
+  leftDriveMotor2.move(0);
+  rightDriveMotor2.move(0);
+  rightDriveMotor1.move(0);
   if(zeromotors){
-    leftDriveMotor.tare_position();
-    rightDriveMotor.tare_position();
+    leftDriveMotor1.tare_position();
+    rightDriveMotor1.tare_position();
   }
 }
 
 void driveBackward(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor.move_relative(-counts,-power);
-  rightDriveMotor.move_relative(counts,power);
-  while(leftDriveMotor.get_position() >= -counts && rightDriveMotor.get_position() <= counts);
+  leftDriveMotor1.move_relative(-counts,-power);
+  rightDriveMotor1.move_relative(counts,power);
+  leftDriveMotor2.move(-power);
+  rightDriveMotor2.move(power);
+  while(leftDriveMotor1.get_position() >= -counts && rightDriveMotor1.get_position() <= counts);
+  leftDriveMotor2.move(0);
+  rightDriveMotor2.move(0);
   if(zeromotors){
-    leftDriveMotor.tare_position();
-    rightDriveMotor.tare_position();
+    leftDriveMotor1.tare_position();
+    rightDriveMotor1.tare_position();
   }
 }
 
 void turnLeft(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor.move_relative(-counts,-power);
-  rightDriveMotor.move_relative(-counts,power);
-  while(leftDriveMotor.get_position() <= -counts && rightDriveMotor.get_position() <= -counts);
+  leftDriveMotor1.move_relative(-counts,-power);
+  rightDriveMotor1.move_relative(-counts,power);
+  leftDriveMotor2.move(-power);
+  rightDriveMotor2.move(power);
+  while(leftDriveMotor1.get_position() <= -counts && rightDriveMotor1.get_position() <= -counts);
+  leftDriveMotor2.move(0);
+  rightDriveMotor2.move(0);
   if(zeromotors){
-    leftDriveMotor.tare_position();
-    rightDriveMotor.tare_position();
+    leftDriveMotor1.tare_position();
+    rightDriveMotor1.tare_position();
   }
 }
 
 void turnRight(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor.move_relative(counts,power);
-  rightDriveMotor.move_relative(counts,-power);
-  while(leftDriveMotor.get_position() <= -counts && rightDriveMotor.get_position() <= -counts);
+  leftDriveMotor1.move_relative(counts,power);
+  rightDriveMotor1.move_relative(counts,-power);
+  leftDriveMotor2.move(power);
+  rightDriveMotor2.move(-power);
+  while(leftDriveMotor1.get_position() <= -counts && rightDriveMotor1.get_position() <= -counts);
+  leftDriveMotor2.move(0);
+  rightDriveMotor2.move(0);
   if(zeromotors){
-    leftDriveMotor.tare_position();
-    rightDriveMotor.tare_position();
+    leftDriveMotor1.tare_position();
+    rightDriveMotor1.tare_position();
   }
 }
+void leftDriveSetPID(int counts,int power)
+{
+    leftDriveMotor1.move_relative(counts,power);
+    leftDriveMotor2.move_relative(counts,power);
+}
 
+void rightDriveSetPID(int counts,int power)
+{
+    rightDriveMotor1.move_relative(counts,power);
+    rightDriveMotor2.move_relative(counts,power);
+}
 // int setAutonMode()
 // {
 //   int mode = 0;
@@ -106,17 +135,21 @@ int shootBall()
   switch(state)
   {
   case 0:
+      //info_printf(1, "case0");
       if(filterBallSensor() == 1) {state = 1;}
       break;
   case 1:
+    //info_printf(2, "case1");
     launchMotor.move(-127);
     if (filterCockedSensor() == 1){state = 2;}
     break;
   case 2:
-    if ((filterBallSensor() == 0) && (filterCockedSensor() == 0)) { state = 3;}
+    //info_printf(3, "case2");
+    if ((filterBallSensor() == 0) || (filterCockedSensor() == 0)) { state = 3;}
     break;
   case 3:
   {
+    //info_printf(4, "case3");
     launchMotor.move(0);
     state = 0;
     retval = 1;
@@ -141,10 +174,11 @@ int digitize(uint32_t value)
 int filterCockedSensor()
 {
   static int cockedsensorvalue = 0;
-    cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
+    cockedsensorvalue = ls2.get_value();
+    //cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
     //pros::lcd::print(5,"B:%x",cockedsensorvalue);
     info_printf(5,"B:%x",cockedsensorvalue);
-    if ((cockedsensorvalue & 0xFF) == 0xFF)
+    if (cockedsensorvalue < 600)
     {
       return 1;
     }
@@ -157,16 +191,17 @@ int filterCockedSensor()
 int filterBallSensor()
 {
   static int ballsensorvalue = 0;
-    ballsensorvalue = (ballsensorvalue << 1) | digitize(ls.get_value());
+    ballsensorvalue = ls.get_value();
+    //ballsensorvalue = (ballsensorvalue << 1) | digitize(ls.get_value());
     //pros::lcd::print(6,"B2:%x",ballsensorvalue);
     info_printf(6,"B2:%x",ballsensorvalue);
-    if ((ballsensorvalue & 0xF) == 0)
+    if (ballsensorvalue < 700)
     {
-      return 0;
+      return 1;
     }
     else
     {
-      return 1;
+      return 0;
     }
 }
 

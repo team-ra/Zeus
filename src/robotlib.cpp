@@ -1,4 +1,4 @@
-#include "main.h"
+// #include "main.h"
 #include "robot.h"
 #include "robot_gui.h"
 
@@ -71,8 +71,7 @@ void updateInfoScreen()
   info_printf(2,"RightDrive:%d",rightDriveMotor1.get_position());
   info_printf(3,"Wrist:%d",wristMotor.get_position());
   info_printf(4,"Lift:%d",liftMotor.get_position());
-  info_printf(5,"BallPresent:%d",ls2.get_value());
-  info_printf(6,"Fired:%d",ls.get_value());
+  filterCockedSensor();
 }
 void updateControllerLcd()
 {

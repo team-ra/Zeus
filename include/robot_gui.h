@@ -27,14 +27,13 @@
 #ifndef ROBOT_GUI_H // this is a header guard used to avoid the problem of double inclusion
 #define ROBOT_GUI_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+// #ifdef __cplusplus
+// extern "C" {
+// #endif
 
 /*********************
  *      INCLUDES
  *********************/
-#include "pros/apix.h"
 
 /*********************
  *      DEFINES
@@ -112,8 +111,8 @@ void mabr6();
  *      MACROS
  **********************/
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
+// #ifdef __cplusplus
+// } /* extern "C" */
+// #endif
 
 #endif /*ROBOT_GUI_H*/

@@ -1,9 +1,10 @@
 #ifndef ROBOT_H
 #define ROBOT_H
+#include "main.h"
 //defines
 #define LEFT_DRIVE_MOTOR_1PORT 1
-#define RIGHT_DRIVE_MOTOR_1PORT 2
-#define LAUNCH_MOTOR_PORT 3
+#define RIGHT_DRIVE_MOTOR_1PORT 20
+#define LAUNCH_MOTOR_PORT 18
 #define LIFT_MOTOR_PORT 5
 #define WRIST_MOTOR_PORT 7
 #define BALL_INTAKE_MOTOR_PORT 6
@@ -13,7 +14,7 @@
 #define LINE_SENSOR_PORT 'd'
 #define LINE_SENSOR_PORT2 'b'
 #define LAUNCHER_ENCODER_COUNTS_TO_FIRE 6000
-#define SHOOTER_THRESHOLD 200
+#define SHOOTER_THRESHOLD 250
 
 //driver function prototypes
 void driveControl();
@@ -28,6 +29,7 @@ void swirl();
 /************************************************/
 //auton function prototypes
 void driveForward(int counts,int power,bool zeromotors);
+//int driveForward(int counts,int power,bool zeromotors);
 void driveBackward(int counts,int power,bool zeromotors);
 void turnLeft(int counts,int power,bool zeromotors);
 void turnRight(int counts,int power,bool zeromotors);
@@ -46,13 +48,16 @@ void auton10();
 // void startauto(int mode);
 int shootBall();
 void waitForSensorInit(int timeoutmillis);
-int readIntakeButton(pros::controller_digital_e_t button);
-int readIntakeReverseButton(pros::controller_digital_e_t button);
-int readHalfSpeedButton(pros::controller_digital_e_t button);
-int readReverseControlsButton(pros::controller_digital_e_t button);
-int digitize(std::uint32_t value);
+int readIntakeButton(controller_digital_e_t button);
+int readIntakeReverseButton(controller_digital_e_t button);
+int readHalfSpeedButton(controller_digital_e_t button);
+int readReverseControlsButton(controller_digital_e_t button);
+int digitize(uint32_t value);
 int filterCockedSensor();
 int filterBallSensor();
 void intakeOn(bool reverse);
 void intakeOff();
+void updateInfoScreen();
+void leftDriveSetPID(int counts,int power);
+void rightDriveSetPID(int counts,int power);
 #endif

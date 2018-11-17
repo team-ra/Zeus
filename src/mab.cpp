@@ -36,7 +36,7 @@ void mabl1() {
  info_printf(1,"in mabl1");
  // example usage
  // match_auton1(BLUE); // mirror of RED right
- auton1();
+ auton2();
 }
 
 void mabl2() {
@@ -62,6 +62,7 @@ void mabl6() {
 
 void mabr1() {
  info_printf(1,"in mabr1");
+ auton1();
 }
 
 void mabr2() {
