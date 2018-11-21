@@ -36,12 +36,14 @@ int encoderInchesToCounts(float inches)
 void driveForward(int counts,int power,bool zeromotors)
 {
   //leftDriveMotor1.move_relative(counts,power);
-  rightDriveMotor1.move_relative(-counts,-power);
+  leftDriveMotor1.move(power);
+  rightDriveMotor1.move(-power);
   leftDriveMotor2.move(power);
   rightDriveMotor2.move(-power);
   while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);
   //while(true);
   leftDriveMotor2.move(0);
+  leftDriveMotor1.move(0);
   rightDriveMotor2.move(0);
   rightDriveMotor1.move(0);
   if(zeromotors){
@@ -52,7 +54,7 @@ void driveForward(int counts,int power,bool zeromotors)
 
 void driveBackward(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor1.move_relative(-counts,-power);
+  //leftDriveMotor1.move_relative(-counts,-power);
   rightDriveMotor1.move_relative(counts,power);
   leftDriveMotor2.move(-power);
   rightDriveMotor2.move(power);
@@ -67,7 +69,7 @@ void driveBackward(int counts,int power,bool zeromotors)
 
 void turnLeft(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor1.move_relative(-counts,-power);
+  //leftDriveMotor1.move_relative(-counts,-power);
   rightDriveMotor1.move_relative(-counts,power);
   leftDriveMotor2.move(-power);
   rightDriveMotor2.move(power);
@@ -82,7 +84,7 @@ void turnLeft(int counts,int power,bool zeromotors)
 
 void turnRight(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor1.move_relative(counts,power);
+  //leftDriveMotor1.move_relative(counts,power);
   rightDriveMotor1.move_relative(counts,-power);
   leftDriveMotor2.move(power);
   rightDriveMotor2.move(-power);

@@ -34,11 +34,12 @@
 #include "robot.h"
 void marl1() {
  info_printf(1,"in marl1");
-
+auton1();
 }
 
 void marl2() {
  info_printf(1,"in marl2");
+
 }
 
 void marl3() {
@@ -66,6 +67,7 @@ auton2();
 
 void marr2() {
  info_printf(1,"in marr2");
+ auton6();
 }
 
 void marr3() {
