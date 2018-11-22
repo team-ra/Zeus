@@ -26,7 +26,6 @@ bool halfspeed;
 int changespeed;
 int swirlstate;
 pros::ADILineSensor ls(LINE_SENSOR_PORT);
-pros::ADIPotentiometer autopot('e');
 pros::ADILineSensor ls2(LINE_SENSOR_PORT2);
 
 //Class instances for controller and motors

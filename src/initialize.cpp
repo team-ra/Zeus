@@ -1,23 +1,6 @@
 #include "robot.h"
 #include "robot_gui.h"
 
-extern pros::Motor leftDriveMotor;
-extern pros::Motor rightDriveMotor;
-extern pros::Motor launchMotor;
-extern pros::Motor wristMotor;
-extern pros::Motor liftMotor;
-extern pros::Motor ballIntakeMotor;
-
-// void on_center_button() {
-// 	static bool pressed = false;
-// 	pressed = !pressed;
-// 	if (pressed) {
-// 		pros::lcd::set_text(2, "I was pressed!");
-// 	} else {
-// 		pros::lcd::clear_line(2)
-// 	}
-// }
-
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -38,12 +21,6 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-// leftDriveMotor.move(0);
-// rightDriveMotor.move(0);
-// launchMotor.move(0);
-// wristMotor.move(0);
-// liftMotor.move(0);
-// ballIntakeMotor.move(0);
 }
 
 /**

@@ -1,6 +1,8 @@
 #include "main.h"
 #include "robot.h"
-
+/**
+* \details calls the fourth autonomous function
+*/
 void auton4()
 {
   driveForward(encoderInchesToCounts(44),100,true);

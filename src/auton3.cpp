@@ -1,8 +1,8 @@
 #include "main.h"
 #include "robot.h"
-#define DRIVE1_DIST_INCHES 40
-#define DRIVE1_POWER 100
-
+/**
+* \details calls the third autonomous function
+*/
 void auton3()
 {
   pros::delay(100);

@@ -34,16 +34,6 @@ void opcontrol() {
 
 			flag = 1;
 		}
-		// if (controlflag)
-		// {
-		// 	lastcontroltime = pros::millis();
-		// 	controlflag = 0;
-		// }
-		// if (lastcontroltime + 100 < pros::millis())
-		// {
-		//
-		// 	controlflag = 1;
-		// }
 		updateInfoScreen();
 		readJoystick();
 		driveControl();

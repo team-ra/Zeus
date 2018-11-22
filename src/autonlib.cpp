@@ -2,19 +2,32 @@
 #include "robot_gui.h"
 
 using namespace pros::literals;
-extern pros::Controller controller;
+/// The Back left drive motor
 extern pros::Motor leftDriveMotor1;
+/// The Back right drive motor
 extern pros::Motor rightDriveMotor1;
+/// The Front left drive motor
 extern pros::Motor leftDriveMotor2;
+/// The Front right drive motor
 extern pros::Motor rightDriveMotor2;
+/// The launcher motor
 extern pros::Motor launchMotor;
+/// The wrist motor
 extern pros::Motor wristMotor;
+/// The lift motor
 extern pros::Motor liftMotor;
+/// The ball intake motor
 extern pros::Motor ballIntakeMotor;
-extern pros::ADIPotentiometer autopot;
+/// The ball present sensor
 extern pros::ADILineSensor ls2;
+/// The launcher cocked sensor
 extern pros::ADILineSensor ls;
-//void  (*autonfuncs[])() = {&auton1,&auton2,auton3,auton4,auton5,auton6,auton7,auton8,auton9,auton10};
+
+/** \brief
+* \details encoderInchesToCounts - Converts inches to encoder counts
+* \param inches the number of inches to move
+* \return int
+*/
 int encoderInchesToCounts(float inches)
 {
   int counts;
@@ -33,15 +46,20 @@ int encoderInchesToCounts(float inches)
   }
   return counts;
 }
+
+/** \brief
+* \details Drives Forward
+* \param counts the number of counts to move
+* \param power the power to drive at
+* \param zeromotors whether or not to set motor home position when finished
+*/
 void driveForward(int counts,int power,bool zeromotors)
 {
-  //leftDriveMotor1.move_relative(counts,power);
   leftDriveMotor1.move(power);
   rightDriveMotor1.move(-power);
   leftDriveMotor2.move(power);
   rightDriveMotor2.move(-power);
   while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);
-  //while(true);
   leftDriveMotor2.move(0);
   leftDriveMotor1.move(0);
   rightDriveMotor2.move(0);
@@ -51,10 +69,14 @@ void driveForward(int counts,int power,bool zeromotors)
     rightDriveMotor1.tare_position();
   }
 }
-
+/** \brief
+* \details Drives Backward
+* \param counts the number of counts to move
+* \param power the power to drive at
+* \param zeromotors whether or not to set motor home position when finished
+*/
 void driveBackward(int counts,int power,bool zeromotors)
 {
-  //leftDriveMotor1.move_relative(-counts,-power);
   rightDriveMotor1.move_relative(counts,power);
   leftDriveMotor2.move(-power);
   rightDriveMotor2.move(power);
@@ -66,10 +88,14 @@ void driveBackward(int counts,int power,bool zeromotors)
     rightDriveMotor1.tare_position();
   }
 }
-
+/** \brief
+* \details Turns Left
+* \param counts the number of counts to move
+* \param power the power to drive at
+* \param zeromotors whether or not to set motor home position when finished
+*/
 void turnLeft(int counts,int power,bool zeromotors)
 {
-  //leftDriveMotor1.move_relative(-counts,-power);
   rightDriveMotor1.move_relative(-counts,power);
   leftDriveMotor2.move(-power);
   rightDriveMotor2.move(power);
@@ -81,10 +107,14 @@ void turnLeft(int counts,int power,bool zeromotors)
     rightDriveMotor1.tare_position();
   }
 }
-
+/** \brief
+* \details Turns Right
+* \param counts the number of counts to move
+* \param power the power to drive at
+* \param zeromotors whether or not to set motor home position when finished
+*/
 void turnRight(int counts,int power,bool zeromotors)
 {
-  //leftDriveMotor1.move_relative(counts,power);
   rightDriveMotor1.move_relative(counts,-power);
   leftDriveMotor2.move(power);
   rightDriveMotor2.move(-power);
@@ -96,40 +126,10 @@ void turnRight(int counts,int power,bool zeromotors)
     rightDriveMotor1.tare_position();
   }
 }
-void leftDriveSetPID(int counts,int power)
-{
-    leftDriveMotor1.move_relative(counts,power);
-    leftDriveMotor2.move_relative(counts,power);
-}
-
-void rightDriveSetPID(int counts,int power)
-{
-    rightDriveMotor1.move_relative(counts,power);
-    rightDriveMotor2.move_relative(counts,power);
-}
-// int setAutonMode()
-// {
-//   int mode = 0;
-//   unsigned int potvalue = autopot.get_value();
-//   if (potvalue <= 12) {mode = 0;}
-//   else if (potvalue > 12 && potvalue <= 115) {mode = 1;}
-//   else if (potvalue > 115 && potvalue <= 695) {mode = 2;}
-//   else if (potvalue > 695 && potvalue <= 1182) {mode = 3;}
-//   else if (potvalue > 1182 && potvalue <= 1630) {mode = 4;}
-//   else if (potvalue > 1630 && potvalue <= 2126) {mode = 5;}
-//   else if (potvalue > 2126 && potvalue <= 2624) {mode = 6;}
-//   else if (potvalue > 2624 && potvalue <= 3200) {mode = 7;}
-//   else if (potvalue > 3200 && potvalue <= 3830) {mode = 8;}
-//   else if (potvalue > 3830 && potvalue <= 4095) {mode = 9;}
-//   return mode;
-// }
-//
-// void startauto(int mode)
-// {
-//   pros::lcd::print(2,"%d",mode);
-// (*autonfuncs[mode])();
-// }
-
+/** \brief
+* \details Shoots the ball
+* \return int
+*/
 int shootBall()
 {
   static int state = 0;
@@ -160,7 +160,11 @@ int shootBall()
   return retval;
 
 }
-
+/** \brief
+* \details Digitizes a sensor value
+* \param value the value to digitize according to the threshold
+* \return int
+*/
 int digitize(uint32_t value)
 {
     if (value <= SHOOTER_THRESHOLD)
@@ -172,7 +176,10 @@ int digitize(uint32_t value)
       return 0;
     }
 }
-//
+/** \brief
+* \details filters the launcher cocked sensor
+* \return int
+*/
 int filterCockedSensor()
 {
   static int cockedsensorvalue = 0;
@@ -189,7 +196,10 @@ int filterCockedSensor()
       return 0;
     }
 }
-
+/** \brief
+* \details filters the ball present sensor
+* \return int
+*/
 int filterBallSensor()
 {
   static int ballsensorvalue = 0;
@@ -206,7 +216,10 @@ int filterBallSensor()
       return 0;
     }
 }
-
+/** \brief
+* \details Turns ball intake on
+* \param reverse Whether to turn the ball intake on in reverse
+*/
 void intakeOn(bool reverse)
 {
   if(reverse)
@@ -217,7 +230,9 @@ void intakeOn(bool reverse)
     ballIntakeMotor.move(100);
   }
 }
-
+/** \brief
+* \details Turns ball intake off
+*/
 void intakeOff()
 {
   ballIntakeMotor.move(0);
