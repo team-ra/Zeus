@@ -4,7 +4,7 @@
 
 using namespace pros::literals;
 
-//controller and motor state variables. These are GLOBAL
+//controller,motor, and button variables. These are GLOBAL
 ///the left drive power
 int leftDrivePower;
 ///the right drive power
@@ -175,10 +175,10 @@ void readJoystick()
 void liftControl()
 {
   if (liftup == 1) {
-    liftMotor.move(-100);//drives lift up at -100 power
+    liftMotor.move(-100);//drives lift up at 75% power
   }
 	else if (liftdown == 1) {
-    liftMotor.move(100);//drives lift down at 100 power
+    liftMotor.move(100);//drives lift down at 75% power
   }
   else {
     liftMotor.move(0);//stop motor
@@ -191,13 +191,13 @@ void wristControl()
 {
   if (wristleft && wristright) //check if both left and right buttons are presed
   {
-    wristMotor.move(0);// prevent motor from oscillating
+    wristMotor.move(0);// turn neither direction to prevent motor from oscillating
   }
   else if (wristleft == 1){
-    wristMotor.move(100); // turn wrist left at 100 power
+    wristMotor.move(100); // turn wrist left at 75% power
   }
   else if (wristright == 1) {
-    wristMotor.move(-100);//turn wrist right at -100 power
+    wristMotor.move(-100);//turn wrist right at 75% power
   }
   else {
     wristMotor.move(0);//turn motor off
@@ -210,7 +210,7 @@ void launcherControl()
 {
     if(shoot == 1)
     {
-      launchMotor.move(-127);//cock launcher by moving at 127 power in the reverse direction
+      launchMotor.move(-127);//cock launcher by moving at 127 power in the reverse direction  xx%
     } else {
       launchMotor.move(0);//stop cocking launcher
     }
@@ -229,17 +229,17 @@ void ballIntakeControl()
 
   if (intake == 1 && intactivelaststate != 1)//checks if button is pressed but was not pressed last time through the loop
   {
-    intakeActive = !intakeActive;//toggles intake active
+    intakeActive = !intakeActive;//toggles intake on/off
   }
 
   if (ballIntakeSetDir == 1 && intrevlaststate != 1) {//checks if button is pressed but was not pressed last time through the loop
     intakeReverse = !intakeReverse;//toggles intake reverse
   }
   else
-  //
-	if(intakeActive && intakeReverse) {
+	if(intakeActive && intakeReverse) //if intake is active and reverse was requested
+  {
     ballIntakeMotor.move(-127);//runs ball intake in reverse
-  } else if (intakeActive && !intakeReverse) {
+  } else if (intakeActive && !intakeReverse) {// if intake active and reverse was not requested
     ballIntakeMotor.move(127); //runs ball intake normally
   } else {
     ballIntakeMotor.move(0);//stops ball intake
@@ -274,7 +274,7 @@ void swirl()
   }
   else
   {
-    swirlstate = 0; // restets and recovers form ainvalid value
+    swirlstate = 0; // restets and recovers from a invalid value
   swirlstate++;
   }
 }

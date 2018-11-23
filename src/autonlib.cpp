@@ -30,19 +30,20 @@ extern pros::ADILineSensor ls;
 */
 int encoderInchesToCounts(float inches)
 {
+  double pi = 3.14159265359;
   int counts;
-  auto gearset = leftDriveMotor1.get_gearing();
+  auto gearset = leftDriveMotor1.get_gearing();//alllows function to make the correct calculation based on the configured gearset
   if (gearset == pros::E_MOTOR_GEARSET_36)//checks if 36:1 gearset is configured
   {
-      counts = inches * (1800/(4*3.14159265359));//calculates the number of counts
+      counts = inches * (1800/(4*pi));//calculates the number of counts
   }
   else if (gearset == pros::E_MOTOR_GEARSET_18)//checks if 18:1 gearset is configured
   {
-      counts = inches * (900/(4*3.14159265359));//calculates the number of counts
+      counts = inches * (900/(4*pi));//calculates the number of counts
   }
   else if (gearset == pros::E_MOTOR_GEARSET_06)//checks if 6:1 gearset is configured
   {
-     counts = inches * (300/(4*3.14159265359));//calculates the number of counts
+     counts = inches * (300/(4*pi));//calculates the number of counts
   }
   return counts;//return counts
 }
@@ -56,8 +57,8 @@ int encoderInchesToCounts(float inches)
 void driveForward(int counts,int power,bool zeromotors)
 {
   leftDriveMotor1.move(power);//start moving rear left drive motor
-  rightDriveMotor1.move(-power);//start moving rear right drive motor
   leftDriveMotor2.move(power);//start moving front left drive motor
+  rightDriveMotor1.move(-power);//start moving rear right drive motor
   rightDriveMotor2.move(-power);//start moving front right drive motor
   while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
   leftDriveMotor2.move(0);//stop moving front left drive motor
@@ -78,8 +79,8 @@ void driveForward(int counts,int power,bool zeromotors)
 void driveBackward(int counts,int power,bool zeromotors)
 {
   leftDriveMotor1.move(-power);//start moving rear left drive motor
-  rightDriveMotor1.move(power);//start moving rear right drive motor
   leftDriveMotor2.move(-power);//start moving front left drive motor
+  rightDriveMotor1.move(power);//start moving rear right drive motor
   rightDriveMotor2.move(power);//start moving front right drive motor
   while(leftDriveMotor1.get_position() >= -counts && rightDriveMotor1.get_position() <= counts);//check if we have reached position
   leftDriveMotor1.move(0);//stop moving rear left drive motor
@@ -100,8 +101,8 @@ void driveBackward(int counts,int power,bool zeromotors)
 void turnLeft(int counts,int power,bool zeromotors)
 {
   leftDriveMotor1.move(-power);//start moving rear left drive motor
-  rightDriveMotor1.move(power);//start moving rear right drive motor
   leftDriveMotor2.move(-power);//start moving front left drive motor
+  rightDriveMotor1.move(power);//start moving rear right drive motor
   rightDriveMotor2.move(power);//start moving front right drive motor
   while(leftDriveMotor1.get_position() <= -counts && rightDriveMotor1.get_position() <= -counts);//check if we have reached position
   leftDriveMotor1.move(0);//stop moving rear left drive motor
@@ -122,8 +123,8 @@ void turnLeft(int counts,int power,bool zeromotors)
 void turnRight(int counts,int power,bool zeromotors)
 {
   leftDriveMotor1.move(-power);//start moving rear left drive motor
-  rightDriveMotor1.move(power);//start moving rear right drive motor
   leftDriveMotor2.move(-power);//start moving front left drive motor
+  rightDriveMotor1.move(power);//start moving rear right drive motor
   rightDriveMotor2.move(power);//start moving front right drive motor
   while(leftDriveMotor1.get_position() <= -counts && rightDriveMotor1.get_position() <= -counts);//check if we have reached position
   leftDriveMotor1.move(0);//stop moving rear left drive motor
@@ -136,7 +137,7 @@ void turnRight(int counts,int power,bool zeromotors)
   }
 }
 /** \brief
-* \details Shoots the ball
+* \details State machine that shoots the ball. Must be called until it returns 1
 * \return 1 if ball fired, else 0
 */
 int shootBall()
