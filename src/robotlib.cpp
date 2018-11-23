@@ -89,7 +89,7 @@ leftDriveMotor1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not 
 rightDriveMotor1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
-liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
+liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);//forces motor to not apply braking when power is not applied
 ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 }
 
@@ -100,8 +100,8 @@ void updateInfoScreen()
 {
   info_printf(1,"LeftDrive:%d",leftDriveMotor1.get_position());//writes current position for left drive motor in counts
   info_printf(2,"RightDrive:%d",rightDriveMotor1.get_position());//writes current position for right drive motor in counts
-  info_printf(3,"Wrist:%d",wristMotor.get_position());//writes current position for wrist motor in counts
-  info_printf(4,"Lift:%d",liftMotor.get_position());//writes current position for lift motor in counts
+  info_printf(3,"Wrist:%x",wristMotor.get_position());//writes current position for wrist motor in counts
+  info_printf(4,"Lift:%x",liftMotor.get_position());//writes current position for lift motor in counts
   filterCockedSensor(); //filters the launcher cocked sensor to get a stable output
 }
 
@@ -174,11 +174,21 @@ void readJoystick()
 */
 void liftControl()
 {
+  static int stackenable = 0;
   if (liftup == 1) {
-    liftMotor.move(-100);//drives lift up at 75% power
-  }
+    liftMotor.move_absolute(LIFT_MAX_HEIGHT,-75);
+    if(liftMotor.get_position() <= LIFT_MAX_HEIGHT+50) {stackenable = 1;}
+    //liftMotor.move(-100);//drives lift up at 75% power
+  }//
 	else if (liftdown == 1) {
-    liftMotor.move(100);//drives lift down at 75% power
+    if (stackenable == 1) {
+      liftMotor.move_absolute(LIFT_STACK_HEIGHT,50);
+      if(liftMotor.get_position() >= LIFT_STACK_HEIGHT) {stackenable = 0;}
+    }
+    else {liftMotor.move_absolute(LIFT_GROUND_HEIGHT,50);}
+
+    //liftMotor.move(100);//drives lift down at 75% power
+//
   }
   else {
     liftMotor.move(0);//stop motor

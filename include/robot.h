@@ -16,6 +16,10 @@
 #define LAUNCHER_ENCODER_COUNTS_TO_FIRE 6000
 #define SHOOTER_THRESHOLD 250
 
+#define LIFT_MAX_HEIGHT -600
+#define LIFT_STACK_HEIGHT -500
+#define LIFT_GROUND_HEIGHT 100
+
 //driver function prototypes
 void driveControl();
 void readJoystick();

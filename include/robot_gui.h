@@ -39,8 +39,8 @@
  *      DEFINES
  *********************/
 #define MARL1_TEXT "MARL 1: F2, F1"
-#define MARL2_TEXT "MARL 2: F2, F1, C3"
-#define MARL3_TEXT "MARL 3: F2, F1, C3, C4"
+#define MARL2_TEXT "MARL 2: C2, C1, Park"
+#define MARL3_TEXT "MARL 3: C1, Park"
 #define MARL4_TEXT "MARL 4: Park"
 #define MARL5_TEXT "MARL 5: C1, Park"
 #define MARL6_TEXT "MARL 6: C1, C2, Park"
