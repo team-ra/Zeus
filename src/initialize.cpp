@@ -8,11 +8,8 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	// pros::lcd::initialize();
-	// pros::lcd::set_text(1, "Hello PROS User");
-	// pros::lcd::register_btn1_cb(on_center_button);
-  robot_gui();
-	auton_ptr = &auton_non;
+  robot_gui();//runs robot gui
+	auton_ptr = &auton_non;//sets auton pointer to none
 }
 
 /**

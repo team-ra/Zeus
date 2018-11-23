@@ -37,7 +37,7 @@ auton2();
 
 void marr2() {
  info_printf(1,"in marr2");
- auton6();
+ auton4();
 }
 
 void marr3() {

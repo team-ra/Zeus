@@ -10,14 +10,16 @@
 */
 void auton1()
 {
-  pros::delay(250);
+  pros::delay(250);//waits to allow sensors to stablize
   //info_printf(1, "auton1");
-  motorSetup();
+  motorSetup();//sets up the motors
+  //drives forward 1 square to prepare for shooting the middle flag
   driveForward(encoderInchesToCounts(12), 100, true);
-  //info_printf(1, "before shoot");
-  while (shootBall() == 0){
+//info_printf(1, "before shoot");
+  while (shootBall() == 0){//waits for ball to be shot
     pros::delay(10);
   }
+  //drives forward 1 square to toggle low flag
   driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true);
   //info_printf(1, "end auton1");
 }

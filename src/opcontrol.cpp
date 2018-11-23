@@ -16,23 +16,21 @@ using namespace pros::literals;
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	std::uint32_t lasttime;
-	std::uint32_t lastcontroltime;
-	int flag = 1;
-	int controlflag = 1;
-	motorSetup();
+	std::uint32_t lasttime;//holds last time since controller LCD updated
+	int flag = 1;//holds whether or not to trigger screen update
+	motorSetup();//setup motors
 
-	updateControllerLcd();
+
 	 while (true) {
 		if (flag)
 		{
-			lasttime = pros::millis();
-			flag = 0;
+			updateControllerLcd();
+			lasttime = pros::millis();//set last time updated to current system time
+			flag = 0;//set that we have updated
 		}
-		if (lasttime + 50 < pros::millis())
+		if (lasttime + 50 < pros::millis())//check if 50 ms have elapsed since last update
 		{
-
-			flag = 1;
+			flag = 1;//set flag to request and update
 		}
 		updateInfoScreen();
 		readJoystick();

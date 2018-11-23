@@ -6,12 +6,12 @@
 */
 void auton2()
 {
-  pros::delay(250);
+  pros::delay(250);//waits for sensors to stabilize
   //info_printf(1, "auton1");
-  motorSetup();
+  motorSetup();//sets up motors
 
   //info_printf(1, "before shoot");
-  while (shootBall() == 0){
+  while (shootBall() == 0){//waits for ball to shoot
     pros::delay(10);
   }
   //info_printf(1, "end auton1");

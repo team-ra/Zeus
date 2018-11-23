@@ -17,14 +17,7 @@ using namespace pros::literals;
 void autonomous() {
 
   motorSetup();
-  extern pros::ADILineSensor ls2;
-  ls2.calibrate();
-//int mode = setAutonMode();
-//pros::lcd::print(1,"%d",mode);
-//startauto(2);
-// //driveForward(encoderInchesToCounts(10),100,true);
-// driveBackward(encoderInchesToCounts(10),100,true);
-// turnLeft(100, 50, true);
-
+  extern pros::ADILineSensor ls2;//allows access to sensor to calibrate it
+  ls2.calibrate();//calibrate the sensor
   (*auton_ptr)(); // pointer to function assigned by robot_gui selection
 }

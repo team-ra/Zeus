@@ -5,11 +5,10 @@
 */
 void auton4()
 {
-  driveForward(encoderInchesToCounts(44),100,true);
-  driveBackward(encoderInchesToCounts(24),100,true);
-  turnLeft(180, 100,true);
-  intakeOn(true);
-  driveForward(encoderInchesToCounts(24),100,true);
+  intakeOn(false);
+  driveForward(encoderInchesToCounts(40), 50, true);
+  pros::delay(250);
   intakeOff();
-  driveBackward(encoderInchesToCounts(20), 100, true);
+  driveBackward(encoderInchesToCounts(12), 50,true);
+
 }
