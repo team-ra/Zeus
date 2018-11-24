@@ -15,5 +15,5 @@ void auton3()
     intakeOn(true);
     driveForward(encoderInchesToCounts(20), 100, true);
     intakeOff();
-    driveBackward(encoderInchesToCounts(50),100,true);
+    //driveBackward(encoderInchesToCounts(50),100,true);
 }

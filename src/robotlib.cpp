@@ -70,7 +70,9 @@ void motorSetup()
 {
   //set encoder units for autonomous actions
   leftDriveMotor1.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS); //set encoder units to counts instead of degrees or revolutions
-  rightDriveMotor1.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);//set encoder units to counts instead of degrees or revolutions
+  rightDriveMotor1.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  leftDriveMotor2.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS); //set encoder units to counts instead of degrees or revolutions
+  rightDriveMotor2.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);//set encoder units to counts instead of degrees or revolutions
   launchMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);//set encoder units to counts instead of degrees or revolutions
   wristMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);//set encoder units to counts instead of degrees or revolutions
   liftMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);//set encoder units to counts instead of degrees or revolutions
@@ -79,6 +81,8 @@ void motorSetup()
 //set gearsets for motors
 leftDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 rightDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
+leftDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
+rightDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 launchMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//torque
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//torque
@@ -87,10 +91,16 @@ ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 //sets braking mode
 leftDriveMotor1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 rightDriveMotor1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
+leftDriveMotor2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
+rightDriveMotor2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);//forces motor to not apply braking when power is not applied
 ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
+//sets motors in reverse
+rightDriveMotor1.set_reversed(true);
+rightDriveMotor2.set_reversed(true);
+
 }
 
 /** \brief
@@ -111,7 +121,7 @@ void updateInfoScreen()
 void updateControllerLcd()
 {
   controller.print(0, 0, "Intr:%d Spd:%d",intakeReverse,halfspeed);//updates controller LCD with the state of buttons used to toggle functionality
-  swirl();//update swirl animation
+  //swirl();//update swirl animation
 }
 
 /** \brief
@@ -156,7 +166,7 @@ void driveControl()
 void readJoystick()
 {
   leftDrivePower = controller.get_analog(ANALOG_LEFT_Y);//set left power to value of left analog stick
-  rightDrivePower = -controller.get_analog(ANALOG_RIGHT_Y);//set left power to value of left analog stick
+  rightDrivePower = controller.get_analog(ANALOG_RIGHT_Y);//set left power to value of left analog stick
    liftup = controller.get_digital(DIGITAL_R1);//set liftup based on state of button R1
 	 liftdown = controller.get_digital(DIGITAL_R2);//set liftdown based on state of button R2
 	 wristleft = controller.get_digital(DIGITAL_L1);//set wristleft based on state of button L1
@@ -170,28 +180,42 @@ void readJoystick()
 }
 //moves lift
 /** \brief
-* \details moves lift
+* \details moves lift using a state machine
 */
 void liftControl()
 {
-  static int stackenable = 0;
-  if (liftup == 1) {
-    liftMotor.move_absolute(LIFT_MAX_HEIGHT,-75);
-    if(liftMotor.get_position() <= LIFT_MAX_HEIGHT+50) {stackenable = 1;}
-    //liftMotor.move(-100);//drives lift up at 75% power
-  }//
-	else if (liftdown == 1) {
-    if (stackenable == 1) {
-      liftMotor.move_absolute(LIFT_STACK_HEIGHT,50);
-      if(liftMotor.get_position() >= LIFT_STACK_HEIGHT) {stackenable = 0;}
-    }
-    else {liftMotor.move_absolute(LIFT_GROUND_HEIGHT,50);}
+  //
+  static int state = 0;
+  switch(state)
+  {
+    case 0:
+            liftMotor.move(0);
+            if (liftup == 1) {state = 1;}
+            else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}
+            else if (liftdown == 1) {state = 2;}
+            else {state = 0;}
+            controller.print(1, 0, "In State 0");
+            break;
+    case 1:
+            liftMotor.move(-127);
+            if (liftMotor.get_position() <= -1200) {state = 0;}
+            controller.print(1, 0, "In State 1");
+            break;
+    case 2:
+            liftMotor.move(50);
+            if (liftMotor.get_position() >= 10) {state = 0;}
+            controller.print(1, 0, "In State 2");
+            break;
+    case 3:
+            liftMotor.move(50);
+            if (liftMotor.get_position() >= LIFT_STACK_HEIGHT + 25) {state = 0;}
+            controller.print(1, 0, "In State 3");
+            break;
+    default:
+            liftMotor.move(0);
+            state = 0;
+            break;
 
-    //liftMotor.move(100);//drives lift down at 75% power
-//
-  }
-  else {
-    liftMotor.move(0);//stop motor
   }
 }
 /** \brief

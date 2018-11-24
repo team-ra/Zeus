@@ -56,15 +56,11 @@ int encoderInchesToCounts(float inches)
 */
 void driveForward(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor1.move(power);//start moving rear left drive motor
-  leftDriveMotor2.move(power);//start moving front left drive motor
-  rightDriveMotor1.move(-power);//start moving rear right drive motor
-  rightDriveMotor2.move(-power);//start moving front right drive motor
+  leftDriveSet(power);
+  rightDriveSet(power);
   while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
-  leftDriveMotor2.move(0);//stop moving front left drive motor
-  leftDriveMotor1.move(0);//stop moving rear left drive motor
-  rightDriveMotor2.move(0);//stop moving front right drive motor
-  rightDriveMotor1.move(0);//stop moving rear right drive motor
+  leftDriveSet(0);
+  rightDriveSet(0);
   if(zeromotors){
     leftDriveMotor1.tare_position();//zero encoder
     rightDriveMotor1.tare_position();//zero encoder
@@ -78,15 +74,11 @@ void driveForward(int counts,int power,bool zeromotors)
 */
 void driveBackward(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor1.move(-power);//start moving rear left drive motor
-  leftDriveMotor2.move(-power);//start moving front left drive motor
-  rightDriveMotor1.move(power);//start moving rear right drive motor
-  rightDriveMotor2.move(power);//start moving front right drive motor
-  while(leftDriveMotor1.get_position() >= -counts && rightDriveMotor1.get_position() <= counts);//check if we have reached position
-  leftDriveMotor1.move(0);//stop moving rear left drive motor
-  leftDriveMotor2.move(0);//stop moving front left drive motor
-  rightDriveMotor1.move(0);//stop moving rear right drive motor
-  rightDriveMotor2.move(0);//stop moving front right drive motor
+  leftDriveSet(-power);
+  rightDriveSet(-power);
+  while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
+  leftDriveSet(0);
+  rightDriveSet(0);
   if(zeromotors){
     leftDriveMotor1.tare_position();//zero encoder
     rightDriveMotor1.tare_position();//zero encoder
@@ -100,15 +92,11 @@ void driveBackward(int counts,int power,bool zeromotors)
 */
 void turnLeft(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor1.move(-power);//start moving rear left drive motor
-  leftDriveMotor2.move(-power);//start moving front left drive motor
-  rightDriveMotor1.move(power);//start moving rear right drive motor
-  rightDriveMotor2.move(power);//start moving front right drive motor
-  while(leftDriveMotor1.get_position() <= -counts && rightDriveMotor1.get_position() <= -counts);//check if we have reached position
-  leftDriveMotor1.move(0);//stop moving rear left drive motor
-  leftDriveMotor2.move(0);//stop moving front left drive motor
-  rightDriveMotor1.move(0);//stop moving rear right drive motor
-  rightDriveMotor2.move(0);//stop moving front right drive motor
+  leftDriveSet(-power);
+  rightDriveSet(power);
+  while(leftDriveMotor1.get_position() >= -counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
+  leftDriveSet(0);
+  rightDriveSet(0);
   if(zeromotors){
     leftDriveMotor1.tare_position();//zero encoder
     rightDriveMotor1.tare_position();//zero encoder
@@ -122,15 +110,11 @@ void turnLeft(int counts,int power,bool zeromotors)
 */
 void turnRight(int counts,int power,bool zeromotors)
 {
-  leftDriveMotor1.move(-power);//start moving rear left drive motor
-  leftDriveMotor2.move(-power);//start moving front left drive motor
-  rightDriveMotor1.move(power);//start moving rear right drive motor
-  rightDriveMotor2.move(power);//start moving front right drive motor
-  while(leftDriveMotor1.get_position() <= -counts && rightDriveMotor1.get_position() <= -counts);//check if we have reached position
-  leftDriveMotor1.move(0);//stop moving rear left drive motor
-  leftDriveMotor2.move(0);//stop moving front left drive motor
-  rightDriveMotor1.move(0);//stop moving rear right drive motor
-  rightDriveMotor2.move(0);//stop moving front right drive motor
+  leftDriveSet(power);
+  rightDriveSet(-power);
+  while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
+  leftDriveSet(0);
+  rightDriveSet(0);
   if(zeromotors){
     leftDriveMotor1.tare_position();//zero encoder
     rightDriveMotor1.tare_position();//zero encoder
@@ -247,4 +231,21 @@ void intakeOn(bool reverse)
 void intakeOff()
 {
   ballIntakeMotor.move(0); //turns ball intake off
+}
+/**\brief
+* \details abstraction to address left side of drivetrain
+*/
+void leftDriveSet(int power)
+{
+  leftDriveMotor1.move(power);//start moving rear left drive motor
+  leftDriveMotor2.move(power);//start moving front left drive motor
+}
+
+/**\brief
+* \details abstraction to address right side of drivetrain
+*/
+void rightDriveSet(int power)
+{
+  rightDriveMotor1.move(power);//start moving rear right drive motor
+  rightDriveMotor2.move(power);//start moving front right drive motor
 }

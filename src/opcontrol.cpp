@@ -22,16 +22,16 @@ void opcontrol() {
 
 
 	 while (true) {
-		if (flag)
-		{
-			updateControllerLcd();
-			lasttime = pros::millis();//set last time updated to current system time
-			flag = 0;//set that we have updated
-		}
-		if (lasttime + 50 < pros::millis())//check if 50 ms have elapsed since last update
-		{
-			flag = 1;//set flag to request and update
-		}
+		// if (flag)
+		// {
+		// 	updateControllerLcd();
+		// 	lasttime = pros::millis();//set last time updated to current system time
+		// 	flag = 0;//set that we have updated
+		// }
+		// if (lasttime + 500 < pros::millis())//check if 50 ms have elapsed since last update
+		// {
+		// 	flag = 1;//set flag to request and update
+		// }
 		updateInfoScreen();
 		readJoystick();
 		driveControl();

@@ -5,4 +5,9 @@
 */
 void auton5()
 {
+  motorSetup();
+  //driveForward(100, 100,true);
+  driveBackward(100, 100,true);
+  //turnLeft(100, 100,true);
+  //turnRight(300, 100,true);
 }

@@ -18,7 +18,7 @@
 
 #define LIFT_MAX_HEIGHT -600
 #define LIFT_STACK_HEIGHT -500
-#define LIFT_GROUND_HEIGHT 100
+#define LIFT_GROUND_HEIGHT 10
 
 //driver function prototypes
 void driveControl();
@@ -62,6 +62,6 @@ int filterBallSensor();
 void intakeOn(bool reverse);
 void intakeOff();
 void updateInfoScreen();
-void leftDriveSetPID(int counts,int power);
-void rightDriveSetPID(int counts,int power);
+void leftDriveSet(int power);
+void rightDriveSet(int power);
 #endif
