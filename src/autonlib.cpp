@@ -219,10 +219,10 @@ void intakeOn(bool reverse)
 {
   if(reverse)
   {
-    ballIntakeMotor.move(-100);//turn intake on in reverse
+    ballIntakeMotor.move(-127);//turn intake on in reverse
   }
   else{
-    ballIntakeMotor.move(100);//turn intake on normally
+    ballIntakeMotor.move(127);//turn intake on normally
   }
 }
 /** \brief

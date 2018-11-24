@@ -190,7 +190,8 @@ void liftControl()
   {
     case 0:
             liftMotor.move(0);
-            if (liftup == 1) {state = 1;}
+            if (liftup == 1 && liftMotor.get_position() >= 10) {state = 4;}
+            else if (liftup == 1) {state = 1;}
             else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}
             else if (liftdown == 1) {state = 2;}
             else {state = 0;}
@@ -207,6 +208,10 @@ void liftControl()
             liftMotor.move(75);
             if (liftMotor.get_position() >= LIFT_STACK_HEIGHT + 25) {state = 0;}
             break;
+    case 4:
+            liftMotor.move(-75);
+              if (liftMotor.get_position() <= LIFT_STACK_HEIGHT - 100) {state = 0;}
+              break;
     default:
             liftMotor.move(0);
             state = 0;

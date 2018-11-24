@@ -7,13 +7,15 @@
 void auton3()
 {
     intakeOn(false);
-    driveForward(encoderInchesToCounts(40), 50, true);
-    pros::delay(250);
+    driveForward(encoderInchesToCounts(42), 50, true);
+    pros::delay(500);
+    driveBackward(encoderInchesToCounts(6), 50,true);
+    pros::delay(1000);
     intakeOff();
-    driveBackward(encoderInchesToCounts(20), 50,true);
-    turnLeft(300,50,true);
+    driveBackward(encoderInchesToCounts(18), 50,true);
+    turnLeft(400,50,true);
     intakeOn(true);
-    driveForward(encoderInchesToCounts(20), 100, true);
+    driveForward(encoderInchesToCounts(40), 75, true);
     intakeOff();
     //driveBackward(encoderInchesToCounts(50),100,true);
 }

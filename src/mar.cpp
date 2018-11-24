@@ -14,10 +14,12 @@ void marl2() {
 
 void marl3() {
  info_printf(1,"in marl3");
+ auton6();
 }
 
 void marl4() {
  info_printf(1,"in marl4");
+ auton7();
 }
 
 void marl5() {
