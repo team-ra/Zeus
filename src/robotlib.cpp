@@ -83,7 +83,7 @@ leftDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 rightDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 leftDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 rightDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
-launchMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//torque
+launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//torque
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//torque
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
@@ -194,22 +194,18 @@ void liftControl()
             else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}
             else if (liftdown == 1) {state = 2;}
             else {state = 0;}
-            controller.print(1, 0, "In State 0");
             break;
     case 1:
             liftMotor.move(-127);
-            if (liftMotor.get_position() <= -1200) {state = 0;}
-            controller.print(1, 0, "In State 1");
+            if (liftMotor.get_position() <= -1100) {state = 0;}
             break;
     case 2:
-            liftMotor.move(50);
+            liftMotor.move(75);
             if (liftMotor.get_position() >= 10) {state = 0;}
-            controller.print(1, 0, "In State 2");
             break;
     case 3:
-            liftMotor.move(50);
+            liftMotor.move(75);
             if (liftMotor.get_position() >= LIFT_STACK_HEIGHT + 25) {state = 0;}
-            controller.print(1, 0, "In State 3");
             break;
     default:
             liftMotor.move(0);
@@ -219,23 +215,37 @@ void liftControl()
   }
 }
 /** \brief
-* \details moves wrist
+* \details moves wrist using a state machine
 */
 void wristControl()
 {
-  if (wristleft && wristright) //check if both left and right buttons are presed
-  {
-    wristMotor.move(0);// turn neither direction to prevent motor from oscillating
-  }
-  else if (wristleft == 1){
-    wristMotor.move(100); // turn wrist left at 75% power
-  }
-  else if (wristright == 1) {
-    wristMotor.move(-100);//turn wrist right at 75% power
-  }
-  else {
-    wristMotor.move(0);//turn motor off
-  }
+static int mode = 0;
+switch(mode)
+{
+  case 0:
+          wristMotor.move(0);
+          if (wristleft && wristright) {mode = 3;}
+          else if (wristleft == 1){mode = 1;}
+          else if (wristright == 1){mode = 2;}
+          else {mode = 0;}
+          break;
+  case 1:
+          wristMotor.move(100);
+          controller.print(1,0,"%x",wristMotor.get_position());
+          if (wristMotor.get_position() >= 5) {mode = 0;}
+          break;
+  case 2:
+          wristMotor.move(-100);
+          if (wristMotor.get_position() <= -800) {mode = 0;}
+          break;
+  case 3:
+          wristMotor.move(0);
+          mode = 0;
+          break;
+  default:
+          mode = 0;
+          break;
+}
 }
 /** \brief
 * \details fires launcher
