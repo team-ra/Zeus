@@ -11,15 +11,21 @@
 #define RIGHT_DRIVE_MOTOR_2PORT 8
 #define LEFT_DRIVE_MOTOR2_PORT 9
 
-#define LINE_SENSOR_PORT 'd'
-#define LINE_SENSOR_PORT2 'b'
+#define BALL_SENSOR_PORT 'd'
+#define COCKED_SENSOR_PORT 'b'
+#define PLATFORM_SENSOR_PORT 'c'
 #define LAUNCHER_ENCODER_COUNTS_TO_FIRE 6000
 #define SHOOTER_THRESHOLD 250
 
-#define LIFT_MAX_HEIGHT -600
-#define LIFT_STACK_HEIGHT -500
+#define LIFT_MAX_HEIGHT -1100
+#define LIFT_STACK_HEIGHT -1000
 #define LIFT_GROUND_HEIGHT 10
+#define LIFT_MAX_HEIGHT_PWR -127
+#define LIFT_STACK_HEIGHT_PWR -75
+#define LIFT_GROUND_HEIGHT_PWR 75
 
+#define WRIST_FULL_LEFT 5
+#define WRIST_FULL_RIGHT -800
 //driver function prototypes
 void driveControl();
 void readJoystick();
@@ -27,7 +33,7 @@ void liftControl();
 void wristControl();
 void launcherControl();
 void ballIntakeControl();
-void updateControllerLcd();
+void updateControllerLcd(int line,char *linedata);
 void motorSetup();
 void swirl();
 /************************************************/

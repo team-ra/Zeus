@@ -5,7 +5,7 @@
 */
 void auton7()
 {
-  driveBackward(encoderInchesToCounts(16), 100, true);
-  turnRight(800,50,true);
-  driveForward(encoderInchesToCounts(40),127,true);
+  driveBackward(encoderInchesToCounts(16), 100, true);//reverses to platform
+  turnRight(800,50,true);//turns to face platform
+  driveForward(encoderInchesToCounts(40),127,true);//drives onto platform
 }

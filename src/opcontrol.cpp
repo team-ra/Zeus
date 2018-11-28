@@ -16,22 +16,34 @@ using namespace pros::literals;
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	extern pros::Controller controller;
 	std::uint32_t lasttime;//holds last time since controller LCD updated
-	int flag = 1;//holds whether or not to trigger screen update
-	motorSetup();//setup motors
+	char line2[14];
+	char initmessage[14];
+	char blankline[0];
+	sprintf(initmessage,"initializing");
 
+	motorSetup();//setup motors
+	updateControllerLcd(0,initmessage);
+	pros::delay(50);
+	updateControllerLcd(1,blankline);
+	pros::delay(50);
+	updateControllerLcd(2,blankline);
 
 	 while (true) {
-		// if (flag)
-		// {
+		static int flag = 1;//holds whether or not to trigger screen update
+		if (flag)
+		{
+		sprintf(line2,"JoyB:%d RobB:%f",controller.get_battery_capacity(),pros::battery::get_capacity());
+	  updateControllerLcd(2,line2);
 		// 	updateControllerLcd();
-		// 	lasttime = pros::millis();//set last time updated to current system time
-		// 	flag = 0;//set that we have updated
-		// }
-		// if (lasttime + 500 < pros::millis())//check if 50 ms have elapsed since last update
-		// {
-		// 	flag = 1;//set flag to request and update
-		// }
+			lasttime = pros::millis();//set last time updated to current system time
+			flag = 0;//set that we have updated
+		}
+		if (lasttime + 5000 < pros::millis())//check if 50 ms have elapsed since last update
+		{
+			flag = 1;//set flag to request and update
+		}
 		updateInfoScreen();
 		readJoystick();
 		driveControl();
@@ -39,6 +51,7 @@ void opcontrol() {
 		wristControl();
 		launcherControl();
 		ballIntakeControl();
+
 		pros::delay(20);
 	}
 }

@@ -5,10 +5,11 @@
 */
 void auton4()
 {
-  intakeOn(false);
-  driveForward(encoderInchesToCounts(40), 50, true);
-  pros::delay(250);
-  intakeOff();
-  driveBackward(encoderInchesToCounts(12), 50,true);
+
+  intakeOn(false);  //turns intake on
+  driveForward(encoderInchesToCounts(40), 50, true);//drive to cap
+  pros::delay(250);//wait for ball to enter mechanism
+  intakeOff();//turn off intake
+  driveBackward(encoderInchesToCounts(12), 50,true);//reverse from cap
 
 }

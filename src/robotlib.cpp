@@ -33,8 +33,10 @@ bool intakeActive = false;
  int controlr = 0;
  ///holds value of intake reverse bool 1 if reversed, else 0
 bool reversecontrols = false;
-///holds the text to be writtent o the joystick LCD
-char controllertext[14];
+///holds the text to be written to line 0 of the joystick LCD
+char line0[14];
+///holds the text to be written to line 1 of the joystick LCD
+char line1[14];
 ///holds value of half speed bool 1 if pressed, else 0
 bool halfspeed;
 ///the result of checking for halfspeed button 1 if pressed, else 0
@@ -62,15 +64,16 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 /// The ball intake motor
  pros::Motor ballIntakeMotor(BALL_INTAKE_MOTOR_PORT);
 /// The ball present sensor
- pros::ADILineSensor ls2(LINE_SENSOR_PORT2);
+ pros::ADILineSensor ls2(COCKED_SENSOR_PORT);
 /// The launcher cocked sensor
- pros::ADILineSensor ls(LINE_SENSOR_PORT);
-
+ pros::ADILineSensor ls(BALL_SENSOR_PORT);
+///the platform tube detect sensor
+pros::ADILineSensor ps(PLATFORM_SENSOR_PORT);
 void motorSetup()
 {
   //set encoder units for autonomous actions
   leftDriveMotor1.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS); //set encoder units to counts instead of degrees or revolutions
-  rightDriveMotor1.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+  rightDriveMotor1.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);//set encoder units to counts instead of degrees or revolutions
   leftDriveMotor2.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS); //set encoder units to counts instead of degrees or revolutions
   rightDriveMotor2.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);//set encoder units to counts instead of degrees or revolutions
   launchMotor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);//set encoder units to counts instead of degrees or revolutions
@@ -83,7 +86,7 @@ leftDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 rightDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 leftDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 rightDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
-launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//torque
+launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//torque
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
@@ -117,10 +120,13 @@ void updateInfoScreen()
 
 /** \brief
 * \details Updates LCD on controller
+\param line The line to write to [0-2]
+\param *linedata the charachter array containing the the text to display
 */
-void updateControllerLcd()
+void updateControllerLcd(int line,char *linedata)
 {
-  controller.print(0, 0, "Intr:%d Spd:%d",intakeReverse,halfspeed);//updates controller LCD with the state of buttons used to toggle functionality
+  //
+  controller.print(line,0,linedata);//prints the passed charachter array to the specified line
   //swirl();//update swirl animation
 }
 
@@ -135,10 +141,15 @@ void driveControl()
   if (changespeed == 1 && drvactivelaststate != 1)//check if button was not pressed last time throught the loop
   {
     halfspeed = !halfspeed;//toggles half speed drive
+    sprintf(line0,"Intr:%d Spd:%d",intakeReverse,halfspeed);
+    updateControllerLcd(0,line0);
+    pros::delay(10);//allow LCD some time to update
   }
   if (controlr == 1 && drvrevlaststate != 1)//check if button was not pressed last run
   {
     reversecontrols = !reversecontrols;//reverse controls
+    sprintf(line1,"Revc:%d",reversecontrols);
+    updateControllerLcd(1,line1);
   }
   if (reversecontrols) // if controls reverse is active, reverse the powees
   {
@@ -165,6 +176,7 @@ void driveControl()
 */
 void readJoystick()
 {
+
   leftDrivePower = controller.get_analog(ANALOG_LEFT_Y);//set left power to value of left analog stick
   rightDrivePower = controller.get_analog(ANALOG_RIGHT_Y);//set left power to value of left analog stick
    liftup = controller.get_digital(DIGITAL_R1);//set liftup based on state of button R1
@@ -190,29 +202,29 @@ void liftControl()
   {
     case 0:
             liftMotor.move(0);
-            if (liftup == 1 && liftMotor.get_position() >= 10) {state = 4;}
-            else if (liftup == 1) {state = 1;}
-            else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}
-            else if (liftdown == 1) {state = 2;}
-            else {state = 0;}
+            if (liftup == 1 && liftMotor.get_position() >= 10) {state = 4;}//if we are on ground move to descoring height
+            else if (liftup == 1) {state = 1;}//if we are above descoring height move to scoring height
+            else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}//move to stack height if at max
+            else if (liftdown == 1) {state = 2;}//move to ground
+            else {state = 0;}//we are at an unknown position try again
             break;
     case 1:
-            liftMotor.move(-127);
-            if (liftMotor.get_position() <= -1100) {state = 0;}
+            liftMotor.move(LIFT_MAX_HEIGHT_PWR);//move lift at max power
+            if (liftMotor.get_position() <= LIFT_MAX_HEIGHT) {state = 0;}//move unit lift is at max height
             break;
     case 2:
-            liftMotor.move(75);
-            if (liftMotor.get_position() >= 10) {state = 0;}
+            liftMotor.move(LIFT_GROUND_HEIGHT_PWR);//move lift at 75% power
+            if (liftMotor.get_position() >= LIFT_GROUND_HEIGHT) {state = 0;}//move unit lift is at ground level
             break;
     case 3:
-            liftMotor.move(75);
-            if (liftMotor.get_position() >= LIFT_STACK_HEIGHT + 25) {state = 0;}
+            liftMotor.move(LIFT_GROUND_HEIGHT_PWR);//move lift at 75% power
+            if (liftMotor.get_position() >= LIFT_STACK_HEIGHT) {state = 0;}//move unit lift is at stack height
             break;
     case 4:
-            liftMotor.move(-75);
-              if (liftMotor.get_position() <= LIFT_STACK_HEIGHT - 100) {state = 0;}
+            liftMotor.move(LIFT_STACK_HEIGHT_PWR);//move lift at 75% power
+              if (liftMotor.get_position() <= LIFT_STACK_HEIGHT) {state = 0;}//move unit lift is at descore height
               break;
-    default:
+    default://should never get here. Stop moving and reset.
             liftMotor.move(0);
             state = 0;
             break;
@@ -228,26 +240,25 @@ static int mode = 0;
 switch(mode)
 {
   case 0:
-          wristMotor.move(0);
-          if (wristleft && wristright) {mode = 3;}
-          else if (wristleft == 1){mode = 1;}
-          else if (wristright == 1){mode = 2;}
-          else {mode = 0;}
+          wristMotor.move(0);//stop moving
+          if (wristleft && wristright) {mode = 3;}//move to stop state to prevent oscillation
+          else if (wristleft == 1){mode = 1;}//move wrist left
+          else if (wristright == 1){mode = 2;}//move wrist right
+          else {mode = 0;}//error occurred try again
           break;
   case 1:
-          wristMotor.move(100);
-          controller.print(1,0,"%x",wristMotor.get_position());
-          if (wristMotor.get_position() >= 5) {mode = 0;}
+          wristMotor.move(100);//rotate left
+          if (wristMotor.get_position() >= WRIST_FULL_LEFT) {mode = 0;}//reset after rotate completes
           break;
   case 2:
-          wristMotor.move(-100);
-          if (wristMotor.get_position() <= -800) {mode = 0;}
+          wristMotor.move(-100);//rotate left
+          if (wristMotor.get_position() <= WRIST_FULL_RIGHT) {mode = 0;}//reset after rotate completes
           break;
   case 3:
-          wristMotor.move(0);
+          wristMotor.move(0);//stop to prevent oscillation and reset
           mode = 0;
           break;
-  default:
+  default://should never get here. reset
           mode = 0;
           break;
 }
@@ -283,6 +294,8 @@ void ballIntakeControl()
 
   if (ballIntakeSetDir == 1 && intrevlaststate != 1) {//checks if button is pressed but was not pressed last time through the loop
     intakeReverse = !intakeReverse;//toggles intake reverse
+    sprintf(line0,"Intr:%d Spd:%d",intakeReverse,halfspeed);
+    updateControllerLcd(0,line0);
   }
   else
 	if(intakeActive && intakeReverse) //if intake is active and reverse was requested
