@@ -6,6 +6,7 @@
 */
 void auton2()
 {
+  resetEncoders();
   pros::delay(250);//waits for sensors to stabilize
   //info_printf(1, "auton1");
   motorSetup();//sets up motors

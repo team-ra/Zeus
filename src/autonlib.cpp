@@ -249,3 +249,9 @@ void rightDriveSet(int power)
   rightDriveMotor1.move(power);//start moving rear right drive motor
   rightDriveMotor2.move(power);//start moving front right drive motor
 }
+
+void resetEncoders()
+{
+  leftDriveMotor1.tare_position();
+  rightDriveMotor1.tare_position();
+}

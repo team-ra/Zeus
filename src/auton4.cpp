@@ -5,7 +5,7 @@
 */
 void auton4()
 {
-
+resetEncoders();
   intakeOn(false);  //turns intake on
   driveForward(encoderInchesToCounts(40), 50, true);//drive to cap
   pros::delay(250);//wait for ball to enter mechanism

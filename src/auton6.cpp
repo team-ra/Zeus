@@ -5,6 +5,7 @@
 */
 void auton6()
 {
+  resetEncoders();
   intakeOn(false);//turn intake on
   driveForward(encoderInchesToCounts(42), 50, true);//drive to cap
   pros::delay(500);//get ball into launcher

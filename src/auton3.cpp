@@ -6,6 +6,7 @@
 //marl2
 void auton3()
 {
+  resetEncoders();
     intakeOn(false);
     driveForward(encoderInchesToCounts(42), 50, true);
     pros::delay(500);

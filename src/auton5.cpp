@@ -5,6 +5,7 @@
 */
 void auton5()
 {
+  resetEncoders();
   motorSetup();
   //driveForward(100, 100,true);
   driveBackward(100, 100,true);

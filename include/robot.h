@@ -70,4 +70,5 @@ void intakeOff();
 void updateInfoScreen();
 void leftDriveSet(int power);
 void rightDriveSet(int power);
+void resetEncoders();
 #endif
