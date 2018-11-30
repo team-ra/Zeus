@@ -1,9 +1,9 @@
 #include "main.h"
 #include "robot.h"
 /**
-* \details calls the tenth autonomous function
+* \details calls the eleventh autonomous function
 */
-void auton10()
+void auton11()
 {
   resetEncoders();
   pros::delay(250);
@@ -11,7 +11,7 @@ void auton10()
   while (shootBall() == 0){//waits for ball to shoot
     pros::delay(10);
   }
-  //driveForward(encoderInchesToCounts(4), 50, true);//reverses to platform
-  turnRight(800,50,true);//turns to face platform
+  driveForward(encoderInchesToCounts(6), 50, true);//reverses to platform
+  turnLeft(500,50,true);//turns to face platform
   driveForward(encoderInchesToCounts(40),127,true);//drives onto platform
 }
