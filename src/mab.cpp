@@ -11,11 +11,11 @@ void mabl1() {
 
 void mabl2() {
  info_printf(1,"in mabl2");
+ auton4();
 }
 
 void mabl3() {
  info_printf(1,"in mabl3");
- auton4();
 }
 
 void mabl4() {

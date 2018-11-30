@@ -98,7 +98,7 @@ leftDriveMotor2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not 
 rightDriveMotor2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
-liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);//forces motor to not apply braking when power is not applied
+liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 //sets motors in reverse
 rightDriveMotor1.set_reversed(true);
@@ -205,17 +205,17 @@ void liftControl()
             if (liftup == 1 && liftMotor.get_position() >= 10) {state = 4;}//if we are on ground move to descoring height
             else if (liftup == 1) {state = 1;}//if we are above descoring height move to scoring height
             else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}//move to stack height if at max
-            else if (liftdown == 1) {state = 2;}//move to ground
+            else if (liftdown == 1) {liftMotor.move(75);}
             else {state = 0;}//we are at an unknown position try again
             break;
     case 1:
             liftMotor.move(LIFT_MAX_HEIGHT_PWR);//move lift at max power
             if (liftMotor.get_position() <= LIFT_MAX_HEIGHT) {state = 0;}//move unit lift is at max height
             break;
-    case 2:
-            liftMotor.move(LIFT_GROUND_HEIGHT_PWR);//move lift at 75% power
-            if (liftMotor.get_position() >= LIFT_GROUND_HEIGHT) {state = 0;}//move unit lift is at ground level
-            break;
+    // case 2:
+    //         liftMotor.move(LIFT_GROUND_HEIGHT_PWR);//move lift at 75% power
+    //         if (liftMotor.get_position() >= LIFT_GROUND_HEIGHT) {state = 0;}//move unit lift is at ground level
+    //         break;
     case 3:
             liftMotor.move(LIFT_GROUND_HEIGHT_PWR);//move lift at 75% power
             if (liftMotor.get_position() >= LIFT_STACK_HEIGHT) {state = 0;}//move unit lift is at stack height

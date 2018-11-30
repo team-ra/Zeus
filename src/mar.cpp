@@ -9,7 +9,7 @@ auton1();
 
 void marl2() {
  info_printf(1,"in marl2");
- auton3();
+ auton4();
 }
 
 void marl3() {
