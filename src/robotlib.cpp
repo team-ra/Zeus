@@ -242,8 +242,8 @@ switch(mode)
   case 0:
           wristMotor.move(0);//stop moving
           if (wristleft && wristright) {mode = 3;}//move to stop state to prevent oscillation
-          else if (wristleft == 1){mode = 1;}//move wrist left
-          else if (wristright == 1){mode = 2;}//move wrist right
+          else if (wristleft == 1 && wristMotor.get_position() <= WRIST_FULL_LEFT){mode = 1;}//move wrist left
+          else if (wristright == 1 && wristMotor.get_position() >= WRIST_FULL_RIGHT){mode = 2;}//move wrist right
           else {mode = 0;}//error occurred try again
           break;
   case 1:
