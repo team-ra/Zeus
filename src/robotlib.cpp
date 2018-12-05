@@ -202,15 +202,14 @@ void liftControl()
   {
     case 0:
             liftMotor.move(0);
-            if (liftup == 1 && liftMotor.get_position() >= 10) {state = 4;}//if we are on ground move to descoring height
-            else if (liftup == 1) {state = 1;}//if we are above descoring height move to scoring height
+            //if (liftup == 1 && liftMotor.get_position() >= LIFT_STACK_HEIGHT) {state = 4;}//if we are on ground move to descoring height
+            if (liftup == 1) {liftMotor.move(-127);}//if we are above descoring height move to scoring height
             else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}//move to stack height if at max
             else if (liftdown == 1) {liftMotor.move(75);}
             else {state = 0;}//we are at an unknown position try again
             break;
     case 1:
-            liftMotor.move(LIFT_MAX_HEIGHT_PWR);//move lift at max power
-            if (liftMotor.get_position() <= LIFT_MAX_HEIGHT) {state = 0;}//move unit lift is at max height
+            liftMotor.move(-127);
             break;
     // case 2:
     //         liftMotor.move(LIFT_GROUND_HEIGHT_PWR);//move lift at 75% power
@@ -236,36 +235,40 @@ void liftControl()
 */
 void wristControl()
 {
-static int mode = 0;
-switch(mode)
-{
-  case 0:
-          wristMotor.move(0);//stop moving
-          if (wristleft && wristright) {mode = 3;}//move to stop state to prevent oscillation
-          else if (wristleft == 1 && wristMotor.get_position() <= WRIST_FULL_LEFT){mode = 1;}//move wrist left
-          else if (wristright == 1 && wristMotor.get_position() >= WRIST_FULL_RIGHT){mode = 2;}//move wrist right
-          else {mode = 0;}//error occurred try again
-          break;
-  case 1:
-          wristMotor.move(100);//rotate left
-          if (wristMotor.get_position() >= WRIST_FULL_LEFT) {mode = 0;}//reset after rotate completes
-          break;
-  case 2:
-          wristMotor.move(-100);//rotate left
-          if (wristMotor.get_position() <= WRIST_FULL_RIGHT) {mode = 0;}//reset after rotate completes
-          break;
-  case 3:
-          wristMotor.move(0);//stop to prevent oscillation and reset
-          mode = 0;
-          break;
-  default://should never get here. reset
-          mode = 0;
-          break;
-}
+// static int mode = 0;
+// switch(mode)
+// {
+//   case 0:
+//           wristMotor.move(0);//stop moving
+//           if (wristleft && wristright) {mode = 3;}//move to stop state to prevent oscillation
+//           else if (wristleft == 1 ){mode = 1;}//move wrist left
+//           else if (wristright == 1){mode = 2;}//move wrist right
+//           else {mode = 0;}//error occurred try again
+//           break;
+//   case 1:
+//           wristMotor.move(100);//rotate left
+//           if (wristMotor.get_position() >= WRIST_FULL_LEFT) {mode = 0;}//reset after rotate completes
+//           break;
+//   case 2:
+//           wristMotor.move(-100);//rotate left
+//           if (wristMotor.get_position() <= WRIST_FULL_RIGHT) {mode = 0;}//reset after rotate completes
+//           break;
+//   case 3:
+//           wristMotor.move(0);//stop to prevent oscillation and reset
+//           mode = 0;
+//           break;
+//   default://should never get here. reset
+//           mode = 0;
+//           break;
+// }
+  if (wristleft && wristright) {wristMotor.move(0);}//move to stop state to prevent oscillation
+  else if (wristleft == 1 ){wristMotor.move(100);}//move wrist left
+  else if (wristright == 1){wristMotor.move(-100);}//move wrist right
 }
 /** \brief
 * \details fires launcher
 */
+//
 void launcherControl()
 {
     if(shoot == 1)
