@@ -82,5 +82,6 @@ void updateInfoScreen();
 void leftDriveSet(int power);
 void rightDriveSet(int power);
 void resetEncoders();
+int platformpresentblue();
 int platformpresentred();
 #endif

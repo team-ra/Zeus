@@ -256,7 +256,7 @@ void resetEncoders()
   rightDriveMotor1.tare_position();
 }
 //
-int platformpresentred()
+int platformpresentblue()
 {
   static int state = 0;
   switch(state)
@@ -269,6 +269,43 @@ int platformpresentred()
             break;
     case 1:
             if (ps.get_value() <= PLATFORM_CONTACT_YELLOW) {state = 2;}
+            break;
+    case 2:
+            delay(500);
+            if (ps.get_value() <= PLATFORM_CONTACT_YELLOW) {state = 4;}
+            break;
+    case 3:
+            // leftDriveSet(127);
+            // rightDriveSet(127);
+            leftDriveSet(75);
+            rightDriveSet(75);
+            if (ps.get_value() <= PLATFORM_CONTACT_YELLOW && ps.get_value() >= PLATFORM_CONTACT_BLUE) {state = 4;}//leftDriveSet(0);rightDriveSet(0);}
+            break;//
+    case 4:
+
+            leftDriveSet(0);
+            rightDriveSet(0);
+            state = 0;
+            return 1;
+            break;
+
+  }
+  return 0;
+}
+
+int platformpresentred()
+{
+  static int state = 0;
+  switch(state)
+  {
+    //
+    case 0:
+            leftDriveSet(75);
+            rightDriveSet(75);
+            state = 1;
+            break;
+    case 1:
+            if (ps.get_value() <= PLATFORM_CONTACT_RED) {state = 2;}
             break;
     case 2:
             delay(500);

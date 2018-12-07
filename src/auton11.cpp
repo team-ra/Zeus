@@ -13,5 +13,7 @@ void auton11()
   }
   driveForward(encoderInchesToCounts(6), 50, true);//reverses to platform
   turnLeft(500,50,true);//turns to face platform
-  driveForward(encoderInchesToCounts(40),127,true);//drives onto platform
+  //driveForward(encoderInchesToCounts(40),127,true);//drives onto platform
+  while(platformpresentblue() != 1){delay(10);}
+
 }
