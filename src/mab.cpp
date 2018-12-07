@@ -16,6 +16,7 @@ void mabl2() {
 
 void mabl3() {
  info_printf(1,"in mabl3");
+ auton5();
 }
 
 void mabl4() {

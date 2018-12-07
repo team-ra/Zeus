@@ -17,6 +17,16 @@
 #define LAUNCHER_ENCODER_COUNTS_TO_FIRE 6000
 #define SHOOTER_THRESHOLD 250
 
+#define PLATFORM_APPROACHING_RED    2900
+#define PLATFORM_NEAR_RED           2800
+#define PLATFORM_CONTACT_RED        2000
+#define PLATFORM_APPROACHING_YELLOW 2891
+#define PLATFORM_NEAR_YELLOW        2860
+#define PLATFORM_CONTACT_YELLOW     2000
+#define PLATFORM_APPROACHING_BLUE   2840
+#define PLATFORM_NEAR_BLUE          2830
+#define PLATFORM_CONTACT_BLUE       2840
+
 #define LIFT_MAX_HEIGHT -1100
 #define LIFT_STACK_HEIGHT -1000
 #define LIFT_GROUND_HEIGHT 10
@@ -72,4 +82,5 @@ void updateInfoScreen();
 void leftDriveSet(int power);
 void rightDriveSet(int power);
 void resetEncoders();
+int platformpresentred();
 #endif
