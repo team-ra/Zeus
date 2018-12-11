@@ -54,6 +54,7 @@ void mabr4() {
 
 void mabr5() {
  info_printf(1,"in mabr5");
+ auton12();
 }
 
 void mabr6() {
