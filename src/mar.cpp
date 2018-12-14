@@ -48,6 +48,7 @@ void marr3() {
 
 void marr4() {
  info_printf(1,"in marr4");
+ auton5();
 }
 
 void marr5() {

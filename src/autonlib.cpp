@@ -291,6 +291,7 @@ int platformpresentblue()
 
   }
   return 0;
+  //
 }
 
 int platformpresentred()
@@ -308,16 +309,16 @@ int platformpresentred()
             if (ps.get_value() <= PLATFORM_CONTACT_RED) {state = 2;}
             break;
     case 2:
-            delay(500);
+            delay(250);
             if (ps.get_value() <= PLATFORM_CONTACT_YELLOW) {state = 4;}
             break;
     case 3:
-            // leftDriveSet(127);
-            // rightDriveSet(127);
-            leftDriveSet(75);
-            rightDriveSet(75);
-            if (ps.get_value() <= PLATFORM_CONTACT_YELLOW && ps.get_value() >= PLATFORM_CONTACT_BLUE) {state = 4;}//leftDriveSet(0);rightDriveSet(0);}
-            break;//
+            // // leftDriveSet(127);
+            // // rightDriveSet(127);
+            // leftDriveSet(75);
+            // rightDriveSet(75);
+            // if (ps.get_value() <= PLATFORM_CONTACT_YELLOW && ps.get_value() <= PLATFORM_CONTACT_BLUE) {state = 4;}//leftDriveSet(0);rightDriveSet(0);}
+            // break;//
     case 4:
 
             leftDriveSet(0);
