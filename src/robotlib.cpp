@@ -264,6 +264,7 @@ void wristControl()
   if (wristleft && wristright) {wristMotor.move(0);}//move to stop state to prevent oscillation
   else if (wristleft == 1 ){wristMotor.move(100);}//move wrist left
   else if (wristright == 1){wristMotor.move(-100);}//move wrist right
+  else {wristMotor.move(0);}
 }
 /** \brief
 * \details fires launcher

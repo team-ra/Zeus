@@ -64,6 +64,7 @@ void auton9();
 void auton10();
 void auton11();
 void auton12();
+void auton13();
 // int setAutonMode();
 // void startauto(int mode);
 int shootBall();

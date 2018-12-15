@@ -24,6 +24,7 @@ void marl4() {
 
 void marl5() {
  info_printf(1,"in marl5");
+ auton13();
 }
 
 void marl6() {
