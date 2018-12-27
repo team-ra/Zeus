@@ -15,7 +15,11 @@ using namespace pros::literals;
  * from where it left off.
  */
 void autonomous() {
-
+  char taskname[20];
+  sprintf(taskname,0,"Drive Forward");
+  Task driveforward = taskCreator(driveForwardAsync,taskname);
+  sprintf(taskname,0,"Drive Backward");
+  Task drivebackward = taskCreator(driveBackwardAsync,taskname);
   motorSetup();
   extern pros::ADILineSensor ls2;//allows access to sensor to calibrate it
   ls2.calibrate();//calibrate the sensor

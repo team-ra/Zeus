@@ -6,7 +6,7 @@
 #define RIGHT_DRIVE_MOTOR_1PORT 20
 #define LAUNCH_MOTOR_PORT 18
 #define LIFT_MOTOR_PORT 5
-#define WRIST_MOTOR_PORT 7
+#define WRIST_MOTOR_PORT 4
 #define BALL_INTAKE_MOTOR_PORT 6
 #define RIGHT_DRIVE_MOTOR_2PORT 8
 #define LEFT_DRIVE_MOTOR2_PORT 9
@@ -16,6 +16,14 @@
 #define PLATFORM_SENSOR_PORT 'c'
 #define LAUNCHER_ENCODER_COUNTS_TO_FIRE 6000
 #define SHOOTER_THRESHOLD 250
+
+#define PLATFORM_CONTACT_RED        1250
+
+#define PLATFORM_NEAR_YELLOW        2860
+#define PLATFORM_CONTACT_YELLOW     1900
+
+#define PLATFORM_NEAR_BLUE          2830
+#define PLATFORM_CONTACT_BLUE       2100
 
 #define LIFT_MAX_HEIGHT -1100
 #define LIFT_STACK_HEIGHT -1000
@@ -55,6 +63,10 @@ void auton8();
 void auton9();
 void auton10();
 void auton11();
+void auton12();
+void taskManager(int action,pros::Task task);
+pros::Task taskCreator(task_fn_t func, char* name);
+void frontauton1();
 // int setAutonMode();
 // void startauto(int mode);
 int shootBall();
@@ -72,4 +84,33 @@ void updateInfoScreen();
 void leftDriveSet(int power);
 void rightDriveSet(int power);
 void resetEncoders();
+int platformpresentblue();
+int platformpresentred();
+
+//getter setters for auton
+
+void setBackDriveDist(int dist);
+void setBackDrivePwr(int pwr);
+void setForwardDriveDist(int dist);
+void setForwardDrivePwr(int pwr);
+int getBackDriveDist();
+int getBackDrivePwr();
+int getForwardDriveDist();
+int getForwardDrivePwr();
+void setLeftTurnDist(int dist);
+void setRightTurnDist(int dist);
+void setLeftTurnPwr(int pwr);
+void setRightTurnPwr(int pwr);
+int getLeftTurnDist();
+int getLeftTurnPwr();
+int getRightTurnDist();
+int getRightTurnPwr();
+
+
+//task for auton
+void driveForwardAsync(void* param);
+void driveBackwardAsync(void* param);
+void turnLeftAsync(void* param);
+void turnRightAsync(void* param);
+
 #endif

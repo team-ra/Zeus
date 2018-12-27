@@ -53,7 +53,7 @@ void mabr4() {
 
 void mabr5() {
  info_printf(1,"in mabr5");
-}
+ }
 
 void mabr6() {
  info_printf(1,"in mabr6");
