@@ -1,5 +1,6 @@
 #include "main.h"
 #include "robot.h"
+extern pros::Motor leftDriveMotor1;
 /**
 * \details calls the fifth autonomous function
 */
@@ -7,8 +8,7 @@ void auton5()
 {
   resetEncoders();
   motorSetup();
-  //driveForward(100, 100,true);
-  driveBackward(100, 100,true);
-  //turnLeft(100, 100,true);
-  //turnRight(300, 100,true);
+setBackDriveDist(500);
+setBackDrivePwr(100);
+while(leftDriveMotor1.get_power() != 0);
 }
