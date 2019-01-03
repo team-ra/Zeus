@@ -83,4 +83,30 @@ void rightDriveSet(int power);
 void resetEncoders();
 int platformpresentblue();
 int platformpresentred();
+
+void setBackDriveDist(int dist);
+void setBackDrivePwr(int pwr);
+void setForwardDriveDist(int dist);
+void setForwardDrivePwr(int pwr);
+int getBackDriveDist();
+int getBackDrivePwr();
+int getForwardDriveDist();
+int getForwardDrivePwr();
+void setLeftTurnDist(int dist);
+void setRightTurnDist(int dist);
+void setLeftTurnPwr(int pwr);
+void setRightTurnPwr(int pwr);
+int getLeftTurnDist();
+int getLeftTurnPwr();
+int getRightTurnDist();
+int getRightTurnPwr();
+//task for auton
+void driveForwardAsync(void* param);
+void driveBackwardAsync(void* param);
+void turnLeftAsync(void* param);
+void turnRightAsync(void* param);
+
+void taskManager(int action,pros::Task task);
+pros::Task taskCreator(task_fn_t func, char* name);
+void frontauton1();
 #endif
