@@ -12,7 +12,7 @@ void auton13()
   //   pros::delay(10);
   // }
   //driveForward(encoderInchesToCounts(6), 50, true);//reverses to platform
-  turnRight(700,50,true);//turns to face platform
+  turnRight(750,50,true);//turns to face platform
   //driveForward(encoderInchesToCounts(40),127,true);//drives onto platform
   while(platformpresentred() != 1){delay(10);}
 

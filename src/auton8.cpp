@@ -6,7 +6,7 @@
 void auton8()
 {
   resetEncoders();
-  driveBackward(encoderInchesToCounts(16), 100, true);//reverses to platform
+  driveBackward(encoderInchesToCounts(16), 75, true);//reverses to platform
   turnLeft(800,50,true);//turns to face platform
   driveForward(encoderInchesToCounts(40),127,true);//drives onto platform
 }
