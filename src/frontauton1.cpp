@@ -3,6 +3,7 @@
 
 void frontauton1()
 {
+  extern pros::Motor leftDriveMotor1;
   static int state = 0;
   static int shootballstate = 0;
   switch(state)
@@ -10,7 +11,9 @@ void frontauton1()
     case 0:
             intakeOn(false);  //turns intake on
             driveForward(encoderInchesToCounts(40), 50, true);//drive to cap
+            if (leftDriveMotor1.get_power() == 0){
             state = 1;
+          }
             break;
     case 1:
             pros::delay(250);//wait for ball to enter mechanism

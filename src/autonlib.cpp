@@ -57,15 +57,40 @@ int encoderInchesToCounts(float inches)
 */
 void driveForward(int counts,int power,bool zeromotors)
 {
-  leftDriveSet(power);
-  rightDriveSet(power);
-  while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
-  leftDriveSet(0);
-  rightDriveSet(0);
-  if(zeromotors){
-    leftDriveMotor1.tare_position();//zero encoder
-    rightDriveMotor1.tare_position();//zero encoder
+  static int state = 0;
+  static int startpower = 5;
+  switch(state)
+  {
+      case 0:
+        if (startpower >= power){state = 1;}
+        startpower += 5;
+        leftDriveSet(startpower);
+        rightDriveSet(startpower);
+        pros::delay(20);
+        break;
+      case 1:
+        if(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts) {state = 2;}
+        break;
+      case 2:
+        leftDriveSet(0);
+        rightDriveSet(0);
+        if(zeromotors) {
+          leftDriveMotor1.tare_position();
+          rightDriveMotor1.tare_position();
+        }
+        state = 0;
+        break;
+
   }
+  // leftDriveSet(power);
+  // rightDriveSet(power);
+  // while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
+  // leftDriveSet(0);
+  // rightDriveSet(0);
+  // if(zeromotors){
+  //   leftDriveMotor1.tare_position();//zero encoder
+  //   rightDriveMotor1.tare_position();//zero encoder
+  // }
 }
 /** \brief
 * \details Drives Backward
