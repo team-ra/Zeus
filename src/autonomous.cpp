@@ -22,6 +22,7 @@ void autonomous() {
   //  sprintf(taskname,0,"Drive Backward");
   //  Task drivebackward = taskCreator(driveBackwardAsync,taskname);
   //  auton5();
+  resetEncoders();
    motorSetup();
    extern pros::ADILineSensor ls2;//allows access to sensor to calibrate it
    ls2.calibrate();//calibrate the sensor

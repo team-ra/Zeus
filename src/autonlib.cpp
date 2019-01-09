@@ -57,8 +57,17 @@ int encoderInchesToCounts(float inches)
 */
 void driveForward(int counts,int power,bool zeromotors)
 {
-  leftDriveSet(power);
-  rightDriveSet(power);
+  static int startpower = 25;
+  leftDriveSet(startpower);
+  rightDriveSet(startpower);
+
+  while (startpower < power)
+  {
+    startpower += 5;
+    leftDriveSet(startpower);
+    rightDriveSet(startpower);
+    pros::delay(20);
+  }
   while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
   leftDriveSet(0);
   rightDriveSet(0);
@@ -271,8 +280,8 @@ int platformpresentblue()
             if (ps.get_value() <= PLATFORM_CONTACT_BLUE) {state = 2;}
             break;
     case 2:
-            delay(250);
-            if (ps.get_value() <= PLATFORM_CONTACT_YELLOW) {state = 4;}
+            delay(500);
+            if (ps.get_value() <= PLATFORM_CONTACT_BLUE) {state = 4;}
             break;
     case 3:
             // // leftDriveSet(127);
