@@ -89,7 +89,7 @@ rightDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//torque
-ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
+ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_06);//high speed
 
 //sets braking mode
 leftDriveMotor1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
@@ -103,7 +103,7 @@ ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not 
 //sets motors in reverse
 rightDriveMotor1.set_reversed(true);
 rightDriveMotor2.set_reversed(true);
-
+liftMotor.set_reversed(true);
 }
 
 /** \brief
@@ -135,7 +135,6 @@ void updateControllerLcd(int line,char *linedata)
 */
 void driveControl()
 {
-
   static uint8_t drvactivelaststate = 0;//holds last state of half speed toggle
   static uint8_t drvrevlaststate = 0; //holds last state of reverse controls toggle
   if (changespeed == 1 && drvactivelaststate != 1)//check if button was not pressed last time throught the loop
@@ -157,18 +156,19 @@ void driveControl()
     rightDrivePower = -rightDrivePower;//reverse power
   }
   if (!halfspeed){
-  leftDriveMotor1.move(leftDrivePower);//sets drive power of rear left motor to desired power
-  rightDriveMotor1.move(rightDrivePower);//sets drive power of rear right motor to desired power
-  leftDriveMotor2.move(leftDrivePower);//sets drive power of front left motor to desired power
-  rightDriveMotor2.move(rightDrivePower);//sets drive power of front right motor to desired power
+
+  leftDriveSet(leftDrivePower);
+  rightDriveSet(rightDrivePower);
+
   } else {
+
   leftDriveMotor1.move(leftDrivePower *.5);//sets drive power of rear left motor to half the desired power
   rightDriveMotor1.move(rightDrivePower*.5);//sets drive power of rear right motor to half the desired power
   leftDriveMotor2.move(leftDrivePower *.5);//sets drive power of rear left motor to half the desired power
   rightDriveMotor2.move(rightDrivePower*.5);//sets drive power of rear right motor to half the desired power
-  }
   drvactivelaststate = changespeed;//set last state as current state
   drvrevlaststate = controlr;//set last state as current state
+}
 }
 //reads controller states
 /** \brief
@@ -204,7 +204,7 @@ void liftControl()
             liftMotor.move(0);
             //if (liftup == 1 && liftMotor.get_position() >= LIFT_STACK_HEIGHT) {state = 4;}//if we are on ground move to descoring height
             if (liftup == 1) {liftMotor.move(-127);}//if we are above descoring height move to scoring height
-            else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}//move to stack height if at max
+            //else if (liftdown == 1 && liftMotor.get_position() <= -1200) {state = 3;}//move to stack height if at max
             else if (liftdown == 1) {liftMotor.move(75);}
             else {state = 0;}//we are at an unknown position try again
             break;

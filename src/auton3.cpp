@@ -8,15 +8,15 @@ void auton3()
 {
   resetEncoders();
     intakeOn(false);
-    driveForward(encoderInchesToCounts(42), 50, true);
+    while( driveForward(encoderInchesToCounts(42), 50, true) != 1);
     pros::delay(500);
-    driveBackward(encoderInchesToCounts(6), 50,true);
+    while( driveForward(encoderInchesToCounts(6), 50, true) != 1);
     pros::delay(1000);
     intakeOff();
-    driveBackward(encoderInchesToCounts(18), 50,true);
-    turnLeft(400,50,true);
+    while( driveBackward(encoderInchesToCounts(18), 50, true) != 1);
+    while( turnLeft(400,50,true) != 1);
     intakeOn(true);
-    driveForward(encoderInchesToCounts(40), 75, true);
+    while( driveForward(encoderInchesToCounts(40), 75, true) != 1);
     intakeOff();
     //driveBackward(encoderInchesToCounts(50),100,true);
 }

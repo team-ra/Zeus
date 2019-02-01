@@ -1,6 +1,8 @@
 #include "robot.h"
 #include "robot_gui.h"
 
+#define STALLED_THRESHOLD 10
+
 using namespace pros::literals;
 /// The Back left drive motor
 extern pros::Motor leftDriveMotor1;
@@ -55,42 +57,33 @@ int encoderInchesToCounts(float inches)
 * \param power the power to drive at
 * \param zeromotors whether or not to set motor home position when finished
 */
-void driveForward(int counts,int power,bool zeromotors)
+int driveForward(int counts,int power,bool zeromotors)
 {
   static int state = 0;
-  static int startpower = 5;
-  switch(state)
-  {
-      case 0:
-        if (startpower >= power){state = 1;}
-        startpower += 5;
-        leftDriveSet(startpower);
-        rightDriveSet(startpower);
-        pros::delay(20);
-        break;
-      case 1:
-        if(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts) {state = 2;}
-        break;
-      case 2:
-        leftDriveSet(0);
-        rightDriveSet(0);
-        if(zeromotors) {
-          leftDriveMotor1.tare_position();
-          rightDriveMotor1.tare_position();
-        }
-        state = 0;
-        break;
+  switch(state) {
+    case 0:
+            leftDriveSet(power);
+            rightDriveSet(power);
+            state = 1;
+            break;
 
+    case 1:
+            if(leftDriveMotor1.get_position() < counts && rightDriveMotor1.get_position() > -counts){}
+            else {state = 2;}//check if we have reached position
+            break;
+    case 2:
+            leftDriveSet(0);
+            rightDriveSet(0);
+            if(zeromotors){
+              leftDriveMotor1.tare_position();//zero encoder
+              rightDriveMotor1.tare_position();//zero encoder
+            }
+    state = 0;
+    return 1;
+
+    break;
   }
-  // leftDriveSet(power);
-  // rightDriveSet(power);
-  // while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
-  // leftDriveSet(0);
-  // rightDriveSet(0);
-  // if(zeromotors){
-  //   leftDriveMotor1.tare_position();//zero encoder
-  //   rightDriveMotor1.tare_position();//zero encoder
-  // }
+  return 0;
 }
 /** \brief
 * \details Drives Backward
@@ -98,17 +91,33 @@ void driveForward(int counts,int power,bool zeromotors)
 * \param power the power to drive at
 * \param zeromotors whether or not to set motor home position when finished
 */
-void driveBackward(int counts,int power,bool zeromotors)
+int driveBackward(int counts,int power,bool zeromotors)
 {
-  leftDriveSet(-power);
-  rightDriveSet(-power);
-  while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
-  leftDriveSet(0);
-  rightDriveSet(0);
-  if(zeromotors){
-    leftDriveMotor1.tare_position();//zero encoder
-    rightDriveMotor1.tare_position();//zero encoder
+  static int state = 0;
+  switch(state) {
+    case 0:
+            leftDriveSet(-power);
+            rightDriveSet(-power);
+            state = 1;
+            break;
+    case 1:
+            if(leftDriveMotor1.get_position() < counts && rightDriveMotor1.get_position() > -counts){}
+            else {state = 2;}//check if we have reached position
+            break;
+    case 2:
+            leftDriveSet(0);
+            rightDriveSet(0);
+            if(zeromotors){
+              leftDriveMotor1.tare_position();//zero encoder
+              rightDriveMotor1.tare_position();//zero encoder
+            }
+    state = 0;
+    return 1;
+
+    break;
   }
+  return 0;
+
 }
 /** \brief
 * \details Turns Left
@@ -116,17 +125,33 @@ void driveBackward(int counts,int power,bool zeromotors)
 * \param power the power to drive at
 * \param zeromotors whether or not to set motor home position when finished
 */
-void turnLeft(int counts,int power,bool zeromotors)
+int turnLeft(int counts,int power,bool zeromotors)
 {
-  leftDriveSet(-power);
-  rightDriveSet(power);
-  while(leftDriveMotor1.get_position() >= -counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
-  leftDriveSet(0);
-  rightDriveSet(0);
-  if(zeromotors){
-    leftDriveMotor1.tare_position();//zero encoder
-    rightDriveMotor1.tare_position();//zero encoder
+  static int state = 0;
+  switch(state) {
+    case 0:
+            leftDriveSet(-power);
+            rightDriveSet(power);
+            state = 1;
+            break;
+    case 1:
+            if(leftDriveMotor1.get_position() > -counts && rightDriveMotor1.get_position() > -counts){}
+            else {state = 2;}//check if we have reached position
+            break;
+    case 2:
+            leftDriveSet(0);
+            rightDriveSet(0);
+            if(zeromotors){
+              leftDriveMotor1.tare_position();//zero encoder
+              rightDriveMotor1.tare_position();//zero encoder
+            }
+            state = 0;
+    return 1;
+
+    break;
   }
+  return 0;
+
 }
 /** \brief
 * \details Turns Right
@@ -134,17 +159,31 @@ void turnLeft(int counts,int power,bool zeromotors)
 * \param power the power to drive at
 * \param zeromotors whether or not to set motor home position when finished
 */
-void turnRight(int counts,int power,bool zeromotors)
+int turnRight(int counts,int power,bool zeromotors)
 {
-  leftDriveSet(power);
-  rightDriveSet(-power);
-  while(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts);//check if we have reached position
-  leftDriveSet(0);
-  rightDriveSet(0);
-  if(zeromotors){
-    leftDriveMotor1.tare_position();//zero encoder
-    rightDriveMotor1.tare_position();//zero encoder
+  static int state = 0;
+  switch(state) {
+    case 0:
+            leftDriveSet(power);
+            rightDriveSet(-power);
+            state = 1;
+            break;
+    case 1:
+            if(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts){}
+            else {state = 2;}//check if we have reached position
+            break;
+    case 2:
+            leftDriveSet(0);
+            rightDriveSet(0);
+            if(zeromotors){
+              leftDriveMotor1.tare_position();//zero encoder
+              rightDriveMotor1.tare_position();//zero encoder
+            }
+            state = 0;
+    return 1;
+    break;
   }
+  return 0;
 }
 /** \brief
 * \details State machine that shoots the ball. Must be called until it returns 1
@@ -331,11 +370,15 @@ int platformpresentred()
             state = 1;
             break;
     case 1:
-            if (ps.get_value() <= PLATFORM_CONTACT_RED) {state = 2;}
+            // if (ps.get_value() <= PLATFORM_CONTACT_RED) {state = 2;}
+            filterPlatform();
+            state = 2;
             break;
     case 2:
-            delay(250);
-            if (ps.get_value() <= PLATFORM_CONTACT_YELLOW) {state = 4;}
+            delay(500);
+            // if (ps.get_value() <= PLATFORM_CONTACT_YELLOW) {state = 4;}
+            filterPlatform();
+            state = 4;
             break;
     case 3:
             // // leftDriveSet(127);
@@ -354,4 +397,36 @@ int platformpresentred()
 
   }
   return 0;
+}
+
+void filterPlatform() {
+  int count = 0;
+  while (count < 3)
+  {
+    delay(25);
+    if (ps.get_value() < PLATFORM_CONTACT_RED) {count++;}
+    else {count = 0;}
+  }
+}
+
+bool checkIfStalled() {
+static int startcounts = leftDriveMotor1.get_position();
+static int timesunderthreshold = 0;
+if (leftDriveMotor1.get_position() - startcounts <= STALLED_THRESHOLD)
+{
+    timesunderthreshold++;
+    intakeOn(false);
+    pros::delay(20);
+}
+else {
+  timesunderthreshold = 0;
+}
+
+if (timesunderthreshold >= 5)
+{
+  timesunderthreshold = 0;
+  intakeOff();
+  return true;
+}
+return false;
 }

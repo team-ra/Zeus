@@ -12,6 +12,7 @@ void auton2()
   motorSetup();//sets up motors
 
   //info_printf(1, "before shoot");
+  while( driveForward(encoderInchesToCounts(12),75,true) != 1);
   while (shootBall() == 0){//waits for ball to shoot
     pros::delay(10);
   }

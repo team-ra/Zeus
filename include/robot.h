@@ -7,7 +7,7 @@
 #define LAUNCH_MOTOR_PORT 18
 #define LIFT_MOTOR_PORT 5
 #define WRIST_MOTOR_PORT 4
-#define BALL_INTAKE_MOTOR_PORT 6
+#define BALL_INTAKE_MOTOR_PORT 7
 #define RIGHT_DRIVE_MOTOR_2PORT 8
 #define LEFT_DRIVE_MOTOR2_PORT 9
 
@@ -17,7 +17,7 @@
 #define LAUNCHER_ENCODER_COUNTS_TO_FIRE 6000
 #define SHOOTER_THRESHOLD 250
 
-#define PLATFORM_CONTACT_RED        1250
+#define PLATFORM_CONTACT_RED        1800//1250
 
 #define PLATFORM_NEAR_YELLOW        2860
 #define PLATFORM_CONTACT_YELLOW     1900
@@ -34,6 +34,9 @@
 
 #define WRIST_FULL_LEFT 5
 #define WRIST_FULL_RIGHT -800
+
+#define ACCEL_STEP 100
+
 //driver function prototypes
 void driveControl();
 void readJoystick();
@@ -46,11 +49,11 @@ void motorSetup();
 void swirl();
 /************************************************/
 //auton function prototypes
-void driveForward(int counts,int power,bool zeromotors);
+int driveForward(int counts,int power,bool zeromotors);
 //int driveForward(int counts,int power,bool zeromotors);
-void driveBackward(int counts,int power,bool zeromotors);
-void turnLeft(int counts,int power,bool zeromotors);
-void turnRight(int counts,int power,bool zeromotors);
+int driveBackward(int counts,int power,bool zeromotors);
+int turnLeft(int counts,int power,bool zeromotors);
+int turnRight(int counts,int power,bool zeromotors);
 int encoderInchesToCounts(float inches);
 void auton1();
 void auton2();
@@ -64,6 +67,9 @@ void auton9();
 void auton10();
 void auton11();
 void auton12();
+void auton13();
+void skillsauton1();
+void filterPlatform();
 // int setAutonMode();
 // void startauto(int mode);
 int shootBall();
@@ -109,4 +115,6 @@ void turnRightAsync(void* param);
 void taskManager(int action,pros::Task task);
 pros::Task taskCreator(task_fn_t func, char* name);
 void frontauton1();
+bool checkIfStalled();
+
 #endif

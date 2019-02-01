@@ -7,9 +7,9 @@ void auton4()
 {
 resetEncoders();
   intakeOn(false);  //turns intake on
-  driveForward(encoderInchesToCounts(40), 50, true);//drive to cap
+  while( driveForward(encoderInchesToCounts(40), 50, true) != 1);
   pros::delay(250);//wait for ball to enter mechanism
   intakeOff();//turn off intake
-  driveBackward(encoderInchesToCounts(12), 50,true);//reverse from cap
+  while( driveBackward(encoderInchesToCounts(12), 50, true) != 1);
 
 }

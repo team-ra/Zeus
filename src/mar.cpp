@@ -24,10 +24,12 @@ void marl4() {
 
 void marl5() {
  info_printf(1,"in marl5");
+ auton13();
 }
 
 void marl6() {
  info_printf(1,"in marl6");
+ skillsauton1();
 }
 
 void marr1() {

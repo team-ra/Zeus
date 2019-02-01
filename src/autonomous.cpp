@@ -25,6 +25,7 @@ void autonomous() {
    motorSetup();
    extern pros::ADILineSensor ls2;//allows access to sensor to calibrate it
    ls2.calibrate();//calibrate the sensor
-   frontauton1();
-   //(*auton_ptr)(); // pointer to function assigned by robot_gui selection
+   //frontauton1();
+   resetEncoders();
+   (*auton_ptr)(); // pointer to function assigned by robot_gui selection
 }

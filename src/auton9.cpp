@@ -7,17 +7,17 @@ void auton9()
 {
   resetEncoders();
   intakeOn(false);
-  driveForward(encoderInchesToCounts(42), 50, true);
+  while( driveForward(encoderInchesToCounts(42), 50, true) != 1);
   pros::delay(500);
-  driveBackward(encoderInchesToCounts(6), 50,true);
+  while( driveBackward(encoderInchesToCounts(6), 50, true) != 1);
   pros::delay(1000);
   intakeOff();
-  driveBackward(encoderInchesToCounts(18), 50,true);
-  turnRight(400,50,true);
+  while( driveBackward(encoderInchesToCounts(18), 50, true) != 1);
+  while( turnRight(400,50,true) != 1);
   intakeOn(true);
-  driveForward(encoderInchesToCounts(40), 75, true);
+  while( driveForward(encoderInchesToCounts(40), 75, true) != 1);
   intakeOff();
-  turnRight(300,50,true);//turn to face center middle flag
+  while( turnRight(300,50,true) != 1);//turn to face center middle flag
   //shoot ball at flag
   while (shootBall() == 0){//waits for ball to be shot
     pros::delay(10);

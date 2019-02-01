@@ -59,4 +59,5 @@ void mabr5() {
 
 void mabr6() {
  info_printf(1,"in mabr6");
+ frontauton1();
 }
