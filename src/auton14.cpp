@@ -8,18 +8,23 @@ void auton12()
   motorSetup();//sets up the motors
   //drives forward 1 square to prepare for shooting the middle flag
   intakeOn(false);  //turns intake on
-  while (driveForward(encoderInchesToCounts(42), 50, true) != 1);//drive to cap 40
+  AccelerateForward(75);
+
+  while (driveForward(encoderInchesToCounts(42), 75, true) != 1);//drive to cap 40
   pros::delay(250);//wait for ball to enter mechanism
+  AccelerateBackward(-75);
   while(driveBackward(encoderInchesToCounts(40), 75,true) != 1);//reverse from cap
   while(turnRight(800,50,true) != 1);
-
-  while (driveForward(encoderInchesToCounts(42), 75, true) != 1);//12
-  intakeOff();//turn off intake
+  AccelerateForward(100);
+  while (driveForward(encoderInchesToCounts(42), 100, true) != 1);//12
+  // intakeOff();//turn off intake
 
 //info_printf(1, "before shoot");
   resetEncoders();
   pros::delay(100);
-  while (driveBackward(encoderInchesToCounts(24), 75, true) != 1);
+  AccelerateBackward(-100);
+  while (driveBackward(encoderInchesToCounts(20), 100, true) != 1);//24
+
   while (shootBall() == 0){//waits for ball to be shot
     pros::delay(10);
   }

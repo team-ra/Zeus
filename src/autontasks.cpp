@@ -1,6 +1,9 @@
 #include "robot.h"
 ///externs for accessing motors
 extern pros::Motor leftDriveMotor1;
+
+extern pros::Motor leftDriveMotor2;
+extern pros::Motor rightDriveMotor2;
 /// State Variables
 int drivedist = 0;
 int drivepower = 0;
@@ -10,6 +13,8 @@ int leftturndist = 0;
 int rightturndist = 0;
 int leftturnpower = 0;
 int rightturnpower = 0;
+
+int speed = 0;
 
 void driveForwardAsync(void* param)
 {
@@ -152,4 +157,200 @@ pros::Task taskCreator(task_fn_t func, char* name)
 {
  Task t = new Task(func,nullptr,TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT,name);
  return t;
+}
+
+void getSpeed() {
+  static int lastcounts = 0;
+  int a = leftDriveMotor2.get_position();
+  speed = leftDriveMotor2.get_position() - lastcounts;
+  lastcounts = a;
+}
+
+void AccelerateForward(int power)//gradually increase power to avoid sudden jerking or steering movements
+{
+  int i;
+  for (i = 0; i < 1; i++)
+  {
+    leftDriveSet(10);
+    rightDriveSet(10);
+    delay(20);
+    if (power <= 10) {break;}
+
+    rightDriveSet(20);
+    leftDriveSet(20);
+    delay(20);
+    if (power <= 20) {break;}
+
+    leftDriveSet(30);
+    rightDriveSet(30);
+    delay(20);
+    if (power <= 30) {break;}
+
+    rightDriveSet(40);
+    leftDriveSet(40);
+    delay(20);
+    if (power <= 40) {break;}
+
+    leftDriveSet(50);
+    rightDriveSet(50);
+    delay(20);
+    if (power <= 50) {break;}
+
+    leftDriveSet(60);
+    rightDriveSet(60);
+    delay(20);
+    if (power <= 60) {break;}
+
+    leftDriveSet(70);
+    rightDriveSet(70);
+    delay(20);
+    if (power <= 70) {break;}
+
+    leftDriveSet(80);
+    rightDriveSet(80);
+    delay(20);
+    if (power <= 80) {break;}
+
+    leftDriveSet(90);
+    rightDriveSet(90);
+    delay(20);
+    if (power <= 90) {break;}
+
+    leftDriveSet(100);
+    rightDriveSet(100);
+    delay(20);
+    if (power <= 100) {break;}
+
+    leftDriveSet(110);
+    rightDriveSet(110);
+    delay(20);
+    if (power <= 110) {break;}
+
+    leftDriveSet(120);
+    rightDriveSet(120);
+    delay(20);
+  }
+}
+
+void AccelerateBackward(int power)//gradually increase power to avoid sudden jerking or steering movements
+{
+  int i;
+  for (i = 0; i < 1; i++)
+  {
+    leftDriveSet(-10);
+    rightDriveSet(-10);
+    delay(20);
+    if (power >= -10) {break;}
+
+    rightDriveSet(-20);
+    leftDriveSet(-20);
+    delay(20);
+    if (power >= -20) {break;}
+
+    leftDriveSet(-30);
+    rightDriveSet(-30);
+    delay(20);
+    if (power >= -30) {break;}
+
+    rightDriveSet(-40);
+    leftDriveSet(-40);
+    delay(20);
+    if (power >= -40) {break;}
+
+    leftDriveSet(-50);
+    rightDriveSet(-50);
+    delay(20);
+    if (power >= -50) {break;}
+
+    leftDriveSet(-60);
+    rightDriveSet(-60);
+    delay(20);
+    if (power >= -60) {break;}
+
+    leftDriveSet(-70);
+    rightDriveSet(-70);
+    delay(20);
+    if (power >= -70) {break;}
+
+    leftDriveSet(-80);
+    rightDriveSet(-80);
+    delay(20);
+    if (power >= -80) {break;}
+
+    leftDriveSet(-90);
+    rightDriveSet(-90);
+    delay(20);
+    if (power >= -90) {break;}
+
+    leftDriveSet(-100);
+    rightDriveSet(-100);
+    delay(20);
+    if (power >= -100) {break;}
+
+    leftDriveSet(-110);
+    rightDriveSet(-110);
+    delay(20);
+    if (power >= -110) {break;}
+
+    leftDriveSet(-120);
+    rightDriveSet(-120);
+    delay(20);
+  }
+}
+
+void drivestraightBack(int dmp)//add or subtract power to stay on course when driving long distances but with the logic flipped since we are going backwards
+{
+
+  int leftencval = -leftDriveMotor2.get_position();//making values positive for math
+  int rightencval = -rightDriveMotor2.get_position();//making values positive for math
+  delay(30);
+    //go straight algorithm
+      static int offset = 0;
+      if ( (rightencval - leftencval) >= 15  )//if off a lot, compenate accordingly
+      {
+        offset += 10;
+      }
+
+      else if ( (rightencval - leftencval) >= 10  )//if off more, compenate accordingly
+      {
+        offset += 5;
+      }
+
+      else if ( (rightencval - leftencval) >= 5  )//if off a little, compenate accordingly
+      {
+        offset += 2;
+      }
+
+       else if ( (rightencval - leftencval) <= -15  )//if off a lot, compenate accordingly
+      {
+        offset -= 10;
+      }
+
+      else if ( (rightencval - leftencval) <= -10  )//if off more, compenate accordingly
+      {
+        offset -= 5;
+      }
+
+      else if ( (rightencval - leftencval) <= -5  )//if off a little, compenate accordingly
+      {
+        offset -= 2;
+      }
+
+
+    //  if ( (leftencval == rightencval) ) //reset offset
+    //  {
+    //    offset = 0;
+    //  }
+
+      if ( (offset > 500))
+      {
+        offset = 500;
+      }
+      else if (offset < -500)
+      {
+        offset = -500;
+      }
+    rightDriveSet(dmp-offset/50);//apply offset
+    delay(30);
+
 }

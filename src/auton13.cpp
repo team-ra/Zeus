@@ -1,5 +1,6 @@
 #include "main.h"
 #include "robot.h"
+extern pros::Motor leftDriveMotor2;
 void auton13()
 {
   //turn to face flags
@@ -28,5 +29,12 @@ void auton13()
   while( turnRight(800,50,true) != 1);
   delay(50);
   //park
-  while(platformpresentred() != 1){delay(10);}
+  //while(platformpresentred() != 1){delay(10);}
+  leftDriveMotor2.tare_position();
+  leftDriveMotor2.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+  leftDriveSet(100);
+  rightDriveSet(100);
+  while(leftDriveMotor2.get_position() < encoderInchesToCounts(30));
+  leftDriveSet(0);
+  rightDriveSet(0);
 }

@@ -3,12 +3,27 @@
 /**
 * \details calls the fifth autonomous function
 */
+
+extern pros::Motor liftMotor;
 void auton5()
 {
+   // Task t = new Task(getSpeed,nullptr,TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT,"Get Speed");
   extern pros::Motor leftDriveMotor1;
   resetEncoders();
-  motorSetup();
-  setBackDriveDist(500);
-  setBackDrivePwr(100);
-  while(leftDriveMotor1.get_power() != 0);
+  AccelerateForward(100);
+  while( driveForward(encoderInchesToCounts(20),100,true) == 0);
+  while( turnRight(1100,50,true) == 0);
+  liftMotor.move(-50);
+  AccelerateBackward(-100);
+  while( driveBackward(encoderInchesToCounts(24),75,true) == 0);
+  liftMotor.move(-100);
+  delay(100);
+  liftMotor.move(0);
+  AccelerateBackward(-100);
+  while( driveBackward(encoderInchesToCounts(24),75,true) == 0);
+
+  while( driveForward(encoderInchesToCounts(20),100,true) == 0);
+  //AccelerateForward(120);
+  //drivestraight(120);
+
 }

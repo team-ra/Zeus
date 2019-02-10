@@ -430,3 +430,57 @@ if (timesunderthreshold >= 5)
 }
 return false;
 }
+
+void drivestraight(int dmp)//add or subtract power to stay on course when driving long distances
+{
+
+    //go straight algorithm
+      static int offset = 0;
+      if ( (rightDriveMotor2.get_position() - leftDriveMotor2.get_position()) >= 15  )
+      {
+        offset += 10;
+      }
+
+      else if ( (rightDriveMotor2.get_position() - leftDriveMotor2.get_position()) >= 10  )
+      {
+        offset += 5;
+      }
+
+      else if ( (rightDriveMotor2.get_position() - leftDriveMotor2.get_position()) >= 5  )
+      {
+        offset += 2;
+      }
+
+      else if ( (rightDriveMotor2.get_position() - leftDriveMotor2.get_position()) <= -5  )
+      {
+        offset -= 2;
+      }
+      else if ( (rightDriveMotor2.get_position() - leftDriveMotor2.get_position()) <= -10  )
+
+      {
+        offset -= 5;
+      }
+
+      else if ( (rightDriveMotor2.get_position() - leftDriveMotor2.get_position()) <= -15  )
+      {
+        offset -= 10;
+      }
+
+
+      else if ( (leftDriveMotor2.get_position() >= -5) && (leftDriveMotor2.get_position() <= 5) )
+      {
+        offset = 0;
+      }
+
+      if ( (offset > 500))
+      {
+        offset = 500;
+      }
+      else if (offset < -500)
+      {
+        offset = -500;
+      }
+    rightDriveSet(dmp-offset/50);
+    delay(30);
+
+  }

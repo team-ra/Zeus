@@ -112,6 +112,10 @@ void driveBackwardAsync(void* param);
 void turnLeftAsync(void* param);
 void turnRightAsync(void* param);
 
+void getSpeed();
+void AccelerateForward(int power);
+void AccelerateBackward(int power);
+void drivestraight(int dmp);
 void taskManager(int action,pros::Task task);
 pros::Task taskCreator(task_fn_t func, char* name);
 void frontauton1();
