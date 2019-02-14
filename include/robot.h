@@ -120,5 +120,6 @@ void taskManager(int action,pros::Task task);
 pros::Task taskCreator(task_fn_t func, char* name);
 void frontauton1();
 bool checkIfStalled();
+void backauton1();
 
 #endif

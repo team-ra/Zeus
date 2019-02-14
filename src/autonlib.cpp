@@ -313,13 +313,18 @@ void rightDriveSet(int power)
   rightDriveMotor1.move(power);//start moving rear right drive motor
   rightDriveMotor2.move(power);//start moving front right drive motor
 }
-
+/**\brief
+* \details abstraction to reset drive encoders fro both sides
+*/
 void resetEncoders()
 {
   leftDriveMotor1.tare_position();
   rightDriveMotor1.tare_position();
 }
-//
+/**\brief
+* \details state machine to park on blue platform
+* \returns 0 when running, 1 when complete
+*/
 int platformpresentblue()
 {
   static int state = 0;
@@ -358,6 +363,10 @@ int platformpresentblue()
   //
 }
 
+/**\brief
+* \details state machine to park on red platform
+* \returns 0 when running, 1 when complete
+*/
 int platformpresentred()
 {
   static int state = 0;
@@ -398,7 +407,9 @@ int platformpresentred()
   }
   return 0;
 }
-
+/**\brief
+* \details filters the platform sensor to make sure the platform is really there
+*/
 void filterPlatform() {
   int count = 0;
   while (count < 3)
@@ -408,29 +419,32 @@ void filterPlatform() {
     else {count = 0;}
   }
 }
+//
+// bool checkIfStalled() {
+// static int startcounts = leftDriveMotor1.get_position();
+// static int timesunderthreshold = 0;
+// if (leftDriveMotor1.get_position() - startcounts <= STALLED_THRESHOLD)
+// {
+//     timesunderthreshold++;
+//     intakeOn(false);
+//     pros::delay(20);
+// }
+// else {
+//   timesunderthreshold = 0;
+// }
+//
+// if (timesunderthreshold >= 5)
+// {
+//   timesunderthreshold = 0;
+//   intakeOff();
+//   return true;
+// }
+// return false;
+// }
 
-bool checkIfStalled() {
-static int startcounts = leftDriveMotor1.get_position();
-static int timesunderthreshold = 0;
-if (leftDriveMotor1.get_position() - startcounts <= STALLED_THRESHOLD)
-{
-    timesunderthreshold++;
-    intakeOn(false);
-    pros::delay(20);
-}
-else {
-  timesunderthreshold = 0;
-}
-
-if (timesunderthreshold >= 5)
-{
-  timesunderthreshold = 0;
-  intakeOff();
-  return true;
-}
-return false;
-}
-
+/**\brief
+* \details adjusts power during a drive to keep straight
+*/
 void drivestraight(int dmp)//add or subtract power to stay on course when driving long distances
 {
 

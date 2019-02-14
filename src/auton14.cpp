@@ -1,5 +1,6 @@
 #include "main.h"
 #include "robot.h"
+extern pros::Motor liftMotor;
 void auton12()
 {
   resetEncoders();
@@ -10,11 +11,11 @@ void auton12()
   intakeOn(false);  //turns intake on
   AccelerateForward(75);
 
-  while (driveForward(encoderInchesToCounts(42), 75, true) != 1);//drive to cap 40
+  while (driveForward(encoderInchesToCounts(38), 75, true) != 1);//drive to cap 40
   pros::delay(250);//wait for ball to enter mechanism
   AccelerateBackward(-75);
-  while(driveBackward(encoderInchesToCounts(40), 75,true) != 1);//reverse from cap
-  while(turnRight(800,50,true) != 1);
+  while(driveBackward(encoderInchesToCounts(39), 75,true) != 1);//reverse from cap
+  while(turnRight(810,50,true) != 1);
   AccelerateForward(100);
   while (driveForward(encoderInchesToCounts(42), 100, true) != 1);//12
   // intakeOff();//turn off intake
@@ -23,7 +24,7 @@ void auton12()
   resetEncoders();
   pros::delay(100);
   AccelerateBackward(-100);
-  while (driveBackward(encoderInchesToCounts(20), 100, true) != 1);//24
+  while (driveBackward(encoderInchesToCounts(19), 100, true) != 1);//24
 
   while (shootBall() == 0){//waits for ball to be shot
     pros::delay(10);
@@ -33,5 +34,19 @@ void auton12()
   while (shootBall() == 0){//waits for ball to be shot
     pros::delay(10);
   }
-  while (driveForward(encoderInchesToCounts(16), 50, true) != 1);
+  extern pros::Motor leftDriveMotor1;
+  resetEncoders();
+  AccelerateForward(100);
+  while( driveForward(encoderInchesToCounts(20),100,true) == 0);
+  while( turnRight(950,50,true) == 0);
+  liftMotor.move(-50);
+  AccelerateBackward(-100);
+  while( driveBackward(encoderInchesToCounts(24),75,true) == 0);
+  liftMotor.move(-100);
+  delay(100);
+  liftMotor.move(0);
+  AccelerateBackward(-100);
+  while( driveBackward(encoderInchesToCounts(24),75,true) == 0);
+
+  while( driveForward(encoderInchesToCounts(20),100,true) == 0);
 }
