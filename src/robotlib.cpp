@@ -88,7 +88,7 @@ leftDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 rightDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
-liftMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//torque
+liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//torque
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_06);//high speed
 
 //sets braking mode
