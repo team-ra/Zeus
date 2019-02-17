@@ -121,5 +121,5 @@ pros::Task taskCreator(task_fn_t func, char* name);
 void frontauton1();
 bool checkIfStalled();
 void backauton1();
-
+void skillsauton2();
 #endif
