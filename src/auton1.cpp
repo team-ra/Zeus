@@ -2,7 +2,7 @@
 #include "robot.h"
 #include "robot_gui.h"
 ///The number of inches to drive to reach flag
-#define DRIVE1_DIST_INCHES 40
+#define DRIVE1_DIST_INCHES 32
 ///the power used to get there
 #define DRIVE1_POWER 100
 /**

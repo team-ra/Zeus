@@ -87,7 +87,7 @@ rightDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 leftDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 rightDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
-wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
+wristMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//high speed
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//torque
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_06);//high speed
 
@@ -262,8 +262,9 @@ void wristControl()
 //           break;
 // }
   if (wristleft && wristright) {wristMotor.move(0);}//move to stop state to prevent oscillation
-  else if (wristleft == 1 ){wristMotor.move(100);}//move wrist left
-  else if (wristright == 1){wristMotor.move(-100);}//move wrist right
+  else if (wristleft == 1 ){wristMotor.move(50);}//move wrist left
+  else if (wristright == 1){wristMotor.move(-50);}//move wrist right
+  else {wristMotor.move(0);}
 }
 /** \brief
 * \details fires launcher

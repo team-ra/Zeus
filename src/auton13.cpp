@@ -11,13 +11,13 @@ void auton13()
   intakeOn(false);  //turns intake on
   AccelerateForward(75);
 
-  while (driveForward(encoderInchesToCounts(38), 75, true) != 1);//drive to cap 40
+  while (driveForward(encoderInchesToCounts(36), 75, true) != 1);//drive to cap 40
   pros::delay(250);//wait for ball to enter mechanism
   AccelerateBackward(-75);
   while(driveBackward(encoderInchesToCounts(32), 75,true) != 1);//reverse from cap
   while(turnLeft(810,50,true) != 1);
   AccelerateForward(100);
-  while (driveForward(encoderInchesToCounts(38), 100, true) != 1);//12
+  while (driveForward(encoderInchesToCounts(36), 100, true) != 1);//12
   // intakeOff();//turn off intake
 
 //info_printf(1, "before shoot");
