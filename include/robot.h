@@ -122,4 +122,5 @@ void frontauton1();
 bool checkIfStalled();
 void backauton1();
 void skillsauton2();
+void auton16();
 #endif

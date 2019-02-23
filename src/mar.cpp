@@ -4,7 +4,7 @@
 #include "robot.h"
 void marl1() {
  info_printf(1,"in marl1");
-auton1();
+auton16();
 }
 
 void marl2() {

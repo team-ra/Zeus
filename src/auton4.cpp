@@ -8,7 +8,7 @@ void auton4()
 resetEncoders();
   intakeOn(false);  //turns intake on
   AccelerateForward(50);
-  while( driveForward(encoderInchesToCounts(32.5), 50, true) != 1);
+  while( driveForward(encoderInchesToCounts(33), 50, true) != 1);
   pros::delay(500);//wait for ball to enter mechanism
   intakeOff();//turn off intake
   AccelerateBackward(-75);
