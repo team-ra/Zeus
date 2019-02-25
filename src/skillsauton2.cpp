@@ -18,12 +18,12 @@ void skillsauton2() {
 
     //reverse from cap to starting square
     AccelerateBackward(-50);
-    while(driveBackward(encoderInchesToCounts(34.75), 50,true) != 1);
+    while(driveBackward(encoderInchesToCounts(35.25), 50,true) != 1);
     delay(500);
     resetEncoders();
 
     //turn to face flags
-    while(turnLeft(845,50,true) != 1);
+    while(turnLeft(670,50,true) != 1);
     delay(500);
     resetEncoders();
 
@@ -40,7 +40,7 @@ void skillsauton2() {
     resetEncoders();
 
     //jog to get in line with flags
-    while(turnLeft(300,50,true) !=1);
+    while(turnLeft(200,50,true) !=1);
     delay(500);
     resetEncoders();
     while (driveBackward(encoderInchesToCounts(14), 50, true) != 1);
@@ -63,17 +63,17 @@ void skillsauton2() {
     while (shootBall() == 0){//waits for ball to be shot
       delay(10);
       }
-    while(driveForward(encoderInchesToCounts(2.5),50,true) != 1);
-    delay(250);
-    resetEncoders();
+    while(driveForward(encoderInchesToCounts(0.75),50,true) != 1);
+    // delay(250);
+    // resetEncoders();
 
 
     //rake ball off platform
     intakeOn(false);
-    while(turnRight(750,50,true) != 1);
+    while(turnRight(680,50,true) != 1);
     delay(500);
     resetEncoders();
-    while(driveForward(encoderInchesToCounts(13),50,true) != 1);
+    while(driveForward(encoderInchesToCounts(10),50,true) != 1);
     delay(500);
     resetEncoders();
 
@@ -86,31 +86,32 @@ void skillsauton2() {
     wristMotor.move(-75);
     while(wristMotor.get_position() > -50);
     wristMotor.move(0);
+    delay(500);
     while(driveBackward(encoderInchesToCounts(9), 50,true) != 1);
     delay(500);
     resetEncoders();
     wristMotor.move(100);
     while(driveForward(encoderInchesToCounts(1),25,true) != 1);
-    delay(250);
+    delay(500);
     resetEncoders();
     wristMotor.move(0);
 
     // while(driveBackward(encoderInchesToCounts(5), 25,true) != 1);
     // delay(250);
 
-    // drive to second ball
     while(turnLeft(700,50,true) != 1);
+    // drive to second ball
     delay(500);
     resetEncoders();
-    while(driveBackward(encoderInchesToCounts(20), 25,true) != 1);
+    while(driveBackward(encoderInchesToCounts(18), 25,true) != 1);
     delay(500);
     resetEncoders();
 
     //rake second ball
-    while(turnRight(750,50,true) != 1);
+    while(turnRight(680,50,true) != 1);
     delay(500);
     resetEncoders();
-    while(driveForward(encoderInchesToCounts(9.5),50,true) != 1);
+    while(driveForward(encoderInchesToCounts(9),50,true) != 1);
     delay(500);
     resetEncoders();
 
