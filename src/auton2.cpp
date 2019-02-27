@@ -8,14 +8,13 @@ void auton2()
 {
   resetEncoders();
   pros::delay(250);//waits for sensors to stabilize
-  //info_printf(1, "auton1");
-  motorSetup();//sets up motors
 
-  //info_printf(1, "before shoot");
-  // AccelerateForward(50);
+  motorSetup();//sets up motors
+//get in position to shoot top flag
   while( driveForward(encoderInchesToCounts(12),25,true) != 1);
+
+//shoot high flag
   while (shootBall() == 0){//waits for ball to shoot
     pros::delay(10);
   }
-  //info_printf(1, "end auton1");
 }

@@ -50,7 +50,7 @@ void marr3() {
 
 void marr4() {
  info_printf(1,"in marr4");
- auton5();
+ auton8();
 }
 
 void marr5() {

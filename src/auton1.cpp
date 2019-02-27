@@ -12,20 +12,20 @@ void auton1()
 {
   resetEncoders();
   pros::delay(250);//waits to allow sensors to stablize
-  //info_printf(1, "auton1");
   motorSetup();//sets up the motors
+
   //drives forward 1 square to prepare for shooting the middle flag
 intakeOn(false);
   while( driveForward(encoderInchesToCounts(8), 50, true) != 1);//12
   delay(500);
-//info_printf(1, "before shoot");
+
   while (shootBall() == 0){//waits for ball to be shot
     pros::delay(10);
   }
+
   //drives forward 1 square to toggle low flag
   delay(500);
   while( driveForward(encoderInchesToCounts(4),25,true) != 1);
   while( driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true) != 1);
-  //info_printf(1, "end auton1");
   while( driveBackward(encoderInchesToCounts(12),50,true) != 1);
 }

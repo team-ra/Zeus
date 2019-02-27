@@ -7,7 +7,6 @@
 extern pros::Motor liftMotor;
 void auton5()
 {
-   // Task t = new Task(getSpeed,nullptr,TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT,"Get Speed");
   extern pros::Motor leftDriveMotor1;
   resetEncoders();
   AccelerateForward(100);
@@ -23,7 +22,5 @@ void auton5()
   while( driveBackward(encoderInchesToCounts(24),75,true) == 0);
 
   while( driveForward(encoderInchesToCounts(20),100,true) == 0);
-  //AccelerateForward(120);
-  //drivestraight(120);
-
+  
 }

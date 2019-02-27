@@ -18,9 +18,9 @@ void auton6()
   while( driveForward(encoderInchesToCounts(20), 75, true) != 1);
   intakeOff();//shut off intake
   while( turnRight(300,50,true) != 1);//turn to face center middle flag
+
   //shoot ball at flag
   while (shootBall() == 0){//waits for ball to be shot
     pros::delay(10);
   }
-  //driveBackward(encoderInchesToCounts(50),100,true);
 }
