@@ -45,7 +45,7 @@ void skillsauton2() {
     resetEncoders();
     while (driveBackward(encoderInchesToCounts(14), 50, true) != 1);
     delay(500);
-    while(turnRight(420,50,true) !=1);
+    while(turnRight(480,50,true) !=1);//420
     delay(500);
     resetEncoders();
 
@@ -59,11 +59,19 @@ void skillsauton2() {
     delay(500);
     resetEncoders();
 
+    while(turnRight(20,50,true) !=1);//420
+    delay(500);
+    resetEncoders();
+
     //shoot top flag
     while (shootBall() == 0){//waits for ball to be shot
       delay(10);
       }
-    while(driveForward(encoderInchesToCounts(0.75),50,true) != 1);
+      while(turnLeft(100,50,true) !=1);//420
+      delay(500);
+      resetEncoders();
+
+    while(driveForward(encoderInchesToCounts(1.5),50,true) != 1);
     // delay(250);
     // resetEncoders();
 
@@ -73,7 +81,7 @@ void skillsauton2() {
     while(turnRight(680,50,true) != 1);
     delay(500);
     resetEncoders();
-    while(driveForward(encoderInchesToCounts(10),50,true) != 1);
+    while(driveForward(encoderInchesToCounts(10.5),50,true) != 1);//8.25
     delay(500);
     resetEncoders();
 
@@ -81,6 +89,7 @@ void skillsauton2() {
     wristMotor.tare_position();
     wristMotor.move(-50);
     while(wristMotor.get_position() > -900);//90 degrees
+    delay(250);
     wristMotor.move(0);
     wristMotor.tare_position();
     wristMotor.move(-75);
@@ -99,63 +108,65 @@ void skillsauton2() {
     // while(driveBackward(encoderInchesToCounts(5), 25,true) != 1);
     // delay(250);
 
-    while(turnLeft(700,50,true) != 1);
+    //while(turnLeft(700,50,true) != 1);
     // drive to second ball
-    delay(500);
-    resetEncoders();
-    while(driveBackward(encoderInchesToCounts(18), 25,true) != 1);
-    delay(500);
-    resetEncoders();
-
-    //rake second ball
-    while(turnRight(680,50,true) != 1);
-    delay(500);
-    resetEncoders();
-    while(driveForward(encoderInchesToCounts(9),50,true) != 1);
-    delay(500);
-    resetEncoders();
-
-    //move rake(wristMotor) into position
-    wristMotor.tare_position();
-    wristMotor.move(-50);
-    while(wristMotor.get_position() > -800);
-    wristMotor.move(0);
-    resetEncoders();
-    wristMotor.tare_position();
-    wristMotor.move(-75);
-    while(wristMotor.get_position() > -50);
-    wristMotor.move(0);
-    while(driveBackward(encoderInchesToCounts(9), 50,true) != 1);
-    delay(500);
-    resetEncoders();
-    wristMotor.move(100);
-    while(driveForward(encoderInchesToCounts(1),25,true) != 1);//drive forward to pickup ball
-    delay(500);
-    resetEncoders();
-    wristMotor.move(0);
+    // delay(500);
+    // resetEncoders();
+    // while(driveBackward(encoderInchesToCounts(20), 50,true) != 1);
+    // delay(500);
+    // resetEncoders();
+    //
+    // //rake second ball
+    // while(turnRight(700,50,true) != 1);
+    // delay(500);
+    // resetEncoders();
+    // while(driveForward(encoderInchesToCounts(10.25),50,true) != 1);
+    // delay(500);
+    // resetEncoders();
+    //
+    // //move rake(wristMotor) into position
+    // wristMotor.tare_position();
+    // wristMotor.move(-50);
+    // while(wristMotor.get_position() > -1400);
+    // wristMotor.move(0);
+    // resetEncoders();
+    // wristMotor.tare_position();
+    // delay(1000);
+    // while(driveBackward(encoderInchesToCounts(9), 50,true) != 1);
+    // delay(500);
+    // resetEncoders();
+    // wristMotor.move(100);
+    // while(driveForward(encoderInchesToCounts(1),25,true) != 1);//drive forward to pickup ball
+    // delay(500);
+    // resetEncoders();
+    // wristMotor.move(0);
 
     //turn to shoot far flag
-    while(turnLeft(245,50,true) != 1);
+    // while(turnLeft(195,50,true) != 1);
+    // delay(500);
+    //
+    // resetEncoders();
+    // while (shootBall() == 0){//waits for ball to be shot
+    //   delay(10);
+    // }
+
+    //turn to shoot center flag
+
+    while(turnLeft(308,50,true) != 1);
     delay(500);
     resetEncoders();
     while (shootBall() == 0){//waits for ball to be shot
       delay(10);
     }
 
-    //turn to shoot center flag
-    while(turnLeft(145,50,true) != 1);
-    delay(500);
-    resetEncoders();
-    while (shootBall() == 0){//waits for ball to be shot
-      delay(10);
-    }
+    while(driveBackward(encoderInchesToCounts(5), 50,true) != 1);
     //turn to face platform
-    while(turnRight(200,50,true) != 1);
-    delay(500);
-    resetEncoders();
+    while(turnRight(500,50,true) != 1);
+    // delay(500);
+    // resetEncoders();
 
     //park
     leftDriveMotor2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);//configure motor to auto-hold position
     leftDriveMotor1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);//configure motor to auto-hold position
-    while( driveForward(encoderInchesToCounts(60.7),65,true) != 1);
+    while( driveForward(encoderInchesToCounts(63),65,true) != 1);
 }
