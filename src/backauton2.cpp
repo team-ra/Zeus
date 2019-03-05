@@ -3,7 +3,7 @@
 extern pros::Motor liftMotor;
 void backauton2() {
   //turn to shoot center flag
-  while( turnLeft(390,50,true) != 1);
+  while( turnLeft(450,50,true) != 1);//390
   delay(500);
   resetEncoders();
   //shoot center flag
@@ -22,7 +22,7 @@ void backauton2() {
   while( driveBackward(encoderInchesToCounts(31),65,true) != 1);
   delay(250);
   resetEncoders();
-  while(turnLeft(300,50,true) != 1);
+  while(turnLeft(380,50,true) != 1);//300
   delay(500);
   resetEncoders();
   while( driveForward(encoderInchesToCounts(14),50,true) != 1);

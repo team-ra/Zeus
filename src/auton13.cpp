@@ -15,7 +15,7 @@ void auton13()
   pros::delay(250);//wait for ball to enter mechanism
   AccelerateBackward(-75);
   while(driveBackward(encoderInchesToCounts(32), 75,true) != 1);//reverse from cap
-  while(turnLeft(810,50,true) != 1);
+  while(turnLeft(745,50,true) != 1);//750
   AccelerateForward(100);
   while (driveForward(encoderInchesToCounts(36), 100, true) != 1);//12
   // intakeOff();//turn off intake
@@ -42,7 +42,7 @@ void auton13()
   extern pros::Motor leftDriveMotor1;
   AccelerateForward(100);
   while( driveForward(encoderInchesToCounts(20),100,true) == 0);
-  while( turnLeft(900,50,true) == 0);
+  while( turnLeft(1000,50,true) == 0);//900
   liftMotor.move(-50);
   AccelerateBackward(-100);
   while( driveBackward(encoderInchesToCounts(24),75,true) == 0);
@@ -50,7 +50,7 @@ void auton13()
   delay(100);
   liftMotor.move(0);
   AccelerateBackward(-100);
-  while( driveBackward(encoderInchesToCounts(24),75,true) == 0);
+  while( driveBackward(encoderInchesToCounts(21),75,true) == 0);
 
   while( driveForward(encoderInchesToCounts(20),100,true) == 0);
 }

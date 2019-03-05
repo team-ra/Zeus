@@ -15,7 +15,7 @@ void auton12()
   AccelerateBackward(-75);
   while(driveBackward(encoderInchesToCounts(30), 75,true) != 1);//reverse from cap
   delay(250);
-  while(turnRight(1150,50,true) != 1);
+  while(turnRight(1140,50,true) != 1);
   delay(250);
   AccelerateForward(100);
   while (driveForward(encoderInchesToCounts(42), 100, true) != 1);//12
@@ -42,7 +42,7 @@ void auton12()
   while( turnRight(950,50,true) == 0);
   liftMotor.move(-50);
   AccelerateBackward(-100);
-  while( driveBackward(encoderInchesToCounts(24),75,true) == 0);
+  while( driveBackward(encoderInchesToCounts(32),75,true) == 0);
   liftMotor.move(-100);
   delay(100);
   liftMotor.move(0);

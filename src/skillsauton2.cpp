@@ -23,7 +23,7 @@ void skillsauton2() {
     resetEncoders();
 
     //turn to face flags
-    while(turnLeft(670,50,true) != 1);
+    while(turnLeft(675,50,true) != 1);//670
     delay(500);
     resetEncoders();
 
@@ -40,12 +40,12 @@ void skillsauton2() {
     resetEncoders();
 
     //jog to get in line with flags
-    while(turnLeft(200,50,true) !=1);
+    while(turnLeft(150,50,true) !=1);//200
     delay(500);
     resetEncoders();
     while (driveBackward(encoderInchesToCounts(14), 50, true) != 1);
     delay(500);
-    while(turnRight(480,50,true) !=1);//420
+    while(turnRight(420,50,true) !=1);//420
     delay(500);
     resetEncoders();
 
@@ -78,10 +78,10 @@ void skillsauton2() {
 
     //rake ball off platform
     intakeOn(false);
-    while(turnRight(680,50,true) != 1);
+    while(turnRight(680,50,true) != 1);//680
     delay(500);
     resetEncoders();
-    while(driveForward(encoderInchesToCounts(10.5),50,true) != 1);//8.25
+    while(driveForward(encoderInchesToCounts(9.5),50,true) != 1);//9.5
     delay(500);
     resetEncoders();
 
