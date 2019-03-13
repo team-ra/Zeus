@@ -9,6 +9,7 @@
  */
 void initialize() {
   robot_gui();//runs robot gui
+  //pros::lcd::initialize();
 	auton_ptr = &auton_non;//sets auton pointer to none
 }
 

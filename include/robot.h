@@ -124,4 +124,15 @@ bool checkIfStalled();
 void backauton1();
 void skillsauton2();
 void auton16();
+
+double leftDriveGetPos();
+double rightDriveGetPos();
+int debounceButton(pros::controller_digital_e_t button);
+void swirl(void* param);
+void updateLcd(void* param);
+void updateLineData(char* data);
+void requestLcdUpdate();
+void updateLineNumber(int linenumber);
+void requestLcdUpdate();
+void rakeControl();
 #endif

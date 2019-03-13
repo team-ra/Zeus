@@ -68,7 +68,7 @@ int driveForward(int counts,int power,bool zeromotors)
             break;
 
     case 1:
-            if(leftDriveMotor1.get_position() < counts && rightDriveMotor1.get_position() > -counts){}
+            if(leftDriveGetPos() < counts && rightDriveGetPos() < counts){}
             else {state = 2;}//check if we have reached position
             break;
     case 2:
@@ -101,7 +101,7 @@ int driveBackward(int counts,int power,bool zeromotors)
             state = 1;
             break;
     case 1:
-            if(leftDriveMotor1.get_position() < counts && rightDriveMotor1.get_position() > -counts){}
+            if(leftDriveGetPos() > counts && rightDriveGetPos() > counts){}
             else {state = 2;}//check if we have reached position
             break;
     case 2:
@@ -135,20 +135,26 @@ int turnLeft(int counts,int power,bool zeromotors)
             state = 1;
             break;
     case 1:
-            if(leftDriveMotor1.get_position() > -counts && rightDriveMotor1.get_position() > -counts){}
-            else {state = 2;}//check if we have reached position
+            if(leftDriveGetPos() > -counts*.8 && rightDriveGetPos() < counts*.8){}
+            else {
+              leftDriveSet(-25);
+              rightDriveSet(25);
+              state = 2;
+            }//check if we have reached position
             break;
     case 2:
-            leftDriveSet(0);
-            rightDriveSet(0);
-            if(zeromotors){
-              leftDriveMotor1.tare_position();//zero encoder
-              rightDriveMotor1.tare_position();//zero encoder
-            }
-            state = 0;
-    return 1;
-
+    if(leftDriveGetPos() > -counts && rightDriveGetPos() < counts){}
+    else {state = 3;}//check if we have reached position
     break;
+    case 3:
+    leftDriveSet(0);
+    rightDriveSet(0);
+    if(zeromotors){
+      leftDriveMotor1.tare_position();//zero encoder
+      rightDriveMotor1.tare_position();//zero encoder
+    }
+    state = 0;
+      return 1;
   }
   return 0;
 
@@ -169,10 +175,25 @@ int turnRight(int counts,int power,bool zeromotors)
             state = 1;
             break;
     case 1:
-            if(leftDriveMotor1.get_position() <= counts && rightDriveMotor1.get_position() >= -counts){}
-            else {state = 2;}//check if we have reached position
+            // if((leftDriveGetPos() <= counts*.8) && (-rightDriveGetPos() <= counts*.8))
+            if(leftDriveGetPos() <= counts*.8)
+            {
+
+            }
+            else {
+              leftDriveSet(25);
+              rightDriveSet(-25);
+              state = 2;
+            }//check if we have reached position
             break;
-    case 2:
+   case 2:
+            // if(leftDriveGetPos() <=counts && -rightDriveGetPos() <= counts){
+            if(leftDriveGetPos() <= counts){
+
+            }
+            else {state = 3;}//check if we have reached position
+            break;
+    case 3:
             leftDriveSet(0);
             rightDriveSet(0);
             if(zeromotors){
@@ -180,8 +201,8 @@ int turnRight(int counts,int power,bool zeromotors)
               rightDriveMotor1.tare_position();//zero encoder
             }
             state = 0;
-    return 1;
-    break;
+            return 1;
+            break;
   }
   return 0;
 }
@@ -313,13 +334,22 @@ void rightDriveSet(int power)
   rightDriveMotor1.move(power);//start moving rear right drive motor
   rightDriveMotor2.move(power);//start moving front right drive motor
 }
-/**\brief
-* \details abstraction to reset drive encoders fro both sides
-*/
+
+
+double leftDriveGetPos() {
+  return ( leftDriveMotor1.get_position() + leftDriveMotor2.get_position() ) / 2;
+}
+
+double rightDriveGetPos() {
+  return (rightDriveMotor1.get_position() + rightDriveMotor2.get_position())/2;
+}
+
 void resetEncoders()
 {
   leftDriveMotor1.tare_position();
   rightDriveMotor1.tare_position();
+  leftDriveMotor2.tare_position();
+  rightDriveMotor2.tare_position();
 }
 /**\brief
 * \details state machine to park on blue platform
@@ -419,28 +449,7 @@ void filterPlatform() {
     else {count = 0;}
   }
 }
-//
-// bool checkIfStalled() {
-// static int startcounts = leftDriveMotor1.get_position();
-// static int timesunderthreshold = 0;
-// if (leftDriveMotor1.get_position() - startcounts <= STALLED_THRESHOLD)
-// {
-//     timesunderthreshold++;
-//     intakeOn(false);
-//     pros::delay(20);
-// }
-// else {
-//   timesunderthreshold = 0;
-// }
-//
-// if (timesunderthreshold >= 5)
-// {
-//   timesunderthreshold = 0;
-//   intakeOff();
-//   return true;
-// }
-// return false;
-// }
+
 
 /**\brief
 * \details adjusts power during a drive to keep straight

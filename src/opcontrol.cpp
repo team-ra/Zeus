@@ -24,18 +24,18 @@ void opcontrol() {
 	sprintf(initmessage,"initializing");
 
 	motorSetup();//setup motors
-	updateControllerLcd(0,initmessage);
-	pros::delay(50);
-	updateControllerLcd(1,blankline);
-	pros::delay(50);
-	updateControllerLcd(2,blankline);
+	// updateControllerLcd(0,initmessage);
+	// pros::delay(50);
+	// updateControllerLcd(1,blankline);
+	// pros::delay(50);
+	// updateControllerLcd(2,blankline);
 
 	 while (true) {
 		static int flag = 1;//holds whether or not to trigger screen update
 		if (flag)
 		{
 		sprintf(line2,"JoyB:%d RobB:%f",controller.get_battery_capacity(),pros::battery::get_capacity());
-	  updateControllerLcd(2,line2);
+	  // updateControllerLcd(2,line2);
 		// 	updateControllerLcd();
 			lasttime = pros::millis();//set last time updated to current system time
 			flag = 0;//set that we have updated
@@ -44,11 +44,11 @@ void opcontrol() {
 		{
 			flag = 1;//set flag to request and update
 		}
-		updateInfoScreen();
+		// updateInfoScreen();
 		readJoystick();
 		driveControl();
 		liftControl();
-		wristControl();
+		rakeControl();
 		launcherControl();
 		ballIntakeControl();
 

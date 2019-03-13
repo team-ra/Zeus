@@ -359,3 +359,59 @@ void AccelerateBackward(int power)//gradually increase power to avoid sudden jer
 //     delay(30);
 //
 // }
+
+
+
+extern pros::Controller controller;
+char line[16];
+int linenum = 0;
+bool updateRequested = false;
+
+pros::Task swirlTask(swirl,(void*)"shfslhf",TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT,"Swirl Task");
+pros::Task updateLcdTask(updateLcd,(void*)nullptr,TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT,"Update LCD Task");
+
+void swirl(void* param)
+{
+  static int swirlstate = 0;
+
+    if (swirlstate == 0 || swirlstate == 4)
+    {
+        controller.print(1,12,"-");
+    }
+    else if (swirlstate == 1 || swirlstate == 5)
+    {
+        controller.print(1,12,"\\");
+    }
+    else if (swirlstate == 2 || swirlstate == 6)
+    {
+        controller.print(1,12,"|");
+    }
+    else if (swirlstate == 3 || swirlstate == 7)
+    {
+        controller.print(1,12,"/");
+    }
+    else
+    {
+        swirlstate = 0;
+    }
+    swirlstate++;
+    delay(50);
+}
+
+void updateLcd(void* param) {
+    if (updateRequested) {
+        controller.print(linenum, 0, line);
+    }
+}
+
+void updateLineData(char* data) {
+    sprintf(line,"%s",data);
+}
+
+void updateLineNumber(int linenumber) {
+    linenum  = linenumber;
+}
+
+void requestLcdUpdate() {
+    updateRequested = true;
+}
