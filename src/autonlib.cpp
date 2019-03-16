@@ -135,7 +135,8 @@ int turnLeft(int counts,int power,bool zeromotors)
             state = 1;
             break;
     case 1:
-            if(leftDriveGetPos() > -counts*.8 && rightDriveGetPos() < counts*.8){}
+            if (counts < 100) { state = 2; }
+            if(leftDriveGetPos() > -counts*.6 && rightDriveGetPos() < counts*.6){}
             else {
               leftDriveSet(-25);
               rightDriveSet(25);
@@ -175,6 +176,7 @@ int turnRight(int counts,int power,bool zeromotors)
             state = 1;
             break;
     case 1:
+            if (counts < 100) { state = 2; break;}
             // if((leftDriveGetPos() <= counts*.8) && (-rightDriveGetPos() <= counts*.8))
             if(leftDriveGetPos() <= counts*.8)
             {
@@ -188,17 +190,14 @@ int turnRight(int counts,int power,bool zeromotors)
             break;
    case 2:
             // if(leftDriveGetPos() <=counts && -rightDriveGetPos() <= counts){
-            if(leftDriveGetPos() <= counts){
-
-            }
+            if(leftDriveGetPos() <= counts){}
             else {state = 3;}//check if we have reached position
             break;
     case 3:
             leftDriveSet(0);
             rightDriveSet(0);
             if(zeromotors){
-              leftDriveMotor1.tare_position();//zero encoder
-              rightDriveMotor1.tare_position();//zero encoder
+              resetEncoders();
             }
             state = 0;
             return 1;
