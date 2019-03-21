@@ -26,6 +26,8 @@ extern pros::ADILineSensor ls2;
 extern pros::ADILineSensor ls;
 ///the platform sensor
 extern pros::ADILineSensor ps;
+
+extern pros::ADILineSensor es;
 /** \brief
 * \details encoderInchesToCounts - Converts inches to encoder counts
 * \param inches the number of inches to move
@@ -277,6 +279,24 @@ int filterCockedSensor()
       return 0;
     }
 }
+
+int filterElevationHomeSensor()
+{
+  static int elevationsensor = 0;//holds value of cocked sensor
+    elevationsensor = es.get_value();//get value of ball cocked sensor
+    //cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
+    //pros::lcd::print(5,"B:%x",cockedsensorvalue);
+    info_printf(5,"B:%x",elevationsensor);
+    if (elevationsensor < 600) //check if in threshold
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
+}
+
 /** \brief
 * \details filters the ball present sensor
 * \return 1 if ball present, else 0

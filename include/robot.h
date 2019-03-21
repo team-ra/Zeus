@@ -37,6 +37,11 @@
 
 #define ACCEL_STEP 100
 
+#define ELEVATION_POS_1 -50
+#define ELEVATION_POS_2 -100
+#define ELEVATION_POS_3 -200
+#define ELEVATION_POS_4 -400
+
 //driver function prototypes
 void driveControl();
 void readJoystick();
@@ -47,6 +52,7 @@ void ballIntakeControl();
 void updateControllerLcd(int line,char *linedata);
 void motorSetup();
 void swirl();
+void elevationControl();
 /************************************************/
 //auton function prototypes
 int driveForward(int counts,int power,bool zeromotors);
@@ -81,6 +87,7 @@ int readHalfSpeedButton(controller_digital_e_t button);
 int readReverseControlsButton(controller_digital_e_t button);
 int digitize(uint32_t value);
 int filterCockedSensor();
+int filterElevationHomeSensor();
 int filterBallSensor();
 void intakeOn(bool reverse);
 void intakeOff();

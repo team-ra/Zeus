@@ -31,7 +31,7 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
  pros::ADILineSensor ls(BALL_SENSOR_PORT);
 ///the platform tube detect sensor
 pros::ADILineSensor ps(PLATFORM_SENSOR_PORT);
-
+pros::ADILineSensor es('f');
 //controller and motor state variables
 int leftDrivePower;
 int rightDrivePower;
@@ -219,6 +219,56 @@ void rakeControl()
     }
 }
 
+void elevationControl() {
+    static int elstate = 0;
+    switch(elstate) {
+
+      case 0:
+              if(controller.get_digital(DIGITAL_Y)) {elstate = 1;}
+              else if(controller.get_digital(DIGITAL_R1)){elstate = 2;}
+              else if(controller.get_digital(DIGITAL_R2)){elstate = 3;}
+              else if(controller.get_digital(DIGITAL_L1)){elstate = 4;}
+              else if(controller.get_digital(DIGITAL_L2)){elstate = 5;}
+              break;
+      case 1:
+            wristMotor.move(-10);
+            while(filterElevationHomeSensor());
+            wristMotor.move(0);
+            wristMotor.tare_position();
+            elstate = 0;
+            break;
+    case 2:
+            wristMotor.move(-25);
+            if(wristMotor.get_position() < -ELEVATION_POS_1){
+            wristMotor.move(0);
+            elstate = 0;
+          }
+            break;
+   case 3:
+            wristMotor.move(-25);
+            while(wristMotor.get_position() < -ELEVATION_POS_2) {
+            wristMotor.move(0);
+            elstate = 0;
+          }
+            break;
+  case 4:
+           wristMotor.move(-25);
+           while(wristMotor.get_position() < -ELEVATION_POS_3) {
+           wristMotor.move(0);
+           elstate = 0;
+         }
+           break;
+ case 5:
+          wristMotor.move(-25);
+          if(wristMotor.get_position() < -ELEVATION_POS_4) {
+          wristMotor.move(0);
+          elstate = 0;
+        }
+          break;
+    }
+
+}
+
 void driveControl()
 {
     static int state = 0;
@@ -299,10 +349,10 @@ void readJoystick()
 {
     leftDrivePower = controller.get_analog(ANALOG_LEFT_Y);
     rightDrivePower = controller.get_analog(ANALOG_RIGHT_Y);
-    liftup = controller.get_digital(DIGITAL_R1);
-    liftdown = controller.get_digital(DIGITAL_R2);
-    wristleft = controller.get_digital(DIGITAL_L1);;
-    wristright = controller.get_digital(DIGITAL_L2);
+    // liftup = controller.get_digital(DIGITAL_R1);
+    // liftdown = controller.get_digital(DIGITAL_R2);
+    // wristleft = controller.get_digital(DIGITAL_L1);;
+    // wristright = controller.get_digital(DIGITAL_L2);
     launchA = controller.get_digital(DIGITAL_A);
     launchB = controller.get_digital(DIGITAL_B);
     ballIntakeSetDir = controller.get_digital(DIGITAL_UP);

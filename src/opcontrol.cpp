@@ -17,6 +17,7 @@ using namespace pros::literals;
  */
 void opcontrol() {
 	extern pros::Controller controller;
+	extern pros::Motor wristMotor;
 	std::uint32_t lasttime;//holds last time since controller LCD updated
 	char line2[14];
 	char initmessage[14];
@@ -47,11 +48,13 @@ void opcontrol() {
 		// updateInfoScreen();
 		readJoystick();
 		driveControl();
-		liftControl();
-		rakeControl();
+		// liftControl();
+		//rakeControl();
+		elevationControl();
 		launcherControl();
 		ballIntakeControl();
-
+		controller.print(2,0,"%f",wristMotor.get_position());
+		delay(50);
 		pros::delay(20);
 	}
 }
