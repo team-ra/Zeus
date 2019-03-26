@@ -1,6 +1,7 @@
 //
 // Created by subaru on 3/5/19.
 //
+
 #include "robot.h"
 
 using namespace pros::literals;
@@ -20,7 +21,7 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 /// The launcher motor
  pros::Motor launchMotor(LAUNCH_MOTOR_PORT);
 /// The wrist motor
- pros::Motor wristMotor(WRIST_MOTOR_PORT);
+ pros::Motor wristMotor(7);
 /// The lift motor
  pros::Motor liftMotor(LIFT_MOTOR_PORT);
 /// The ball intake motor
@@ -220,54 +221,127 @@ void rakeControl()
 }
 
 void elevationControl() {
-    static int elstate = 0;
-    switch(elstate) {
+        static int elstate = 0;
+        static int  lastTarget = 0;
+        static int position = 0;
+        static int currentTarget = 0;
+        static int flag = 3;
+        unsigned long int currentPos = 0;
+        static int lastElState = 0;
+        static bool doneHoming = true;
+  	    switch(elstate) {
 
-      case 0:
-              if(controller.get_digital(DIGITAL_Y)) {elstate = 1;}
-              else if(controller.get_digital(DIGITAL_R1)){elstate = 2;}
-              else if(controller.get_digital(DIGITAL_R2)){elstate = 3;}
-              else if(controller.get_digital(DIGITAL_L1)){elstate = 4;}
-              else if(controller.get_digital(DIGITAL_L2)){elstate = 5;}
-              break;
-      case 1:
-            wristMotor.move(-10);
-            while(filterElevationHomeSensor());
-            wristMotor.move(0);
-            wristMotor.tare_position();
-            elstate = 0;
-            break;
-    case 2:
-            wristMotor.move(-25);
-            if(wristMotor.get_position() < -ELEVATION_POS_1){
-            wristMotor.move(0);
-            elstate = 0;
-          }
-            break;
-   case 3:
-            wristMotor.move(-25);
-            while(wristMotor.get_position() < -ELEVATION_POS_2) {
-            wristMotor.move(0);
-            elstate = 0;
-          }
-            break;
-  case 4:
-           wristMotor.move(-25);
-           while(wristMotor.get_position() < -ELEVATION_POS_3) {
-           wristMotor.move(0);
-           elstate = 0;
-         }
-           break;
- case 5:
-          wristMotor.move(-25);
-          if(wristMotor.get_position() < -ELEVATION_POS_4) {
-          wristMotor.move(0);
+  	      case 0:
+  		      if(controller.get_digital(DIGITAL_Y)) {elstate = 1;}
+  		      else if(controller.get_digital(DIGITAL_R1)){elstate = 2;}
+  		      else if(controller.get_digital(DIGITAL_R2)){elstate = 3;}
+  		      else if(controller.get_digital(DIGITAL_L1)){elstate = 4;}
+  		      else if(controller.get_digital(DIGITAL_L2)){elstate = 5;}
+  		      break;
+
+          case 1:
+                wristMotor.move(25);
+                if (es.get_value() > 1680) {elstate = 10;}
+                break;
+
+      		case 2:
+          	if ( elstate == lastElState ) {elstate = 0; break;}
+  		      position = 250;
+  		      // current = wristMotor.get_position();
+  		      if (position < currentTarget) { flag = 0;}
+  		      else {flag =1;}
+  			currentTarget = (currentTarget + position - lastTarget) % 800;
+  		      elstate = 9;
+            lastElState = 2;
+  		      break;
+  		case 3:
+            if ( elstate == lastElState ) {elstate = 0; break;}
+  		      position = 450;
+  		      // current = wristMotor.get_position();
+  		      if (position < currentTarget) { flag = 0;}
+  		      else {flag =1;}
+  			currentTarget = (currentTarget + position - lastTarget) % 800;
+
+            elstate = 9;
+            lastElState = 3;
+  		      break;
+
+  	      	case 4:
+            if ( elstate == lastElState ) {elstate = 0; break;}
+  		      position = 650;
+  		      // current = wristMotor.get_position();
+  		      if (position < currentTarget) { flag = 0;}
+  		      else {flag =1;}
+  			currentTarget = (currentTarget + position - lastTarget) % 800;
+  		      elstate = 9;
+            lastElState = 4;
+  		      break;
+  		case 5:
+            if ( elstate == lastElState ) {elstate = 0; break;}
+  		      position = 750;
+  		      // current = wristMotor.get_position();
+  		      if (position < currentTarget) { flag = 0;}
+  		      else {flag =1;}
+  			currentTarget = (currentTarget + position - lastTarget) % 800;
+  		      elstate = 9;
+            lastElState = 5;
+  		      break;
+
+  		case 9:
+  		  lastTarget = currentTarget;
+        controller.print(2,0,"%x",wristMotor.get_position());
+    		delay(50);
+        currentPos = wristMotor.get_position();
+  			if(flag == 2) {
           elstate = 0;
         }
-          break;
-    }
+  			break;
 
-}
+      case 10:
+        if (es.get_value() < 1680) {
+          wristMotor.move(0);
+          delay(20);
+          wristMotor.tare_position();
+          elstate = 0;
+        }
+        break;
+      case 11:
+            flag = 4;
+            if (wristMotor.get_power() != 25) {wristMotor.move(25);}
+              doneHoming = false;
+              while (es.get_value() > 1680);
+              while(es.get_value() < 1680);
+              wristMotor.move(0);
+              delay(20);
+              wristMotor.tare_position();
+              doneHoming = true;
+              elstate = 9;
+
+          break;
+  		    }
+
+  			switch(flag) {
+  				case 0:
+            wristMotor.move(25);
+            if ((10 < (currentPos % 800)) &&  ((currentPos % 800) < 20) ) {flag = 1;}
+
+  					break;
+  				case 1:
+  				if ( (currentPos % 800) <= currentTarget) {
+  						wristMotor.move(25);
+  					}
+  					else { flag = 2;}
+  					break;
+
+  			     case 2:
+  					      wristMotor.move(0);
+                  break;
+
+            case 4:
+                  if(doneHoming) {flag = 1;}
+  			}
+
+  }
 
 void driveControl()
 {
@@ -293,6 +367,8 @@ void driveControl()
             }
             state = 0;
             break;
+
+
     }
 }
 
@@ -333,6 +409,7 @@ ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not 
 rightDriveMotor1.set_reversed(true);
 rightDriveMotor2.set_reversed(true);
 liftMotor.set_reversed(true);
+wristMotor.set_reversed(true);
 }
 
 void updateControllerLcd()

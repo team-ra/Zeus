@@ -6,8 +6,8 @@
 #define RIGHT_DRIVE_MOTOR_1PORT 20
 #define LAUNCH_MOTOR_PORT 18
 #define LIFT_MOTOR_PORT 5
-#define WRIST_MOTOR_PORT 17
-#define BALL_INTAKE_MOTOR_PORT 7
+#define WRIST_MOTOR_PORT 7
+#define BALL_INTAKE_MOTOR_PORT 9
 #define RIGHT_DRIVE_MOTOR_2PORT 8
 #define LEFT_DRIVE_MOTOR2_PORT 9
 
@@ -37,10 +37,10 @@
 
 #define ACCEL_STEP 100
 
-#define ELEVATION_POS_1 -50
-#define ELEVATION_POS_2 -100
-#define ELEVATION_POS_3 -200
-#define ELEVATION_POS_4 -400
+#define ELEVATION_POS_1 200
+#define ELEVATION_POS_2 400
+#define ELEVATION_POS_3 600
+#define ELEVATION_POS_4 800
 
 //driver function prototypes
 void driveControl();

@@ -30,7 +30,9 @@ void opcontrol() {
 	// updateControllerLcd(1,blankline);
 	// pros::delay(50);
 	// updateControllerLcd(2,blankline);
-
+	wristMotor.tare_position();
+	delay(50);
+	//
 	 while (true) {
 		static int flag = 1;//holds whether or not to trigger screen update
 		if (flag)
@@ -46,6 +48,7 @@ void opcontrol() {
 			flag = 1;//set flag to request and update
 		}
 		// updateInfoScreen();
+
 		readJoystick();
 		driveControl();
 		// liftControl();
@@ -53,8 +56,7 @@ void opcontrol() {
 		elevationControl();
 		launcherControl();
 		ballIntakeControl();
-		controller.print(2,0,"%f",wristMotor.get_position());
-		delay(50);
+		
 		pros::delay(20);
 	}
 }
