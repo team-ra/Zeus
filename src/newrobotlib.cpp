@@ -3,7 +3,7 @@
 //
 
 #include "robot.h"
-
+#include "robot_gui.h"
 using namespace pros::literals;
 
 
@@ -229,7 +229,9 @@ void elevationControl() {
         unsigned long int currentPos = 0;
         static int lastElState = 0;
         static bool doneHoming = true;
-  	    switch(elstate) {
+        info_printf(1,"%d",elstate);
+        info_printf(2,"%f",wristMotor.get_position());
+        switch(elstate) {
 
   	      case 0:
   		      if(controller.get_digital(DIGITAL_Y)) {elstate = 1;}
@@ -256,7 +258,7 @@ void elevationControl() {
   		      break;
   		case 3:
             if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 450;
+  		      position = 790;
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
@@ -408,6 +410,7 @@ ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not 
 //sets motors in reverse
 rightDriveMotor1.set_reversed(true);
 rightDriveMotor2.set_reversed(true);
+ballIntakeMotor.set_reversed(true);
 liftMotor.set_reversed(true);
 wristMotor.set_reversed(true);
 }
