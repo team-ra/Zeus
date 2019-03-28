@@ -252,7 +252,7 @@ void elevationControl() {
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 800;
+  			currentTarget = (currentTarget + position - lastTarget) % 900;
   		      elstate = 9;
             lastElState = 2;
   		      break;
@@ -262,7 +262,7 @@ void elevationControl() {
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 800;
+  			currentTarget = (currentTarget + position - lastTarget) % 900;
 
             elstate = 9;
             lastElState = 3;
@@ -274,17 +274,17 @@ void elevationControl() {
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 800;
+  			currentTarget = (currentTarget + position - lastTarget) % 900;
   		      elstate = 9;
             lastElState = 4;
   		      break;
   		case 5:
             if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 750;
+  		      position = 800;
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 800;
+  			currentTarget = (currentTarget + position - lastTarget) % 900;
   		      elstate = 9;
             lastElState = 5;
   		      break;
@@ -309,28 +309,29 @@ void elevationControl() {
         break;
       case 11:
             flag = 4;
-            if (wristMotor.get_power() != 25) {wristMotor.move(25);}
+            if (wristMotor.get_power() != 50) {wristMotor.move(50);}
               doneHoming = false;
-              while (es.get_value() > 1680);
-              while(es.get_value() < 1680);
+              if (es.get_value() > 1680){break;}
+              if (es.get_value() < 1680) {
               wristMotor.move(0);
               delay(20);
               wristMotor.tare_position();
               doneHoming = true;
               elstate = 9;
+            }
 
           break;
   		    }
 
   			switch(flag) {
   				case 0:
-            wristMotor.move(25);
-            if ((10 < (currentPos % 800)) &&  ((currentPos % 800) < 20) ) {flag = 1;}
+            wristMotor.move(50);
+            if ((10 < (currentPos % 900)) &&  ((currentPos % 900) < 20) ) {flag = 1;}
 
   					break;
   				case 1:
-  				if ( (currentPos % 800) <= currentTarget) {
-  						wristMotor.move(25);
+  				if ( (currentPos % 900) <= currentTarget) {
+  						wristMotor.move(50);
   					}
   					else { flag = 2;}
   					break;
