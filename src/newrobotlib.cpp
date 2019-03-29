@@ -229,12 +229,13 @@ void elevationControl() {
         unsigned long int currentPos = 0;
         static int lastElState = 0;
         static bool doneHoming = true;
+        static bool intialhomedone = false;
         info_printf(1,"%d",elstate);
-        info_printf(2,"%f",wristMotor.get_position());
+        info_printf(2,"%d",((unsigned int)wristMotor.get_position() % 1500));
         switch(elstate) {
 
   	      case 0:
-  		      if(controller.get_digital(DIGITAL_Y)) {elstate = 1;}
+  		      if(controller.get_digital(DIGITAL_Y)) {if(!intialhomedone){elstate = 1;}intialhomedone = true;}
   		      else if(controller.get_digital(DIGITAL_R1)){elstate = 2;}
   		      else if(controller.get_digital(DIGITAL_R2)){elstate = 3;}
   		      else if(controller.get_digital(DIGITAL_L1)){elstate = 4;}
@@ -243,7 +244,7 @@ void elevationControl() {
 
           case 1:
                 wristMotor.move(25);
-                if (es.get_value() > 1680) {elstate = 10;}
+                if (es.get_value() > 1000) {elstate = 10;}
                 break;
 
       		case 2:
@@ -252,7 +253,7 @@ void elevationControl() {
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 900;
+  			currentTarget = (currentTarget + position - lastTarget) % 1500;
   		      elstate = 9;
             lastElState = 2;
   		      break;
@@ -262,7 +263,7 @@ void elevationControl() {
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 900;
+  			currentTarget = (currentTarget + position - lastTarget) % 1500;
 
             elstate = 9;
             lastElState = 3;
@@ -274,7 +275,7 @@ void elevationControl() {
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 900;
+  			currentTarget = (currentTarget + position - lastTarget) % 1500;
   		      elstate = 9;
             lastElState = 4;
   		      break;
@@ -284,7 +285,7 @@ void elevationControl() {
   		      // current = wristMotor.get_position();
   		      if (position < currentTarget) { flag = 0;}
   		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 900;
+  			currentTarget = (currentTarget + position - lastTarget) % 1500;
   		      elstate = 9;
             lastElState = 5;
   		      break;
@@ -300,38 +301,25 @@ void elevationControl() {
   			break;
 
       case 10:
-        if (es.get_value() < 1680) {
+        if (es.get_value() < 1000) {
           wristMotor.move(0);
           delay(20);
           wristMotor.tare_position();
           elstate = 0;
         }
-        break;
-      case 11:
-            flag = 4;
-            if (wristMotor.get_power() != 50) {wristMotor.move(50);}
-              doneHoming = false;
-              if (es.get_value() > 1680){break;}
-              if (es.get_value() < 1680) {
-              wristMotor.move(0);
-              delay(20);
-              wristMotor.tare_position();
-              doneHoming = true;
-              elstate = 9;
-            }
-
           break;
   		    }
 
   			switch(flag) {
   				case 0:
-            wristMotor.move(50);
-            if ((10 < (currentPos % 900)) &&  ((currentPos % 900) < 20) ) {flag = 1;}
+
+            if(wristMotor.get_power() != 25) {wristMotor.move(25);}
+            if ((50 < (currentPos % 1500)) &&  ((currentPos % 1500) < 100) ) {flag = 1;}
 
   					break;
   				case 1:
-  				if ( (currentPos % 900) <= currentTarget) {
-  						wristMotor.move(50);
+  				if ( (currentPos % 1500) <= currentTarget) {
+  						if(wristMotor.get_power() != 25) {wristMotor.move(25);}
   					}
   					else { flag = 2;}
   					break;
@@ -339,10 +327,8 @@ void elevationControl() {
   			     case 2:
   					      wristMotor.move(0);
                   break;
-
-            case 4:
-                  if(doneHoming) {flag = 1;}
-  			}
+                }
+        info_printf(3,"%d",currentTarget);
 
   }
 
@@ -395,7 +381,7 @@ rightDriveMotor1.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 leftDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 rightDriveMotor2.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 launchMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
-wristMotor.set_gearing(pros::E_MOTOR_GEARSET_36);//high speed
+wristMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//high speed
 liftMotor.set_gearing(pros::E_MOTOR_GEARSET_18);//torque
 ballIntakeMotor.set_gearing(pros::E_MOTOR_GEARSET_06);//high speed
 
@@ -407,7 +393,7 @@ rightDriveMotor2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not
 launchMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
 liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
-ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);//forces motor to not apply braking when power is not applied
+ballIntakeMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);//forces motor to not apply braking when power is not applied
 //sets motors in reverse
 rightDriveMotor1.set_reversed(true);
 rightDriveMotor2.set_reversed(true);
