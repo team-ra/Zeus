@@ -17,7 +17,7 @@ void auton13()
   }//drive to cap 40
   pros::delay(500);//wait for ball to enter mechanism
   AccelerateBackward(-50);
-  while(driveBackward(250, 50,true) != 1);//reverse from cap
+  while(driveBackward(200, 50,true) != 1);//reverse from cap
   delay(250);
   while(turnLeft(850,50,true) != 1);//500
   AccelerateForward(50);
@@ -31,16 +31,16 @@ void auton13()
   pros::delay(250);
   resetEncoders();
   while( turnLeft(100,50,true) != 1);
-  driveForward(encoderInchesToCounts(10),50,true);
-  // AccelerateBackward(-50);
+  delay(250);
+  resetEncoders();
+  while(driveForward(encoderInchesToCounts(28),50,true) != 1);
+  // AccelerateBackward(-50);(250);
   // while (driveBackward(encoderInchesToCounts(19), 50, true) != 1);//24
   // while(turnRight(100,50,true) !=1);
 
   // while (shootBall() == 0){//waits for ball to be shot
   //   pros::delay(10);
   // }
-
-  resetEncoders();
   // while(turnLeft(100,25,true) != 1);
   // while(driveBackward(encoderInchesToCounts(30), 50,true) != 1);//reverse from cap
   // while(turnRight(100,50,true) !=1);
