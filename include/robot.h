@@ -132,6 +132,7 @@ bool checkIfStalled();
 void backauton1();
 void skillsauton2();
 void auton16();
+void doubletap();
 
 double leftDriveGetPos();
 double rightDriveGetPos();
