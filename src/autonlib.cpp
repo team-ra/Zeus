@@ -284,8 +284,10 @@ int elevate(int target) {
   		      break;
 
           case 1:
-                wristMotor.move(40);
+                wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+                wristMotor.move(100);
                 if (es.get_value() > 1000) {elstate = 10;}
+
                 break;
 
       		case 2:
@@ -337,19 +339,23 @@ int elevate(int target) {
         currentPos = wristMotor.get_position();
   			if(flag == 2) {
           elstate = 0;
-          return 1;
         }
   			break;
 
-      case 10:
-        if (es.get_value() < 1000) {
-          wristMotor.move(0);
-          delay(20);
-          wristMotor.tare_position();
-          elstate = 0;
-          return 1;
-        }
-          break;
+        case 10:
+          if (es.get_value() < 1000) {
+            elstate = 11;
+          }
+            break;
+        case 11:
+            wristMotor.move(-20);
+             if (es.get_value() < 1000) {
+              wristMotor.move(0);
+              delay(20);
+              wristMotor.tare_position();
+              elstate = 0;
+              return 1;
+             }
   		    }
 
   			switch(flag) {

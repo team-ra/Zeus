@@ -243,7 +243,8 @@ void elevationControl() {
   		      break;
 
           case 1:
-                wristMotor.move(25);
+          wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+                wristMotor.move(80);
                 if (es.get_value() > 1000) {elstate = 10;}
                 break;
 
@@ -302,13 +303,21 @@ void elevationControl() {
 
       case 10:
         if (es.get_value() < 1000) {
-          wristMotor.move(0);
-          delay(20);
-          wristMotor.tare_position();
-          elstate = 0;
+          elstate = 11;
         }
           break;
+      case 11:
+          wristMotor.move(-20);
+           if (es.get_value() < 1000) {
+            wristMotor.move(0);
+            delay(20);
+            wristMotor.tare_position();
+            elstate = 0;
+           }
+
   		    }
+
+
 
   			switch(flag) {
   				case 0:
@@ -428,4 +437,134 @@ void readJoystick()
     controlr = debounceButton(DIGITAL_RIGHT);
 }
 
+
+void doubletap() {
+
+  static int dtstate = 0;
+  static int nextdtstate = 0;
+  static int  lastTarget = 0;
+  static int position = 0;
+  static int pos2 = 0;
+  static int currentTarget = 0;
+  static int flag = 3;
+  unsigned long int currentPos = 0;
+  static int lastdtstate = 0;
+  static bool doneHoming = true;
+  static bool intialhomedone = false;
+  static bool flip= false;
+  info_printf(1,"%d",dtstate);
+  info_printf(2,"%d",((unsigned int)wristMotor.get_position() % 1500));
+  switch(dtstate) {
+
+    case 0:
+      if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
+      else if(controller.get_digital(DIGITAL_R2)){dtstate = 3;}
+      else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
+      else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
+      break;
+   case 1:
+   if(controller.get_digital(DIGITAL_R2)){dtstate = 3;}
+   else if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
+   else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
+   else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
+    case 2:
+    flip = false;
+      if ( dtstate == lastdtstate ) {dtstate = 0; break;}
+      position = 250;
+      if(controller.get_digital(DIGITAL_R2)) {nextdtstate = 3;}
+      // current = wristMotor.get_position();
+      if (position < currentTarget) { flag = 0;}
+      else {flag =1;}
+  currentTarget = (currentTarget + position - lastTarget) % 1500;
+      dtstate = 9;
+      lastdtstate = 2;
+      break;
+case 3:
+      flip = true;
+      if ( dtstate == lastdtstate ) {dtstate = 0; break;}
+      position = 790;
+      // current = wristMotor.get_position();
+      if (position < currentTarget) { flag = 0;}
+      else {flag =1;}
+  currentTarget = (currentTarget + position - lastTarget) % 1500;
+
+      dtstate = 9;
+      lastdtstate = 3;
+      break;
+
+      case 4:
+      flip = false;
+      if ( dtstate == lastdtstate ) {dtstate = 0; break;}
+      position = 650;
+      // current = wristMotor.get_position();
+      if (position < currentTarget) { flag = 0;}
+      else {flag =1;}
+  currentTarget = (currentTarget + position - lastTarget) % 1500;
+      dtstate = 9;
+      lastdtstate = 4;
+      break;
+case 5:
+flip = true;
+      if ( dtstate == lastdtstate ) {dtstate = 0; break;}
+      position = 800;
+      // current = wristMotor.get_position();
+      if (position < currentTarget) { flag = 0;}
+      else {flag =1;}
+  currentTarget = (currentTarget + position - lastTarget) % 1500;
+      dtstate = 9;
+      lastdtstate = 5;
+      break;
+
+case 9:
+  lastTarget = currentTarget;
+  controller.print(2,0,"%x",wristMotor.get_position());
+  delay(50);
+  currentPos = wristMotor.get_position();
+  if(flag == 2) {
+    if (flip) {
+    dtstate = 1;
+  }
+  else {
+    dtstate = 0;
+  }
+  }
+  break;
+
+case 10:
+  if (es.get_value() < 1000) {
+    dtstate = 11;
+  }
+    break;
+case 11:
+    wristMotor.move(-20);
+     if (es.get_value() < 1000) {
+      wristMotor.move(0);
+      delay(20);
+      wristMotor.tare_position();
+      dtstate = 0;
+     }
+
+    }
+
+  switch(flag) {
+    case 0:
+
+      if(wristMotor.get_power() != 25) {wristMotor.move(25);}
+      if ((50 < (currentPos % 1500)) &&  ((currentPos % 1500) < 100) ) {flag = 1;}
+
+      break;
+    case 1:
+    if ( (currentPos % 1500) <= currentTarget) {
+        if(wristMotor.get_power() != 25) {wristMotor.move(25);}
+      }
+      else { flag = 2;}
+      break;
+
+       case 2:
+            wristMotor.move(0);
+            break;
+          }
+  info_printf(3,"%d",currentTarget);
+
+}
 //provides reassurance of operation
