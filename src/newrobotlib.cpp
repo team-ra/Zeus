@@ -145,7 +145,7 @@ void liftControl()
 {
 
   static int state = 0;
-  if (liftup == 1) {liftMotor.move(-127);}//if we are above descoring height move to scoring height
+  if (liftup == 1) {liftMotor.move(-75);}//if we are above descoring height move to scoring height
   else if (liftdown == 1) {liftMotor.move(75);}
   else {liftMotor.move(0);}//we are at an unknown position try again
 
@@ -425,8 +425,8 @@ void readJoystick()
 {
     leftDrivePower = controller.get_analog(ANALOG_LEFT_Y);
     rightDrivePower = controller.get_analog(ANALOG_RIGHT_Y);
-    // liftup = controller.get_digital(DIGITAL_R1);
-    // liftdown = controller.get_digital(DIGITAL_R2);
+    liftup = controller.get_digital(DIGITAL_DOWN);
+    liftdown = controller.get_digital(DIGITAL_LEFT);
     // wristleft = controller.get_digital(DIGITAL_L1);;
     // wristright = controller.get_digital(DIGITAL_L2);
     launchA = controller.get_digital(DIGITAL_A);
@@ -453,7 +453,7 @@ void doubletap() {
   static bool intialhomedone = false;
   static bool flip= false;
   info_printf(1,"%d",dtstate);
-  info_printf(2,"%d",((unsigned int)wristMotor.get_position() % 1500));
+  info_printf(2,"%d",flag);
   switch(dtstate) {
 
     case 0:
@@ -468,14 +468,13 @@ void doubletap() {
    else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
    else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
     case 2:
-    flip = false;
+    //flip = false;
       if ( dtstate == lastdtstate ) {dtstate = 0; break;}
       position = 250;
-      if(controller.get_digital(DIGITAL_R2)) {nextdtstate = 3;}
       // current = wristMotor.get_position();
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
       if (position < currentTarget) { flag = 0;}
       else {flag =1;}
-  currentTarget = (currentTarget + position - lastTarget) % 1500;
       dtstate = 9;
       lastdtstate = 2;
       break;
@@ -484,22 +483,22 @@ case 3:
       if ( dtstate == lastdtstate ) {dtstate = 0; break;}
       position = 790;
       // current = wristMotor.get_position();
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
       if (position < currentTarget) { flag = 0;}
       else {flag =1;}
-  currentTarget = (currentTarget + position - lastTarget) % 1500;
 
       dtstate = 9;
       lastdtstate = 3;
       break;
 
-      case 4:
+      case 4: // L1
       flip = false;
       if ( dtstate == lastdtstate ) {dtstate = 0; break;}
       position = 650;
       // current = wristMotor.get_position();
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
       if (position < currentTarget) { flag = 0;}
       else {flag =1;}
-  currentTarget = (currentTarget + position - lastTarget) % 1500;
       dtstate = 9;
       lastdtstate = 4;
       break;
@@ -508,25 +507,28 @@ flip = true;
       if ( dtstate == lastdtstate ) {dtstate = 0; break;}
       position = 800;
       // current = wristMotor.get_position();
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
       if (position < currentTarget) { flag = 0;}
       else {flag =1;}
-  currentTarget = (currentTarget + position - lastTarget) % 1500;
       dtstate = 9;
       lastdtstate = 5;
       break;
 
 case 9:
-  lastTarget = currentTarget;
-  controller.print(2,0,"%x",wristMotor.get_position());
-  delay(50);
-  currentPos = wristMotor.get_position();
-  if(flag == 2) {
-    if (flip) {
-    dtstate = 1;
-  }
-  else {
-    dtstate = 0;
-  }
+  // controller.print(2,0,"%x",wristMotor.get_position());
+  // delay(50);
+
+  if( (shootBall() == 1) && (flag == 2) )
+  {
+    lastTarget = currentTarget;
+    if (flip)
+    {
+      dtstate = 1;
+    }
+    else
+    {
+      dtstate = 0;
+    }
   }
   break;
 
@@ -546,6 +548,7 @@ case 11:
 
     }
 
+    currentPos = wristMotor.get_position();
   switch(flag) {
     case 0:
 

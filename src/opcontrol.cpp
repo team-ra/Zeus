@@ -51,10 +51,10 @@ void opcontrol() {
 
 		readJoystick();
 		driveControl();
-		// liftControl();
+		liftControl();
 		//rakeControl();
-		//elevationControl();
-		doubletap();
+		elevationControl();
+		// doubletap();
 		launcherControl();
 		ballIntakeControl();
 

@@ -215,16 +215,18 @@ int turnRight(int counts,int power,bool zeromotors)
 int shootBall()
 {
   static int state = 0;//holds the state machine's state
-  int retval = 0;// holds the value to return
   switch(state)
   {
   case 0:
       //info_printf(1, "case0");
-      if(filterBallSensor() == 1) {state = 1;}//check if ball present
+      if(filterBallSensor() == 1) {
+        launchMotor.move(-127);
+        state = 1;
+      }//check if ball present
+
       break;
   case 1:
     //info_printf(2, "case1");
-    launchMotor.move(-127);
     if (filterCockedSensor() == 1){state = 2;}//2check if launcher cocked
     break;
   case 2:
@@ -240,10 +242,10 @@ int shootBall()
     //info_printf(4, "case3");
     launchMotor.move(0);
     state = 0; //restart state machine
-    retval = 1;//return fired
+    return 1;//return fired
   }
 }
-  return retval;//else return unfired
+  return 0;//else return unfired
 
 }
 /** \brief
@@ -434,7 +436,7 @@ int filterBallSensor()
     //ballsensorvalue = (ballsensorvalue << 1) | digitize(ls.get_value());
     //pros::lcd::print(6,"B2:%x",ballsensorvalue);
     info_printf(6,"B2:%x",ballsensorvalue);
-    if (ballsensorvalue < 500)//check if in threshold
+    if (ballsensorvalue < 600)//check if in threshold
     {
       return 1;
     }
