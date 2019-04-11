@@ -53,9 +53,9 @@ void opcontrol() {
 		driveControl();
 		liftControl();
 		//rakeControl();
-		elevationControl();
-		// doubletap();
-		launcherControl();
+		// elevationControl();
+		doubletap();
+		// launcherControl();
 		ballIntakeControl();
 
 		pros::delay(20);

@@ -215,6 +215,7 @@ int turnRight(int counts,int power,bool zeromotors)
 int shootBall()
 {
   static int state = 0;//holds the state machine's state
+  info_printf(5,"%d",state);
   switch(state)
   {
   case 0:
@@ -397,7 +398,7 @@ int filterCockedSensor()
     max = (cockedsensorvalue>max) ? cockedsensorvalue : max;
     min = (cockedsensorvalue<min) ? cockedsensorvalue : min;
 
-    info_printf(5,"B:%x - Max:%x - Min:%x",cockedsensorvalue, max, min);
+    // info_printf(5,"B:%x - Max:%x - Min:%x",cockedsensorvalue, max, min);
     if (cockedsensorvalue < 0xB00) //check if in threshold
     {
       return 1;
@@ -414,7 +415,7 @@ int filterElevationHomeSensor()
     elevationsensor = es.get_value();//get value of ball cocked sensor
     //cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
     //pros::lcd::print(5,"B:%x",cockedsensorvalue);
-    info_printf(5,"B:%x",elevationsensor);
+    // info_printf(5,"B:%x",elevationsensor);
     if (elevationsensor < 600) //check if in threshold
     {
       return 1;
@@ -435,7 +436,7 @@ int filterBallSensor()
     ballsensorvalue = ls.get_value();//get value of ball present sensor
     //ballsensorvalue = (ballsensorvalue << 1) | digitize(ls.get_value());
     //pros::lcd::print(6,"B2:%x",ballsensorvalue);
-    info_printf(6,"B2:%x",ballsensorvalue);
+    // info_printf(6,"B2:%x",ballsensorvalue);
     if (ballsensorvalue < 600)//check if in threshold
     {
       return 1;
