@@ -145,4 +145,5 @@ void updateLineNumber(int linenumber);
 void requestLcdUpdate();
 void rakeControl();
 int elevate(int target);
+void backauton3();
 #endif
