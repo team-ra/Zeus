@@ -437,7 +437,7 @@ int filterBallSensor()
     //ballsensorvalue = (ballsensorvalue << 1) | digitize(ls.get_value());
     //pros::lcd::print(6,"B2:%x",ballsensorvalue);
     // info_printf(6,"B2:%x",ballsensorvalue);
-    if (ballsensorvalue < 600)//check if in threshold
+    if (ballsensorvalue < 700)//check if in threshold
     {
       return 1;
     }

@@ -47,7 +47,7 @@ uint8_t wristleft;
 uint8_t wristright;
 uint8_t liftup;
 uint8_t liftdown;
-
+bool autoactive = false;
 // void ballIntakeControl() {
 //     static int state = 0;
 //     static bool intActive = false;
@@ -171,6 +171,7 @@ void launcherControl()
     int rackPower = -127;
     int revPower = 40;
     static int state = 0;
+    if(!autoactive) {
     switch(state) {
         case 0:
             if (launchA) {state = 1;}
@@ -190,6 +191,7 @@ void launcherControl()
             state = 0;
             break;
     }
+  }
 
 }
 
@@ -446,7 +448,7 @@ void doubletap() {
   static int position = 0;
   static int pos2 = 0;
   static int currentTarget = 0;
-  static int flag = 3;
+  static int flag = 4;
   unsigned long int currentPos = 0;
   static int lastdtstate = 0;
   static bool doneHoming = true;
@@ -457,6 +459,8 @@ void doubletap() {
   switch(dtstate) {
 
     case 0:
+    if(filterBallSensor() == 1) {
+
     if (!flip){
       if(controller.get_digital(DIGITAL_Y)) {if(!intialhomedone){dtstate = 1;}intialhomedone = true;}
       else if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
@@ -471,22 +475,24 @@ void doubletap() {
       else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
       else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
     }
-    flag = 3;
+    flag = 4;
+  }
    break;
 
    case 1:
-    wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+      wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
          wristMotor.move(80);
          if (es.get_value() > 1000) {dtstate = 10;}
          break;
     case 2:
       flip = true;
       // if ( dtstate == lastdtstate ) {break;}
-      position = 250;
+      position = 50;
       // current = wristMotor.get_position();
-      currentTarget = (currentTarget + position - lastTarget) % 1500;
       if (position < currentTarget) { flag = 0;}
       else {flag = 1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
       dtstate = 9;
       lastdtstate = 2;
       break;
@@ -495,9 +501,9 @@ case 3:
       // if ( dtstate == lastdtstate ) { break;}
       position = 790;
       // current = wristMotor.get_position();
-      currentTarget = (currentTarget + position - lastTarget) % 1500;
       if (position < currentTarget) { flag = 0;}
       else {flag = 1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
       dtstate = 9;
       lastdtstate = 3;
       break;
@@ -505,22 +511,22 @@ case 3:
       case 4: // L1
       flip = true;
       // if ( dtstate == lastdtstate ) { break;}
-      position = 650;
+      position = 450;
       // current = wristMotor.get_position();
-      currentTarget = (currentTarget + position - lastTarget) % 1500;
       if (position < currentTarget) { flag = 0;}
       else {flag =1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
       dtstate = 9;
       lastdtstate = 4;
       break;
 case 5:
 flip = false;
       // if ( dtstate == lastdtstate ) { break;}
-      position = 800;
+      position = 1020;
       // current = wristMotor.get_position();
-      currentTarget = (currentTarget + position - lastTarget) % 1500;
       if (position < currentTarget) { flag = 0;}
       else {flag = 1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
       dtstate = 9;
       lastdtstate = 5;
       break;
@@ -528,13 +534,14 @@ flip = false;
 case 9:
   // controller.print(2,0,"%x",wristMotor.get_position());
   // delay(50);
-
+autoactive = true;
   if (flag == 2)
   {
     if(shootBall() == 1)
     {
       lastTarget = currentTarget;
       dtstate = 0;
+      autoactive = false;
     }
   }
   break;
@@ -560,17 +567,22 @@ case 11:
   {
     case 0:
 
-      if(wristMotor.get_power() != 50) {wristMotor.move(50);}
+      if(wristMotor.get_power() != 50) {wristMotor.move(70);}
       if ((50 < (currentPos % 1500)) &&  ((currentPos % 1500) < 100) ) {flag = 1;}
 
       break;
     case 1:
     if ( (currentPos % 1500) <= currentTarget) {
-        if(wristMotor.get_power() != 50) {wristMotor.move(50);}
+        if(wristMotor.get_power() != 50) {wristMotor.move(70);}
       }
       else { flag = 2;}
       break;
-
+      // case 2:
+      // if ( (currentPos % 1500) >= currentTarget) {
+      //     if(wristMotor.get_power() != -25) {wristMotor.move(-25);}
+      //   }
+      //   else {flag = 3;}
+      //   break;
        case 2:
             wristMotor.move(0);
             break;

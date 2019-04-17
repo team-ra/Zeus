@@ -55,7 +55,7 @@ void opcontrol() {
 		//rakeControl();
 		// elevationControl();
 		doubletap();
-		// launcherControl();
+		launcherControl();
 		ballIntakeControl();
 
 		pros::delay(20);
