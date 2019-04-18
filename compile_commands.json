@@ -5,12 +5,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -25,11 +28,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton7.cpp.o",
-            "src/auton7.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton16.cpp.o",
+            "src\\auton16.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton7.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton16.cpp"
     },
     {
         "arguments": [
@@ -37,12 +40,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -57,11 +63,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton5.cpp.o",
-            "src/auton5.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton14.cpp.o",
+            "src\\auton14.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton5.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton14.cpp"
     },
     {
         "arguments": [
@@ -69,12 +75,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -89,11 +98,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/backauton1.cpp.o",
-            "src/backauton1.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/frontauton1.cpp.o",
+            "src\\frontauton1.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/backauton1.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\frontauton1.cpp"
     },
     {
         "arguments": [
@@ -101,12 +110,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -121,11 +133,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton4.cpp.o",
-            "src/auton4.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/mab.cpp.o",
+            "src\\mab.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton4.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\mab.cpp"
     },
     {
         "arguments": [
@@ -133,12 +145,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -153,11 +168,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/backauton2.cpp.o",
-            "src/backauton2.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/robot_gui.cpp.o",
+            "src\\robot_gui.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/backauton2.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\robot_gui.cpp"
     },
     {
         "arguments": [
@@ -165,12 +180,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -185,11 +203,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/initialize.cpp.o",
-            "src/initialize.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/autonomous.cpp.o",
+            "src\\autonomous.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/initialize.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\autonomous.cpp"
     },
     {
         "arguments": [
@@ -197,12 +215,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -217,11 +238,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton8.cpp.o",
-            "src/auton8.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/autontasks.cpp.o",
+            "src\\autontasks.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton8.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\autontasks.cpp"
     },
     {
         "arguments": [
@@ -229,12 +250,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -249,11 +273,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/autonlib.cpp.o",
-            "src/autonlib.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/skillsauton2.cpp.o",
+            "src\\skillsauton2.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/autonlib.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\skillsauton2.cpp"
     },
     {
         "arguments": [
@@ -261,12 +285,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -281,11 +308,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/newrobotlib.cpp.o",
-            "src/newrobotlib.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/skillsauton1.cpp.o",
+            "src\\skillsauton1.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/newrobotlib.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\skillsauton1.cpp"
     },
     {
         "arguments": [
@@ -293,12 +320,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -313,11 +343,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/backauton3.cpp.o",
-            "src/backauton3.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton7.cpp.o",
+            "src\\auton7.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/backauton3.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton7.cpp"
     },
     {
         "arguments": [
@@ -325,12 +355,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -345,11 +378,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/autonomous.cpp.o",
-            "src/autonomous.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton3.cpp.o",
+            "src\\auton3.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/autonomous.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton3.cpp"
     },
     {
         "arguments": [
@@ -357,12 +390,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -377,11 +413,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton10.cpp.o",
-            "src/auton10.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton12.cpp.o",
+            "src\\auton12.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton10.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton12.cpp"
     },
     {
         "arguments": [
@@ -389,12 +425,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -409,11 +448,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton13.cpp.o",
-            "src/auton13.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton9.cpp.o",
+            "src\\auton9.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton13.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton9.cpp"
     },
     {
         "arguments": [
@@ -421,12 +460,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -441,11 +483,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton11.cpp.o",
-            "src/auton11.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton8.cpp.o",
+            "src\\auton8.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton11.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton8.cpp"
     },
     {
         "arguments": [
@@ -453,12 +495,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -473,11 +518,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/mar.cpp.o",
-            "src/mar.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/backauton2.cpp.o",
+            "src\\backauton2.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/mar.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\backauton2.cpp"
     },
     {
         "arguments": [
@@ -485,12 +530,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -505,11 +553,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/skillsauton1.cpp.o",
-            "src/skillsauton1.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton2.cpp.o",
+            "src\\auton2.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/skillsauton1.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton2.cpp"
     },
     {
         "arguments": [
@@ -517,12 +565,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -537,11 +588,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton12.cpp.o",
-            "src/auton12.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/robotlib.cpp.o",
+            "src\\robotlib.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton12.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\robotlib.cpp"
     },
     {
         "arguments": [
@@ -549,12 +600,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -569,11 +623,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton6.cpp.o",
-            "src/auton6.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton1.cpp.o",
+            "src\\auton1.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton6.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton1.cpp"
     },
     {
         "arguments": [
@@ -581,12 +635,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -601,11 +658,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton14.cpp.o",
-            "src/auton14.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton6.cpp.o",
+            "src\\auton6.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton14.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton6.cpp"
     },
     {
         "arguments": [
@@ -613,12 +670,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -633,11 +693,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/robot_gui.cpp.o",
-            "src/robot_gui.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton4.cpp.o",
+            "src\\auton4.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/robot_gui.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton4.cpp"
     },
     {
         "arguments": [
@@ -645,12 +705,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -665,11 +728,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton16.cpp.o",
-            "src/auton16.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton10.cpp.o",
+            "src\\auton10.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton16.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton10.cpp"
     },
     {
         "arguments": [
@@ -677,12 +740,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -697,11 +763,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/mab.cpp.o",
-            "src/mab.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/backauton1.cpp.o",
+            "src\\backauton1.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/mab.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\backauton1.cpp"
     },
     {
         "arguments": [
@@ -709,12 +775,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -729,11 +798,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton3.cpp.o",
-            "src/auton3.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton11.cpp.o",
+            "src\\auton11.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton3.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton11.cpp"
     },
     {
         "arguments": [
@@ -741,12 +810,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -761,11 +833,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/robotlib.cpp.o",
-            "src/robotlib.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/auton5.cpp.o",
+            "src\\auton5.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/robotlib.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton5.cpp"
     },
     {
         "arguments": [
@@ -773,12 +845,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -793,11 +868,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/opcontrol.cpp.o",
-            "src/opcontrol.cpp"
+            "C:/Users/VsDev/AppData/Local/Temp/tmpcg6095l0/initialize.cpp.o",
+            "src\\initialize.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/opcontrol.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\initialize.cpp"
     },
     {
         "arguments": [
@@ -805,12 +880,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -825,11 +903,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/autontasks.cpp.o",
-            "src/autontasks.cpp"
+            "bin/opcontrol.cpp.o",
+            "src\\opcontrol.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/autontasks.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\opcontrol.cpp"
     },
     {
         "arguments": [
@@ -837,12 +915,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -857,11 +938,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton1.cpp.o",
-            "src/auton1.cpp"
+            "bin/auton13.cpp.o",
+            "src\\auton13.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton1.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\auton13.cpp"
     },
     {
         "arguments": [
@@ -869,12 +950,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -889,11 +973,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/skillsauton2.cpp.o",
-            "src/skillsauton2.cpp"
+            "bin/backauton3.cpp.o",
+            "src\\backauton3.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/skillsauton2.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\backauton3.cpp"
     },
     {
         "arguments": [
@@ -901,12 +985,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -921,11 +1008,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton9.cpp.o",
-            "src/auton9.cpp"
+            "bin/mar.cpp.o",
+            "src\\mar.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton9.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\mar.cpp"
     },
     {
         "arguments": [
@@ -933,12 +1020,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -953,11 +1043,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/frontauton1.cpp.o",
-            "src/frontauton1.cpp"
+            "bin/newrobotlib.cpp.o",
+            "src\\newrobotlib.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/frontauton1.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\newrobotlib.cpp"
     },
     {
         "arguments": [
@@ -965,12 +1055,15 @@
             "-c",
             "-target",
             "armv7ar-none-none-eabi",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include/c++/6.3.1/backward",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/include-fixed",
-            "-isystem/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/include",
+            "-fno-ms-extensions",
+            "-fno-ms-compatibility",
+            "-fno-delayed-template-parsing",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7-ar/fpv3/softfp",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include/c++/7.2.1/backward",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/include-fixed",
+            "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
             "-iquote./include/./",
             "-mcpu=cortex-a9",
@@ -985,10 +1078,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/tmp/tmplrrehd3d/auton2.cpp.o",
-            "src/auton2.cpp"
+            "bin/autonlib.cpp.o",
+            "src\\autonlib.cpp"
         ],
-        "directory": "/home/rpm/Desktop/Zeus",
-        "file": "src/auton2.cpp"
+        "directory": "C:\\Users\\VsDev\\Desktop\\Zeus",
+        "file": "src\\autonlib.cpp"
     }
 ]

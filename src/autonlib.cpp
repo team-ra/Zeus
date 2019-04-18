@@ -28,6 +28,8 @@ extern pros::ADILineSensor ls;
 extern pros::ADILineSensor ps;
 
 extern pros::ADILineSensor es;
+
+extern pros::ADILineSensor es2;
 /** \brief
 * \details encoderInchesToCounts - Converts inches to encoder counts
 * \param inches the number of inches to move
@@ -433,11 +435,13 @@ int filterElevationHomeSensor()
 int filterBallSensor()
 {
   static int ballsensorvalue = 0;
+  static int bs2value = 0;
     ballsensorvalue = ls.get_value();//get value of ball present sensor
+    bs2value = es2.get_value();
     //ballsensorvalue = (ballsensorvalue << 1) | digitize(ls.get_value());
     //pros::lcd::print(6,"B2:%x",ballsensorvalue);
     // info_printf(6,"B2:%x",ballsensorvalue);
-    if (ballsensorvalue < 700)//check if in threshold
+    if ( (ballsensorvalue < 700) || (bs2value < 700))//check if in threshold
     {
       return 1;
     }

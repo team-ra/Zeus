@@ -31,8 +31,9 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 /// The launcher cocked sensor
  pros::ADILineSensor ls(BALL_SENSOR_PORT);
 ///the platform tube detect sensor
-pros::ADILineSensor ps(PLATFORM_SENSOR_PORT);
+// pros::ADILineSensor ps(PLATFORM_SENSOR_PORT);
 pros::ADILineSensor es('f');
+pros::ADILineSensor es2('e');
 //controller and motor state variables
 int leftDrivePower;
 int rightDrivePower;
@@ -459,18 +460,16 @@ void doubletap() {
   switch(dtstate) {
 
     case 0:
+    if(controller.get_digital(DIGITAL_Y)) {dtstate = 1;}
     if(filterBallSensor() == 1) {
-
     if (!flip){
-      if(controller.get_digital(DIGITAL_Y)) {if(!intialhomedone){dtstate = 1;}intialhomedone = true;}
-      else if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
+      if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
       else if(controller.get_digital(DIGITAL_R2)){dtstate = 3;}
       else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
       else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
     }
     else {
-      if(controller.get_digital(DIGITAL_Y)) {if(!intialhomedone){dtstate = 1;}intialhomedone = true;}
-      else if(controller.get_digital(DIGITAL_R2)){dtstate = 3;}
+       if(controller.get_digital(DIGITAL_R2)){dtstate = 3;}
       else if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
       else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
       else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
@@ -577,13 +576,13 @@ case 11:
       }
       else { flag = 2;}
       break;
-      // case 2:
-      // if ( (currentPos % 1500) >= currentTarget) {
-      //     if(wristMotor.get_power() != -25) {wristMotor.move(-25);}
-      //   }
-      //   else {flag = 3;}
-      //   break;
-       case 2:
+      case 2:
+      if ( (currentPos % 1500) >= currentTarget) {
+          if(wristMotor.get_power() != -25) {wristMotor.move(-25);}
+        }
+        else {flag = 3;}
+        break;
+       case 3:
             wristMotor.move(0);
             break;
 
