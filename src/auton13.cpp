@@ -24,8 +24,10 @@ void auton13()
   AccelerateForward(50);
   while (driveForward(encoderInchesToCounts(15), 50, true) != 1){}//12
   // intakeOff();//turn off intake
+  shootBall(1);
   while(shootBall(0) != 1);
   while(elevate(4) != 1);
+  shootBall(1);
   while(shootBall(0) != 1);
 
 //info_printf(1, "before shoot");
