@@ -251,6 +251,41 @@ int shootBall(int command)
   return 0;//else return unfired
 
 }
+
+int home(int x) {
+  static int hstate = 5;
+  if(x == 1) {hstate = 0;}
+  switch(hstate) {
+    case 0:
+          wristMotor.move(80);
+          delay(20);
+          if (es.get_value() > 1000) {hstate = 1;}
+          break;
+   case 1:
+         if (es.get_value() < 1000) {
+           hstate = 2;
+         }
+         break;
+  case 2:
+        wristMotor.move(-20);
+        delay(20);
+         if (es.get_value() < 1000) {hstate = 3;}
+         break;
+case 3:
+        wristMotor.move(0);
+        delay(20);
+        wristMotor.tare_position();
+        hstate = 4;
+        break;
+case 4:
+        return 1;
+        break;
+default:
+        break;
+
+  }
+  return 0;
+}
 /** \brief
 * \details Digitizes a sensor value
 * \param value the value to digitize according to the threshold
@@ -269,121 +304,75 @@ int digitize(uint32_t value)
 }
 //
 int elevate(int target) {
-        static int elstate = 0;
-        static int  lastTarget = 0;
-        static int position = 0;
-        static int currentTarget = 0;
-        static int flag = 3;
-        unsigned long int currentPos = 0;
-        static int lastElState = 0;
-        static bool doneHoming = true;
-        static bool intialhomedone = false;
-        switch(elstate) {
+  static int dtstate = 0;
+  static int lastTarget = 0;
+  static int position = 0;
+  static int currentTarget = 0;
+  static int flag = 4;
+  unsigned long int currentPos = 0;
+  if(target == 0){dtstate = 0;}
+  currentPos = wristMotor.get_position();
+  switch(dtstate) {
 
-  	      case 0:
-  		      if(target == 0) {if(!intialhomedone){elstate = 1;}intialhomedone = true;}
-  		      else if(target == 1) {elstate = 3;}
-            else if(target == 2){elstate = 2;}
-  		      else if(target == 3){elstate = 4;}
-  		      else if(target == 4){elstate = 5;}
-  		      break;
+    case 0:
+      if     (target == 1){position = 250;}
+      else if(target == 2){position = 990;}
+      else if(target == 3){position = 450;}
+      else if(target == 4){position = 1300;}
+      else {break;}
+      flag = 4;
+      if (position < currentTarget) { flag = 0;}
+      else {flag = 1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
+      dtstate = 5;
+   break;
 
-          case 1:
-                wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-                wristMotor.move(100);
-                if (es.get_value() > 1000) {elstate = 10;}
+case 5:
+// autoactive = true;
+if (flag == 3)
+    {
+      lastTarget = currentTarget;
+      dtstate = 6;
+    }
+      break;
 
-                break;
+case 6:
+      return 1;
+      break;
 
-      		case 2:
-          	if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 250;
-            currentTarget = (currentTarget + position - lastTarget) % 1500;
-  		      // current = wristMotor.get_position();
-  		      if (position < currentTarget) { flag = 0;}
-  		      else {flag =1;}
-  		      elstate = 9;
-            lastElState = 2;
-  		      break;
-  		case 3:
-            if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 790;
-            currentTarget = (currentTarget + position - lastTarget) % 1500;
-  		      // current = wristMotor.get_position();
-  		      if (position < currentTarget) { flag = 0;}
-  		      else {flag =1;}
+default:
+  break;
+    }
 
-            elstate = 9;
-            lastElState = 3;
-  		      break;
+  switch(flag)
+  {
+    case 0:
 
-  	      	case 4:
-            if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 650;
-  		      // current = wristMotor.get_position();
-            currentTarget = (currentTarget + position - lastTarget) % 1500;
-  		      if (position < currentTarget) { flag = 0;}
-  		      else {flag =1;}
-  		      elstate = 9;
-            lastElState = 4;
-  		      break;
-  		case 5:
-            if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 800;
-  		      // current = wristMotor.get_position();
-            currentTarget = (currentTarget + position - lastTarget) % 1500;
-  		      if (position < currentTarget) { flag = 0;}
-  		      else {flag =1;}
-  		      elstate = 9;
-            lastElState = 5;
-  		      break;
+      if(wristMotor.get_power() != 50) {wristMotor.move(70);}
+      if ((50 < (currentPos % 1500)) &&  ((currentPos % 1500) < 100) ) {flag = 1;}
 
-  		case 9:
-  		  lastTarget = currentTarget;
-        delay(50);
-        currentPos = wristMotor.get_position();
-  			if(flag == 2) {
-          elstate = 0;
+      break;
+    case 1:
+    if ( (currentPos % 1500) <= currentTarget) {
+        if(wristMotor.get_power() != 50) {wristMotor.move(70);}
+      }
+      else { flag = 2;}
+      break;
+      case 2:
+      if ( (currentPos % 1500) >= currentTarget) {
+          if(wristMotor.get_power() != -25) {wristMotor.move(-25);}
         }
-  			break;
-
-        case 10:
-          if (es.get_value() < 1000) {
-            elstate = 11;
-          }
+        else {flag = 3;}
+        break;
+       case 3:
+            wristMotor.move(0);
             break;
-        case 11:
-            wristMotor.move(-20);
-             if (es.get_value() < 1000) {
-              wristMotor.move(0);
-              delay(20);
-              wristMotor.tare_position();
-              elstate = 0;
-              return 1;
-             }
-  		    }
 
-  			switch(flag) {
-  				case 0:
-
-            if(wristMotor.get_power() != 30) {wristMotor.move(30);}
-            if ((50 < (currentPos % 1500)) &&  ((currentPos % 1500) < 100) ) {flag = 1;}
-
-  					break;
-  				case 1:
-  				if ( (currentPos % 1500) <= currentTarget) {
-  						if(wristMotor.get_power() != 30) {wristMotor.move(30);}
-  					}
-  					else { flag = 2;}
-  					break;
-
-  			     case 2:
-  					      wristMotor.move(0);
-                  return 1;
-                  break;
-                }
-        info_printf(3,"%d",currentTarget);
-
+      default:
+            break;
+  }
+  info_printf(3,"%f",wristMotor.get_position());
+  return 0;
   }
 
 /** \brief
@@ -397,7 +386,7 @@ int filterCockedSensor()
     //cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
     //pros::lcd::print(5,"B:%x",cockedsensorvalue);
     // info_printf(5,"B:%x - Max:%x - Min:%x",cockedsensorvalue, max, min);
-    if (cockedsensorvalue < 700) //check if in threshold
+    if (cockedsensorvalue < 2000) //check if in threshold
     {
       return 1;
     }

@@ -320,8 +320,6 @@ void elevationControl() {
 
   		    }
 
-
-
   			switch(flag) {
   				case 0:
 
@@ -480,8 +478,8 @@ void doubletap() {
 
    case 1:
 
-      wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
          wristMotor.move(80);
+         delay(20);
          if (es.get_value() > 1000) {dtstate = 11;}
          break;
     case 2:
@@ -498,7 +496,7 @@ void doubletap() {
 case 3:
       flip = false;
       // if ( dtstate == lastdtstate ) { break;}
-      position = 790;
+      position = 990;
       // current = wristMotor.get_position();
       if (position < currentTarget) { flag = 0;}
       else {flag = 1;}
@@ -547,9 +545,9 @@ case 10:
     {
       lastTarget = currentTarget;
       dtstate = 0;
+      flag = 4;
       autoactive = false;
     }
-
   break;
 
 case 11:

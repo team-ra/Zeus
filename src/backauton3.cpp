@@ -28,11 +28,14 @@ while(driveBackward(encoderInchesToCounts(39.5), 25,true) != 1);//reverse from c
 delay(250);
 resetEncoders();
 while(turnLeft(425,25,true) != 1){
-  elevate(3);
+  elevate(2);
 }//500
 delay(500);
+shootBall(1);
 while(shootBall(0) != 1);
 resetEncoders();
-while(turnLeft(225,25,true) != 1);//500
+// while(turnLeft(225,25,true) != 1);//500
+while(elevate(4) != 1);
+shootBall(1);
 while(shootBall(0) != 1);
 }

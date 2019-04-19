@@ -146,4 +146,7 @@ void requestLcdUpdate();
 void rakeControl();
 int elevate(int target);
 void backauton3();
+void auton17();
+void backauton4();
+int home(int x);
 #endif
