@@ -24,8 +24,6 @@ extern pros::Motor ballIntakeMotor;
 extern pros::ADILineSensor ls2;
 /// The launcher cocked sensor
 extern pros::ADILineSensor ls;
-///the platform sensor
-extern pros::ADILineSensor ps;
 
 extern pros::ADILineSensor es;
 
@@ -398,12 +396,8 @@ int filterCockedSensor()
     cockedsensorvalue = ls2.get_value();//get value of ball cocked sensor
     //cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
     //pros::lcd::print(5,"B:%x",cockedsensorvalue);
-    static int max=0, min=4095;
-    max = (cockedsensorvalue>max) ? cockedsensorvalue : max;
-    min = (cockedsensorvalue<min) ? cockedsensorvalue : min;
-
     // info_printf(5,"B:%x - Max:%x - Min:%x",cockedsensorvalue, max, min);
-    if (cockedsensorvalue < 0xB00) //check if in threshold
+    if (cockedsensorvalue < 700) //check if in threshold
     {
       return 1;
     }
@@ -510,101 +504,6 @@ void resetEncoders()
 * \details state machine to park on blue platform
 * \returns 0 when running, 1 when complete
 */
-int platformpresentblue()
-{
-  static int state = 0;
-  switch(state)
-  {
-    //
-    case 0:
-            leftDriveSet(75);
-            rightDriveSet(75);
-            state = 1;
-            break;
-    case 1:
-            if (ps.get_value() <= PLATFORM_CONTACT_BLUE) {state = 2;}
-            break;
-    case 2:
-            delay(250);
-            if (ps.get_value() <= PLATFORM_CONTACT_YELLOW) {state = 4;}
-            break;
-    case 3:
-            // // leftDriveSet(127);
-            // // rightDriveSet(127);
-            // leftDriveSet(75);
-            // rightDriveSet(75);
-            // if (ps.get_value() <= PLATFORM_CONTACT_YELLOW && ps.get_value() <= PLATFORM_CONTACT_BLUE) {state = 4;}//leftDriveSet(0);rightDriveSet(0);}
-            // break;//
-    case 4:
-
-            leftDriveSet(0);
-            rightDriveSet(0);
-            state = 0;
-            return 1;
-            break;
-
-  }
-  return 0;
-  //
-}
-
-/**\brief
-* \details state machine to park on red platform
-* \returns 0 when running, 1 when complete
-*/
-int platformpresentred()
-{
-  static int state = 0;
-  switch(state)
-  {
-    //
-    case 0:
-            leftDriveSet(75);
-            rightDriveSet(75);
-            state = 1;
-            break;
-    case 1:
-            // if (ps.get_value() <= PLATFORM_CONTACT_RED) {state = 2;}
-            filterPlatform();
-            state = 2;
-            break;
-    case 2:
-            delay(500);
-            // if (ps.get_value() <= PLATFORM_CONTACT_YELLOW) {state = 4;}
-            filterPlatform();
-            state = 4;
-            break;
-    case 3:
-            // // leftDriveSet(127);
-            // // rightDriveSet(127);
-            // leftDriveSet(75);
-            // rightDriveSet(75);
-            // if (ps.get_value() <= PLATFORM_CONTACT_YELLOW && ps.get_value() <= PLATFORM_CONTACT_BLUE) {state = 4;}//leftDriveSet(0);rightDriveSet(0);}
-            // break;//
-    case 4:
-
-            leftDriveSet(0);
-            rightDriveSet(0);
-            state = 0;
-            return 1;
-            break;
-
-  }
-  return 0;
-}
-/**\brief
-* \details filters the platform sensor to make sure the platform is really there
-*/
-void filterPlatform() {
-  int count = 0;
-  while (count < 3)
-  {
-    delay(25);
-    if (ps.get_value() < PLATFORM_CONTACT_RED) {count++;}
-    else {count = 0;}
-  }
-}
-
 
 /**\brief
 * \details adjusts power during a drive to keep straight

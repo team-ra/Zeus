@@ -16,17 +16,17 @@ void mabl2() {
 
 void mabl3() {
  info_printf(1,"in mabl3");
- auton5();
+ // auton5();
 }
 
 void mabl4() {
  info_printf(1,"in mabl4");
-auton7();
+// auton7();
 }
 
 void mabl5() {
  info_printf(1,"in mabl5");
- backauton1();
+ // backauton1();
 }
 
 void mabl6() {
@@ -45,17 +45,17 @@ void mabr2() {
 
 void mabr3() {
  info_printf(1,"in mabr3");
- auton9();
+ // auton9();
 }
 
 void mabr4() {
  info_printf(1,"in mabr4");
- auton8();
+ // auton8();
 }
 
 void mabr5() {
  info_printf(1,"in mabr5");
- auton12();
+ // auton12();
 }
 
 void mabr6() {
