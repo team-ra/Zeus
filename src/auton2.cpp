@@ -14,7 +14,7 @@ void auton2()
   while( driveForward(encoderInchesToCounts(12),25,true) != 1);
 
 //shoot high flag
-  while (shootBall() == 0){//waits for ball to shoot
+  while (shootBall(0) == 0){//waits for ball to shoot
     pros::delay(10);
   }
 }

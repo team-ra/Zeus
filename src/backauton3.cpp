@@ -31,8 +31,8 @@ while(turnLeft(425,25,true) != 1){
   elevate(3);
 }//500
 delay(500);
-while(shootBall() != 1);
+while(shootBall(0) != 1);
 resetEncoders();
 while(turnLeft(225,25,true) != 1);//500
-while(shootBall() != 1);
+while(shootBall(0) != 1);
 }

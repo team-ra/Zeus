@@ -19,7 +19,7 @@ intakeOn(false);
   while( driveForward(encoderInchesToCounts(10), 50, true) != 1);//12
   delay(500);
 //info_printf(1, "before shoot");
-  while (shootBall() == 0){//waits for ball to be shot
+  while (shootBall(0) == 0){//waits for ball to be shot
     pros::delay(10);
   }
   //drives forward 1 square to toggle low flag

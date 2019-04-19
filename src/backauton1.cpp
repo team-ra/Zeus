@@ -8,7 +8,7 @@ void backauton1() {
   delay(500);
   resetEncoders();
   //shoot center flag
-  while( shootBall() != 1);
+  while( shootBall(0) != 1);
 
   //turn to face cap
   while( turnLeft(465,50,true) != 1);//498
@@ -29,7 +29,7 @@ void backauton1() {
   while( driveForward(encoderInchesToCounts(14),50,true) != 1);
   delay(250);
   resetEncoders();
-  while( shootBall() != 1);
+  while( shootBall(0) != 1);
   delay(250);
   resetEncoders();
   while( driveBackward(encoderInchesToCounts(6),75,true) != 1);

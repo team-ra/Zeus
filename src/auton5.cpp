@@ -8,6 +8,6 @@ extern pros::Motor liftMotor;
 void auton5()
 {
   // intakeOn(false);
-  while(shootBall() != 1);
+  while(shootBall(0) != 1);
 
 }

@@ -19,7 +19,7 @@ intakeOn(false);
   while( driveForward(encoderInchesToCounts(8), 50, true) != 1);//12
   delay(500);
 
-  while (shootBall() == 0){//waits for ball to be shot
+  while (shootBall(0) == 0){//waits for ball to be shot
     pros::delay(10);
   }
 

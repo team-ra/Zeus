@@ -19,7 +19,7 @@ void auton9()
   intakeOff();
   while( turnRight(300,50,true) != 1);//turn to face center middle flag
   //shoot ball at flag
-  while (shootBall() == 0){//waits for ball to be shot
+  while (shootBall(0) == 0){//waits for ball to be shot
     pros::delay(10);
   }
 }

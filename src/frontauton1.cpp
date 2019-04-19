@@ -29,14 +29,14 @@ void frontauton1()
             if (driveForward(encoderInchesToCounts(12), 100, true) == 1) {state = 5;}
             break;
     case 5:
-            shootballstate = shootBall();
+            shootballstate = shootBall(0);
             if (shootballstate == 1) {state = 6;}
             break;
     case 6:
             if( driveBackward(encoderInchesToCounts(40), 50, true) == 1) {state = 7;}
             break;
     case 7:
-            shootballstate = shootBall();
+            shootballstate = shootBall(0);
             if (shootballstate == 1) {state = 8;}
             break;
     case 8:

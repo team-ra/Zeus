@@ -482,7 +482,7 @@ void doubletap() {
 
       wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
          wristMotor.move(80);
-         if (es.get_value() > 1000) {dtstate = 10;}
+         if (es.get_value() > 1000) {dtstate = 11;}
          break;
     case 2:
       flip = true;
@@ -530,27 +530,34 @@ flip = false;
       lastdtstate = 5;
       break;
 
+
 case 9:
+autoactive = true;
+if (flag == 3)
+  {
+    shootBall(1);//startshoot state machine
+    dtstate = 10;
+  }
+      break;
+
+case 10:
   // controller.print(2,0,"%x",wristMotor.get_position());
   // delay(50);
-autoactive = true;
-  if (flag == 2)
-  {
-    if(shootBall() == 1)
+    if(shootBall(0) == 1)
     {
       lastTarget = currentTarget;
       dtstate = 0;
       autoactive = false;
     }
-  }
+
   break;
 
-case 10:
+case 11:
   if (es.get_value() < 1000) {
-    dtstate = 11;
+    dtstate = 12;
   }
     break;
-case 11:
+case 12:
     wristMotor.move(-20);
      if (es.get_value() < 1000) {
       wristMotor.move(0);

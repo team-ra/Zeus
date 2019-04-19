@@ -24,9 +24,9 @@ void auton13()
   AccelerateForward(50);
   while (driveForward(encoderInchesToCounts(15), 50, true) != 1){}//12
   // intakeOff();//turn off intake
-  while(shootBall() != 1);
+  while(shootBall(0) != 1);
   while(elevate(4) != 1);
-  while(shootBall() != 1);
+  while(shootBall(0) != 1);
 
 //info_printf(1, "before shoot");
   pros::delay(250);
@@ -39,7 +39,7 @@ void auton13()
   // while (driveBackward(encoderInchesToCounts(19), 50, true) != 1);//24
   // while(turnRight(100,50,true) !=1);
 
-  // while (shootBall() == 0){//waits for ball to be shot
+  // while (shootBall(0) == 0){//waits for ball to be shot
   //   pros::delay(10);
   // }
   // while(turnLeft(100,25,true) != 1);

@@ -12,7 +12,7 @@
 //   resetEncoders();
 //   pros::delay(100);
 //   while (driveBackward(encoderInchesToCounts(24), 75, true) != 1);
-//   while (shootBall() == 0){//waits for ball to be shot
+//   while (shootBall(0) == 0){//waits for ball to be shot
 //     pros::delay(10);
 //   }
 //   while(driveBackward(encoderInchesToCounts(18), 75, true) != 1);//12.5
@@ -33,7 +33,7 @@
 //   while(turnRight(800,50,true) != 1);
 //   intakeOff();//turn off intake
 //   while(driveBackward(encoderInchesToCounts(16), 75,true) != 1);//reverse from cap
-//   while (shootBall() == 0){//waits for ball to be shot
+//   while (shootBall(0) == 0){//waits for ball to be shot
 //     pros::delay(10);
 //   }
 //   while (driveForward(encoderInchesToCounts(16), 50, true) != 1);

@@ -8,7 +8,7 @@ void auton10()
   resetEncoders();
   pros::delay(250);
   while( driveForward(encoderInchesToCounts(14),50,true) != 1);
-  while (shootBall() == 0){//waits for ball to shoot
+  while (shootBall(0) == 0){//waits for ball to shoot
     pros::delay(10);
   }
   //driveForward(encoderInchesToCounts(4), 50, true);//reverses to platform

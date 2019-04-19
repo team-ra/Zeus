@@ -80,7 +80,7 @@ void filterPlatform();
 void backauton2();
 // int setAutonMode();
 // void startauto(int mode);
-int shootBall();
+int shootBall(int command);
 void waitForSensorInit(int timeoutmillis);
 int readIntakeButton(controller_digital_e_t button);
 int readIntakeReverseButton(controller_digital_e_t button);

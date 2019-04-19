@@ -27,12 +27,12 @@ void auton12()
   AccelerateBackward(-75);
   while (driveBackward(encoderInchesToCounts(17), 75, true) != 1);//24
 
-  while (shootBall() == 0){//waits for ball to be shot
+  while (shootBall(0) == 0){//waits for ball to be shot
     pros::delay(10);
   }
 
   while(driveBackward(encoderInchesToCounts(30), 75,true) != 1);//reverse from cap
-  while (shootBall() == 0){//waits for ball to be shot
+  while (shootBall(0) == 0){//waits for ball to be shot
     pros::delay(10);
   }
   extern pros::Motor leftDriveMotor1;

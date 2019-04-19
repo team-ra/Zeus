@@ -50,7 +50,7 @@ void skillsauton2() {
     resetEncoders();
 
     //shoot middle flag
-    while (shootBall() == 0){//waits for ball to be shot
+    while (shootBall(0) == 0){//waits for ball to be shot
       delay(10);
     }
 
@@ -64,7 +64,7 @@ void skillsauton2() {
     resetEncoders();
 
     //shoot top flag
-    while (shootBall() == 0){//waits for ball to be shot
+    while (shootBall(0) == 0){//waits for ball to be shot
       delay(10);
       }
       while(turnLeft(100,50,true) !=1);//420
@@ -146,7 +146,7 @@ void skillsauton2() {
     // delay(500);
     //
     // resetEncoders();
-    // while (shootBall() == 0){//waits for ball to be shot
+    // while (shootBall(0) == 0){//waits for ball to be shot
     //   delay(10);
     // }
 
@@ -155,7 +155,7 @@ void skillsauton2() {
     while(turnLeft(308,50,true) != 1);
     delay(500);
     resetEncoders();
-    while (shootBall() == 0){//waits for ball to be shot
+    while (shootBall(0) == 0){//waits for ball to be shot
       delay(10);
     }
 

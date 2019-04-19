@@ -214,10 +214,11 @@ int turnRight(int counts,int power,bool zeromotors)
 * \details State machine that shoots the ball. Must be called until it returns 1
 * \return 1 if ball fired, else 0
 */
-int shootBall()
+int shootBall(int command)
 {
-  static int state = 0;//holds the state machine's state
+  static int state = 4;//holds the state machine's state
   info_printf(5,"%d",state);
+  if (command == 1) {state = 0;}
   switch(state)
   {
   case 0:
@@ -241,12 +242,13 @@ int shootBall()
       state = 3;}
     break;
   case 3:
-  {
     //info_printf(4, "case3");
     launchMotor.move(0);
-    state = 0; //restart state machine
+    state = 4; //restart state machine
+    break;
+  case 4:
     return 1;//return fired
-  }
+    break;//idle
 }
   return 0;//else return unfired
 

@@ -13,12 +13,12 @@
 //     while( driveForward(encoderInchesToCounts(8), 75, true) != 1);
 //
 //     //shoot flag
-//     while (shootBall() == 0){pros::delay(10);}
+//     while (shootBall(0) == 0){pros::delay(10);}
 //
 //     while( driveBackward(encoderInchesToCounts(20), 75, true) != 1);
 //
 //     //shoot flag
-//     while (shootBall() == 0){pros::delay(10);}
+//     while (shootBall(0) == 0){pros::delay(10);}
 //
 //     while (driveBackward(encoderInchesToCounts(16), 75, true) != 1);
 //
@@ -69,14 +69,14 @@ void skillsauton1()
 //   while (driveBackward(encoderInchesToCounts(19), 100, true) != 1);//24
 //   while(turnRight(100,50,true) !=1);
 //
-//   while (shootBall() == 0){//waits for ball to be shot
+//   while (shootBall(0) == 0){//waits for ball to be shot
 //     pros::delay(10);
 //   }
 //   resetEncoders();
 //   while(turnLeft(100,25,true) != 1);
 //   while(driveBackward(encoderInchesToCounts(30), 75,true) != 1);//reverse from cap
 //   while(turnRight(100,50,true) !=1);
-//   while (shootBall() == 0){//waits for ball to be shot
+//   while (shootBall(0) == 0){//waits for ball to be shot
 //     pros::delay(10);
 //   }
 //   turnLeft(100,50,true);
