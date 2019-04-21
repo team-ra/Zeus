@@ -235,7 +235,7 @@ int shootBall(int command)
     //info_printf(3, "case2");
     //check if ball has left launcher
     // launchMotor.move(20);
-    // delay(50);
+    // pros::delay(50);
     if ((filterCockedSensor() == 0)) {
       state = 3;}
     break;
@@ -258,7 +258,7 @@ int home(int x) {
   switch(hstate) {
     case 0:
           wristMotor.move(80);
-          delay(20);
+          pros::delay(20);
           if (es.get_value() > 1000) {hstate = 1;}
           break;
    case 1:
@@ -268,12 +268,12 @@ int home(int x) {
          break;
   case 2:
         wristMotor.move(-20);
-        delay(20);
+        pros::delay(20);
          if (es.get_value() < 1000) {hstate = 3;}
          break;
 case 3:
         wristMotor.move(0);
-        delay(20);
+        pros::delay(20);
         wristMotor.tare_position();
         hstate = 4;
         break;

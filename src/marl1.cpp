@@ -17,15 +17,15 @@ void auton16()
   //drives forward 1 square to prepare for shooting the middle flag
 intakeOn(false);
   while( driveForward(encoderInchesToCounts(10), 50, true) != 1);//12
-  delay(500);
+  pros::delay(500);
 //info_printf(1, "before shoot");
   while (shootBall(0) == 0){//waits for ball to be shot
     pros::delay(10);
   }
   //drives forward 1 square to toggle low flag
-  delay(500);
+  pros::delay(500);
   turnLeft(25,50,true);
-  delay(200);
+  pros::delay(200);
   while( driveForward(encoderInchesToCounts(4),25,true) != 1);
   while( driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true) != 1);
   //info_printf(1, "end auton1");

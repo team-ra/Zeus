@@ -31,7 +31,7 @@ void opcontrol() {
 	// pros::delay(50);
 	// updateControllerLcd(2,blankline);
 	wristMotor.tare_position();
-	delay(50);
+	pros::delay(50);
 	//
 	 while (true) {
 		static int flag = 1;//holds whether or not to trigger screen update

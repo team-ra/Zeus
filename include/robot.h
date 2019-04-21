@@ -1,6 +1,8 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 #include "main.h"
+
+using namespace pros;
 //defines
 #define LEFT_DRIVE_MOTOR_1PORT 10
 #define RIGHT_DRIVE_MOTOR_1PORT 9
@@ -126,7 +128,7 @@ void AccelerateForward(int power);
 void AccelerateBackward(int power);
 void drivestraight(int dmp);
 void taskManager(int action,pros::Task task);
-pros::Task taskCreator(task_fn_t func, char* name);
+Task taskCreator(task_fn_t func, char* name);
 void frontauton1();
 bool checkIfStalled();
 void backauton1();
@@ -136,7 +138,7 @@ void doubletap();
 
 double leftDriveGetPos();
 double rightDriveGetPos();
-int debounceButton(pros::controller_digital_e_t button);
+int debounceButton(controller_digital_e_t button);
 void swirl(void* param);
 void updateLcd(void* param);
 void updateLineData(char* data);

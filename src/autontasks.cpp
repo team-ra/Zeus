@@ -153,7 +153,7 @@
 //    else {}
 // }
 //
-// pros::Task taskCreator(task_fn_t func, char* name)
+// pros::Task taskCreator(pros::task_fn_t func, char* name)
 // {
 //  Task t = new Task(func,nullptr,TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT,name);
 //  return t;
@@ -176,62 +176,62 @@ void AccelerateForward(int power)//gradually increase power to avoid sudden jerk
   {
     leftDriveSet(10);
     rightDriveSet(10);
-    delay(20);
+    pros::delay(20);
     if (power <= 10) {break;}
 
     rightDriveSet(20);
     leftDriveSet(20);
-    delay(20);
+    pros::delay(20);
     if (power <= 20) {break;}
 
     leftDriveSet(30);
     rightDriveSet(30);
-    delay(20);
+    pros::delay(20);
     if (power <= 30) {break;}
 
     rightDriveSet(40);
     leftDriveSet(40);
-    delay(20);
+    pros::delay(20);
     if (power <= 40) {break;}
 
     leftDriveSet(50);
     rightDriveSet(50);
-    delay(20);
+    pros::delay(20);
     if (power <= 50) {break;}
 
     leftDriveSet(60);
     rightDriveSet(60);
-    delay(20);
+    pros::delay(20);
     if (power <= 60) {break;}
 
     leftDriveSet(70);
     rightDriveSet(70);
-    delay(20);
+    pros::delay(20);
     if (power <= 70) {break;}
 
     leftDriveSet(80);
     rightDriveSet(80);
-    delay(20);
+    pros::delay(20);
     if (power <= 80) {break;}
 
     leftDriveSet(90);
     rightDriveSet(90);
-    delay(20);
+    pros::delay(20);
     if (power <= 90) {break;}
 
     leftDriveSet(100);
     rightDriveSet(100);
-    delay(20);
+    pros::delay(20);
     if (power <= 100) {break;}
 
     leftDriveSet(110);
     rightDriveSet(110);
-    delay(20);
+    pros::delay(20);
     if (power <= 110) {break;}
 
     leftDriveSet(120);
     rightDriveSet(120);
-    delay(20);
+    pros::delay(20);
   }
 }
 /*\brief
@@ -244,62 +244,62 @@ void AccelerateBackward(int power)//gradually increase power to avoid sudden jer
   {
     leftDriveSet(-10);
     rightDriveSet(-10);
-    delay(20);
+    pros::delay(20);
     if (power >= -10) {break;}
 
     rightDriveSet(-20);
     leftDriveSet(-20);
-    delay(20);
+    pros::delay(20);
     if (power >= -20) {break;}
 
     leftDriveSet(-30);
     rightDriveSet(-30);
-    delay(20);
+    pros::delay(20);
     if (power >= -30) {break;}
 
     rightDriveSet(-40);
     leftDriveSet(-40);
-    delay(20);
+    pros::delay(20);
     if (power >= -40) {break;}
 
     leftDriveSet(-50);
     rightDriveSet(-50);
-    delay(20);
+    pros::delay(20);
     if (power >= -50) {break;}
 
     leftDriveSet(-60);
     rightDriveSet(-60);
-    delay(20);
+    pros::delay(20);
     if (power >= -60) {break;}
 
     leftDriveSet(-70);
     rightDriveSet(-70);
-    delay(20);
+    pros::delay(20);
     if (power >= -70) {break;}
 
     leftDriveSet(-80);
     rightDriveSet(-80);
-    delay(20);
+    pros::delay(20);
     if (power >= -80) {break;}
 
     leftDriveSet(-90);
     rightDriveSet(-90);
-    delay(20);
+    pros::delay(20);
     if (power >= -90) {break;}
 
     leftDriveSet(-100);
     rightDriveSet(-100);
-    delay(20);
+    pros::delay(20);
     if (power >= -100) {break;}
 
     leftDriveSet(-110);
     rightDriveSet(-110);
-    delay(20);
+    pros::delay(20);
     if (power >= -110) {break;}
 
     leftDriveSet(-120);
     rightDriveSet(-120);
-    delay(20);
+    pros::delay(20);
   }
 }
 
@@ -308,7 +308,7 @@ void AccelerateBackward(int power)//gradually increase power to avoid sudden jer
 //
 //   int leftencval = -leftDriveMotor2.get_position();//making values positive for math
 //   int rightencval = -rightDriveMotor2.get_position();//making values positive for math
-//   delay(30);
+//   pros::delay(30);
 //     //go straight algorithm
 //       static int offset = 0;
 //       if ( (rightencval - leftencval) >= 15  )//if off a lot, compenate accordingly
@@ -356,7 +356,7 @@ void AccelerateBackward(int power)//gradually increase power to avoid sudden jer
 //         offset = -500;
 //       }
 //     rightDriveSet(dmp-offset/50);//apply offset
-//     delay(30);
+//     pros::delay(30);
 //
 // }
 
@@ -395,7 +395,7 @@ void swirl(void* param)
         swirlstate = 0;
     }
     swirlstate++;
-    delay(50);
+    pros::delay(50);
 }
 
 void updateLcd(void* param) {

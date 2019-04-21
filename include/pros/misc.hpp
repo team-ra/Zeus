@@ -108,7 +108,7 @@ class Controller {
 	 * \return 1 if the button on the controller is pressed.
 	 * If the controller was not connected, then 0 is returned
 	 */
-	std::int32_t get_digital(controller_digital_e_t button);
+	std::int32_t get_digital(pros::controller_digital_e_t button);
 
 	/**
 	 * Returns a rising-edge case for a controller button press.
@@ -133,7 +133,7 @@ class Controller {
 	 * \return 1 if the button on the controller is pressed and had not been
 	 * pressed the last time this function was called, 0 otherwise.
 	 */
-	std::int32_t get_digital_new_press(controller_digital_e_t button);
+	std::int32_t get_digital_new_press(pros::controller_digital_e_t button);
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"

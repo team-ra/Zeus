@@ -223,7 +223,7 @@ int32_t controller_get_battery_level(controller_id_e_t id);
  * \return 1 if the button on the controller is pressed.
  * If the controller was not connected, then 0 is returned
  */
-int32_t controller_get_digital(controller_id_e_t id, controller_digital_e_t button);
+int32_t controller_get_digital(controller_id_e_t id, pros::controller_digital_e_t button);
 
 /**
  * Returns a rising-edge case for a controller button press.
@@ -252,7 +252,7 @@ int32_t controller_get_digital(controller_id_e_t id, controller_digital_e_t butt
  * \return 1 if the button on the controller is pressed and had not been pressed
  * the last time this function was called, 0 otherwise.
  */
-int32_t controller_get_digital_new_press(controller_id_e_t id, controller_digital_e_t button);
+int32_t controller_get_digital_new_press(controller_id_e_t id, pros::controller_digital_e_t button);
 
 /**
  * Sets text to the controller LCD screen.

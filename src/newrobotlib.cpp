@@ -253,7 +253,7 @@ void elevationControl() {
    case 1:
 
          wristMotor.move(80);
-         delay(20);
+         pros::delay(20);
          if (es.get_value() > 1000) {dtstate = 11;}
          break;
     case 2:
@@ -312,7 +312,7 @@ case 12:
     wristMotor.move(-20);
      if (es.get_value() < 1000) {
       wristMotor.move(0);
-      delay(20);
+      pros::delay(20);
       wristMotor.tare_position();
       dtstate = 0;
      }
@@ -486,7 +486,7 @@ void doubletap() {
    case 1:
 
          wristMotor.move(80);
-         delay(20);
+         pros::delay(20);
          if (es.get_value() > 1000) {dtstate = 11;}
          break;
     case 2:
@@ -547,7 +547,7 @@ if (flag == 3)
 
 case 10:
   // controller.print(2,0,"%x",wristMotor.get_position());
-  // delay(50);
+  // pros::delay(50);
     if(shootBall(0) == 1)
     {
       lastTarget = currentTarget;
@@ -566,7 +566,7 @@ case 12:
     wristMotor.move(-20);
      if (es.get_value() < 1000) {
       wristMotor.move(0);
-      delay(20);
+      pros::delay(20);
       wristMotor.tare_position();
       dtstate = 0;
      }
