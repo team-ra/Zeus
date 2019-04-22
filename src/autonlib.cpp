@@ -547,6 +547,6 @@ void drivestraight(int dmp)//add or subtract power to stay on course when drivin
         offset = -500;
       }
     rightDriveSet(dmp-offset/50);
-    delay(30);
+    pros::delay(30);
 
   }
