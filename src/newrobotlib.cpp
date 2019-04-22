@@ -111,6 +111,7 @@ void ballIntakeControl() {
               if (intActive){ballIntakeMotor.move(intPower);}
               else {ballIntakeMotor.move(0);}
               activestate = 0;
+              break;
 
     }
 
@@ -224,123 +225,131 @@ void rakeControl()
 }
 
 void elevationControl() {
-        static int elstate = 0;
-        static int  lastTarget = 0;
-        static int position = 0;
-        static int currentTarget = 0;
-        static int flag = 3;
-        unsigned long int currentPos = 0;
-        static int lastElState = 0;
-        static bool doneHoming = true;
-        static bool intialhomedone = false;
-        info_printf(1,"%d",elstate);
-        info_printf(2,"%d",((unsigned int)wristMotor.get_position() % 1500));
-        switch(elstate) {
+  static int dtstate = 0;
+  static int nextdtstate = 0;
+  static int  lastTarget = 0;
+  static int position = 0;
+  static int pos2 = 0;
+  static int currentTarget = 0;
+  static int flag = 4;
+  unsigned long int currentPos = 0;
+  static int lastdtstate = 0;
+  static bool doneHoming = true;
+  static bool intialhomedone = false;
+  static bool flip= false;
+  info_printf(1,"%d",dtstate);
+  info_printf(2,"%d",flag);
+  switch(dtstate) {
 
-  	      case 0:
-  		      if(controller.get_digital(DIGITAL_Y)) {if(!intialhomedone){elstate = 1;}intialhomedone = true;}
-  		      else if(controller.get_digital(DIGITAL_R1)){elstate = 2;}
-  		      else if(controller.get_digital(DIGITAL_R2)){elstate = 3;}
-  		      else if(controller.get_digital(DIGITAL_L1)){elstate = 4;}
-  		      else if(controller.get_digital(DIGITAL_L2)){elstate = 5;}
-  		      break;
+    case 0:
+    if(controller.get_digital(DIGITAL_Y)) {dtstate = 1;}
+      if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
+      else if(controller.get_digital(DIGITAL_R2)){dtstate = 3;}
+      else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
+      else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
+      flag = 4;
+   break;
 
-          case 1:
-          wristMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-                wristMotor.move(80);
-                if (es.get_value() > 1000) {elstate = 10;}
-                break;
+   case 1:
 
-      		case 2:
-          	if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 250;
-  		      // current = wristMotor.get_position();
-  		      if (position < currentTarget) { flag = 0;}
-  		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 1500;
-  		      elstate = 9;
-            lastElState = 2;
-  		      break;
-  		case 3:
-            if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 790;
-  		      // current = wristMotor.get_position();
-  		      if (position < currentTarget) { flag = 0;}
-  		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 1500;
+         wristMotor.move(80);
+         delay(20);
+         if (es.get_value() > 1000) {dtstate = 11;}
+         break;
+    case 2:
+      // if ( dtstate == lastdtstate ) {break;}
+      position = 50;
+      // current = wristMotor.get_position();
+      if (position < currentTarget) { flag = 0;}
+      else {flag = 1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
+      dtstate = 9;
+      break;
+case 3:
+      // if ( dtstate == lastdtstate ) { break;}
+      position = 990;
+      // current = wristMotor.get_position();
+      if (position < currentTarget) { flag = 0;}
+      else {flag = 1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
+      dtstate = 9;
+      break;
 
-            elstate = 9;
-            lastElState = 3;
-  		      break;
+      case 4: // L1
+      flip = true;
+      // if ( dtstate == lastdtstate ) { break;}
+      position = 450;
+      // current = wristMotor.get_position();
+      if (position < currentTarget) { flag = 0;}
+      else {flag =1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
+      dtstate = 9;
+      break;
+case 5:
+      // if ( dtstate == lastdtstate ) { break;}
+      position = 1020;
+      // current = wristMotor.get_position();
+      if (position < currentTarget) { flag = 0;}
+      else {flag = 1;}
+      currentTarget = (currentTarget + position - lastTarget) % 1500;
+      dtstate = 9;
+      break;
 
-  	      	case 4:
-            if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 650;
-  		      // current = wristMotor.get_position();
-  		      if (position < currentTarget) { flag = 0;}
-  		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 1500;
-  		      elstate = 9;
-            lastElState = 4;
-  		      break;
-  		case 5:
-            if ( elstate == lastElState ) {elstate = 0; break;}
-  		      position = 800;
-  		      // current = wristMotor.get_position();
-  		      if (position < currentTarget) { flag = 0;}
-  		      else {flag =1;}
-  			currentTarget = (currentTarget + position - lastTarget) % 1500;
-  		      elstate = 9;
-            lastElState = 5;
-  		      break;
 
-  		case 9:
-  		  lastTarget = currentTarget;
-        controller.print(2,0,"%x",wristMotor.get_position());
-    		delay(50);
-        currentPos = wristMotor.get_position();
-  			if(flag == 2) {
-          elstate = 0;
-        }
-  			break;
-
-      case 10:
-        if (es.get_value() < 1000) {
-          elstate = 11;
-        }
-          break;
-      case 11:
-          wristMotor.move(-20);
-           if (es.get_value() < 1000) {
-            wristMotor.move(0);
-            delay(20);
-            wristMotor.tare_position();
-            elstate = 0;
-           }
-
-  		    }
-
-  			switch(flag) {
-  				case 0:
-
-            if(wristMotor.get_power() != 25) {wristMotor.move(25);}
-            if ((50 < (currentPos % 1500)) &&  ((currentPos % 1500) < 100) ) {flag = 1;}
-
-  					break;
-  				case 1:
-  				if ( (currentPos % 1500) <= currentTarget) {
-  						if(wristMotor.get_power() != 25) {wristMotor.move(25);}
-  					}
-  					else { flag = 2;}
-  					break;
-
-  			     case 2:
-  					      wristMotor.move(0);
-                  break;
-                }
-        info_printf(3,"%d",currentTarget);
-
+case 9:
+if (flag == 3)
+  {
+    dtstate = 0;
   }
+      break;
+
+case 11:
+  if (es.get_value() < 1000) {
+    dtstate = 12;
+  }
+    break;
+case 12:
+    wristMotor.move(-20);
+     if (es.get_value() < 1000) {
+      wristMotor.move(0);
+      delay(20);
+      wristMotor.tare_position();
+      dtstate = 0;
+     }
+
+    }
+
+    currentPos = wristMotor.get_position();
+  switch(flag)
+  {
+    case 0:
+
+      if(wristMotor.get_power() != 50) {wristMotor.move(70);}
+      if ((50 < (currentPos % 1500)) &&  ((currentPos % 1500) < 100) ) {flag = 1;}
+
+      break;
+    case 1:
+    if ( (currentPos % 1500) <= currentTarget) {
+        if(wristMotor.get_power() != 50) {wristMotor.move(70);}
+      }
+      else { flag = 2;}
+      break;
+      case 2:
+      if ( (currentPos % 1500) >= currentTarget) {
+          if(wristMotor.get_power() != -25) {wristMotor.move(-25);}
+        }
+        else {flag = 3;}
+        break;
+       case 3:
+            wristMotor.move(0);
+            break;
+
+      default:
+
+            break;
+  }
+  info_printf(3,"%f",wristMotor.get_position());
+}
 
 void driveControl()
 {
@@ -370,8 +379,6 @@ void driveControl()
 
     }
 }
-
-
 
 void motorSetup()
 {
