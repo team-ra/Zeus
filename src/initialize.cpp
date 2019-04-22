@@ -1,6 +1,6 @@
 #include "robot.h"
 #include "robot_gui.h"
-
+pros::ADIGyro gyro('h');
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -10,6 +10,7 @@
 void initialize() {
   robot_gui();//runs robot gui
   //pros::lcd::initialize();
+  gyro.reset();
 	auton_ptr = &auton_non;//sets auton pointer to none
 }
 

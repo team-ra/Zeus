@@ -48,6 +48,8 @@ uint8_t wristleft;
 uint8_t wristright;
 uint8_t liftup;
 uint8_t liftdown;
+pros::ADILineSensor cs2('g');
+
 bool autoactive = false;
 // void ballIntakeControl() {
 //     static int state = 0;

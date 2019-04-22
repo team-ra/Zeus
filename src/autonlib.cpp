@@ -2,7 +2,7 @@
 #include "robot_gui.h"
 
 #define STALLED_THRESHOLD 10
-
+#define TWO_LINE_SENSORS
 using namespace pros::literals;
 /// The Back left drive motor
 extern pros::Motor leftDriveMotor1;
@@ -28,6 +28,10 @@ extern pros::ADILineSensor ls;
 extern pros::ADILineSensor es;
 
 extern pros::ADILineSensor es2;
+
+extern pros::ADILineSensor cs2;
+
+extern pros::ADIGyro gyro;
 /** \brief
 * \details encoderInchesToCounts - Converts inches to encoder counts
 * \param inches the number of inches to move
@@ -381,12 +385,15 @@ default:
 */
 int filterCockedSensor()
 {
+  #ifdef TWO_LINE_SENSORS
   static int cockedsensorvalue = 0;//holds value of cocked sensor
+  static int cs2sensorvalue = 0;
     cockedsensorvalue = ls2.get_value();//get value of ball cocked sensor
+    cs2sensorvalue = cs2.get_value();
     //cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
     //pros::lcd::print(5,"B:%x",cockedsensorvalue);
     // info_printf(5,"B:%x - Max:%x - Min:%x",cockedsensorvalue, max, min);
-    if (cockedsensorvalue < 2000) //check if in threshold
+    if ( (cockedsensorvalue < 2000) || (cs2sensorvalue < 2000))//check if in threshold
     {
       return 1;
     }
@@ -394,6 +401,23 @@ int filterCockedSensor()
     {
       return 0;
     }
+
+#else
+static int cockedsensorvalue = 0;//holds value of cocked sensor
+cockedsensorvalue = ls2.get_value();//get value of ball cocked sensor
+//cockedsensorvalue = (cockedsensorvalue << 1) | digitize(ls2.get_value());
+//pros::lcd::print(5,"B:%x",cockedsensorvalue);
+// info_printf(5,"B:%x - Max:%x - Min:%x",cockedsensorvalue, max, min);
+if (cockedsensorvalue < 2000) //check if in threshold
+{
+  return 1;
+}
+else
+{
+  return 0;
+}
+#endif
+
 }
 
 int filterElevationHomeSensor()
@@ -549,4 +573,21 @@ void drivestraight(int dmp)//add or subtract power to stay on course when drivin
     rightDriveSet(dmp-offset/50);
     pros::delay(30);
 
+  }
+
+  int gyroturn(double degrees) {
+    if (degrees < 0) {
+      leftDriveSet(-25);
+      rightDriveSet(25);
+    }
+    else {
+      leftDriveSet(25);
+      rightDriveSet(-25);
+    }
+    if(gyro.get_value() > degrees * 10) {
+      leftDriveSet(0);
+      rightDriveSet(0);
+      return 1;
+    }
+    return 0;
   }
