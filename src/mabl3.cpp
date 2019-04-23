@@ -28,7 +28,7 @@ while (driveForward(encoderInchesToCounts(33), 50, false) != 1){
   home(0);
 }//drive to cap 40
 while( home(0) != 1);
-pros::delay(400);//wait for ball to enter mechanism
+pros::delay(250);//wait for ball to enter mechanism
 AccelerateBackward(-50);
 while(driveBackward(50, 50,true) != 1);//reverse from cap
 pros::delay(250);
@@ -37,11 +37,11 @@ while(turnRight(650,50,true) != 1);//500
 resetEncoders();
 AccelerateForward(50);
 intakeOff();
-while (driveForward(encoderInchesToCounts(22), 50, true) != 1){}//12
-pros::delay(400);
+while (driveForward(encoderInchesToCounts(20), 50, true) != 1){}//12
+pros::delay(250);
 resetEncoders();
 while(turnLeft(700,50,true) != 1);//500
-pros::delay(400);
+pros::delay(250);
 resetEncoders();
 while (driveForward(encoderInchesToCounts(35), 75, false) != 1){}//12
 pros::delay(250);
@@ -50,7 +50,8 @@ pros::delay(250);
 resetEncoders();
 elevate(0);
 elevate(1);
-while(turnRight(400,25,true) != 1){
+gyroReset();
+while(gyroturn(45) != 1){
   elevate(6);
 }
 while (!elevate(6)); // wait for done
@@ -61,9 +62,11 @@ shootBall(1);
 while(shootBall(0) != 1);
 pros::delay(40);
 elevate(0);
-elevate(4);
+elevate(3);
 while(elevate(6) != 1);
 pros::delay(40);
+gyroReset();
+while(gyroturn(1) != 1);
 shootBall(1);
 while(shootBall(0) != 1);
 }

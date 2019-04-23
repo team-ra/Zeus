@@ -11,9 +11,9 @@ void auton13()
   //drives forward 1 square to prepare for shooting the middle flag
   intakeOn(false);  //turns intake on
   AccelerateForward(50);
-
+  home(1);
   while (driveForward(encoderInchesToCounts(33), 50, false) != 1){
-    elevate(0);
+    home(0);
   }//drive to cap 40
   pros::delay(500);//wait for ball to enter mechanism
   AccelerateBackward(-50);
@@ -22,7 +22,7 @@ void auton13()
   while(turnLeft(950,50,true) != 1);//500
   pros::delay(250);
   AccelerateForward(50);
-  while (driveForward(encoderInchesToCounts(15), 50, true) != 1){}//12
+  while (driveForward(encoderInchesToCounts(12), 50, true) != 1){}//12
   // intakeOff();//turn off intake
   shootBall(1);
   while(shootBall(0) != 1);
@@ -36,7 +36,7 @@ void auton13()
   while( turnLeft(80,50,true) != 1);
   pros::delay(250);
   resetEncoders();
-  while(driveForward(encoderInchesToCounts(28),50,true) != 1);
+  while(driveForward(encoderInchesToCounts(34),50,true) != 1);
   // AccelerateBackward(-50);(250);
   // while (driveBackward(encoderInchesToCounts(19), 50, true) != 1);//24
   // while(turnRight(100,50,true) !=1);

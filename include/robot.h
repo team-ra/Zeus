@@ -152,4 +152,5 @@ void auton17();
 void backauton4();
 int home(int x);
 int gyroturn(double degrees);
+void gyroReset();
 #endif

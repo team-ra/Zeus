@@ -505,7 +505,7 @@ void doubletap() {
 case 3:
       flip = false;
       // if ( dtstate == lastdtstate ) { break;}
-      position = 990;
+      position = 1100;
       // current = wristMotor.get_position();
       if (position < currentTarget) { flag = 0;}
       else {flag = 1;}
@@ -528,7 +528,7 @@ case 3:
 case 5:
 flip = false;
       // if ( dtstate == lastdtstate ) { break;}
-      position = 1020;
+      position = 1220;
       // current = wristMotor.get_position();
       if (position < currentTarget) { flag = 0;}
       else {flag = 1;}

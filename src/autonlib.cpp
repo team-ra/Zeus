@@ -319,10 +319,10 @@ int elevate(int target) {
   switch(dtstate) {
 
     case 0:
-      if     (target == 1){position = 250;}
+      if     (target == 1){position = 450;}
       else if(target == 2){position = 990;}
-      else if(target == 3){position = 450;}
-      else if(target == 4){position = 1300;}
+      else if(target == 3){position = 550;}
+      else if(target == 4){position = 1250;}
       else {break;}
       flag = 4;
       if (position < currentTarget) { flag = 0;}
@@ -579,15 +579,25 @@ void drivestraight(int dmp)//add or subtract power to stay on course when drivin
     if (degrees < 0) {
       leftDriveSet(-25);
       rightDriveSet(25);
+      if(gyro.get_value() < degrees * 10) {
+        leftDriveSet(0);
+        rightDriveSet(0);
+        return 1;
+      }
     }
     else {
       leftDriveSet(25);
       rightDriveSet(-25);
+      if(gyro.get_value() > degrees * 10) {
+        leftDriveSet(0);
+        rightDriveSet(0);
+        return 1;
+      }
     }
-    if(gyro.get_value() > degrees * 10) {
-      leftDriveSet(0);
-      rightDriveSet(0);
-      return 1;
-    }
+
     return 0;
+  }
+
+  void gyroReset() {
+    gyro.reset();
   }

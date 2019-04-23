@@ -53,8 +53,8 @@ void opcontrol() {
 		driveControl();
 		liftControl();
 		//rakeControl();
-		elevationControl();
-		// doubletap();
+		// elevationControl();
+		doubletap();
 		launcherControl();
 		ballIntakeControl();
 

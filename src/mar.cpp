@@ -29,7 +29,7 @@ void marl5() {
 
 void marl6() {
  info_printf(1,"in marl6");
- backauton3();
+ // backauton3();
  //skillsauton2();
 }
 
@@ -47,6 +47,7 @@ void marr2() {
 
 void marr3() {
  info_printf(1,"in marr3");
+ backauton3();
 }
 
 void marr4() {
