@@ -49,7 +49,7 @@ uint8_t wristright;
 uint8_t liftup;
 uint8_t liftdown;
 pros::ADILineSensor cs2('g');
-
+extern pros::ADIGyro gyro;
 bool autoactive = false;
 // void ballIntakeControl() {
 //     static int state = 0;
@@ -315,7 +315,11 @@ case 12:
      if (es.get_value() < 1000) {
       wristMotor.move(0);
       pros::delay(20);
-      wristMotor.tare_position();
+      int result = wristMotor.tare_position();
+      if (result == EACCES) {
+        delay(250);
+        wristMotor.tare_position();
+      }
       dtstate = 0;
      }
 
@@ -469,20 +473,44 @@ void doubletap() {
     case 0:
     if(controller.get_digital(DIGITAL_Y)) {dtstate = 1;}
     if(filterBallSensor() == 1) {
-    if (!flip){
-      if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
-      else if(controller.get_digital(DIGITAL_R2)){dtstate = 3;}
-      else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
-      else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
-    }
-    else {
-       if(controller.get_digital(DIGITAL_R2)){dtstate = 3;}
-      else if(controller.get_digital(DIGITAL_R1)){dtstate = 2;}
-      else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;}
-      else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;}
-    }
-    flag = 4;
-  }
+
+    // if (!flip){
+      if(controller.get_digital(DIGITAL_R1)){dtstate = 4;  if (dtstate == lastdtstate) {
+        flag = 3;
+        dtstate = 9;
+      }}
+      else if(controller.get_digital(DIGITAL_R2)){dtstate = 3;  if (dtstate == lastdtstate) {
+        flag = 3;
+        dtstate = 9;
+      }}
+      else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;  if (dtstate == lastdtstate) {
+        flag = 3;
+        dtstate = 9;
+      }}
+      else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;  if (dtstate == lastdtstate) {
+        flag = 3;
+        dtstate = 9;
+      }}}
+    // }
+    // else {
+    //    if(controller.get_digital(DIGITAL_R2)){dtstate = 3;  if (dtstate == lastdtstate) {
+    //      flag = 3;
+    //      dtstate = 9;
+    //    }}
+    //   else if(controller.get_digital(DIGITAL_R1)){dtstate = 4;  if (dtstate == lastdtstate) {
+    //     flag = 3;
+    //     dtstate = 9;
+    //   }}
+    //   else if(controller.get_digital(DIGITAL_L2)){dtstate = 5;  if (dtstate == lastdtstate) {
+    //     flag = 3;
+    //     dtstate = 9;
+    //   }}
+    //   else if(controller.get_digital(DIGITAL_L1)){dtstate = 4;  if (dtstate == lastdtstate) {
+    //     flag = 3;
+    //     dtstate = 9;
+    //   }}
+    // flag = 4;
+
    break;
 
    case 1:
@@ -492,7 +520,7 @@ void doubletap() {
          if (es.get_value() > 1000) {dtstate = 11;}
          break;
     case 2:
-      flip = true;
+      // flip = true;
       // if ( dtstate == lastdtstate ) {break;}
       position = 50;
       // current = wristMotor.get_position();
@@ -503,9 +531,9 @@ void doubletap() {
       lastdtstate = 2;
       break;
 case 3:
-      flip = false;
+      // flip = false;
       // if ( dtstate == lastdtstate ) { break;}
-      position = 1100;
+      position = 1230;
       // current = wristMotor.get_position();
       if (position < currentTarget) { flag = 0;}
       else {flag = 1;}
@@ -515,20 +543,21 @@ case 3:
       break;
 
       case 4: // L1
-      flip = true;
+      // flip = true;
       // if ( dtstate == lastdtstate ) { break;}
-      position = 450;
+      position = 550;
       // current = wristMotor.get_position();
       if (position < currentTarget) { flag = 0;}
       else {flag =1;}
       currentTarget = (currentTarget + position - lastTarget) % 1500;
+
       dtstate = 9;
       lastdtstate = 4;
       break;
 case 5:
-flip = false;
+// flip = false;
       // if ( dtstate == lastdtstate ) { break;}
-      position = 1220;
+      position = 920;
       // current = wristMotor.get_position();
       if (position < currentTarget) { flag = 0;}
       else {flag = 1;}
@@ -570,7 +599,9 @@ case 12:
       wristMotor.move(0);
       pros::delay(20);
       wristMotor.tare_position();
+      pros::delay(20);
       dtstate = 0;
+      lastdtstate = 12;
      }
 
     }
@@ -606,5 +637,12 @@ case 12:
   }
   info_printf(3,"%f",wristMotor.get_position());
 
+}
+
+void gyroDebug() {
+  info_printf(4,"%f",gyro.get_value());
+  if (controller.get_digital(DIGITAL_RIGHT)) {
+    gyro.reset();
+  }
 }
 //provides reassurance of operation

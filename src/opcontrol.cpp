@@ -57,7 +57,7 @@ void opcontrol() {
 		doubletap();
 		launcherControl();
 		ballIntakeControl();
-
+		gyroDebug();
 		pros::delay(20);
 	}
 }

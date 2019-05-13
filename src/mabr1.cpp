@@ -11,7 +11,7 @@
 void auton1()
 {
   resetEncoders();
-  pros::delay(250);//waits to allow sensors to stablize
+  // pros::delay(250);//waits to allow sensors to stablize
   motorSetup();//sets up the motors
 
   //drives forward 1 square to prepare for shooting the middle flag
@@ -19,14 +19,14 @@ intakeOn(false);
   while( driveForward(encoderInchesToCounts(8), 50, true) != 1){
     elevate(0);
   }//12
-  pros::delay(500);
+  pros::delay(250);
   shootBall(1);
   while (shootBall(0) == 0){//waits for ball to be shot
     pros::delay(10);
   }
 
   //drives forward 1 square to toggle low flag
-  pros::delay(500);
+  pros::delay(250);
   while( driveForward(encoderInchesToCounts(4),25,true) != 1);
   while( driveForward(encoderInchesToCounts(DRIVE1_DIST_INCHES),DRIVE1_POWER,true) != 1);
   while( driveBackward(encoderInchesToCounts(12),50,true) != 1);
